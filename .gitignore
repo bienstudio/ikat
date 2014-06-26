@@ -1,3 +1,5 @@
 /.bundle
 /log/*.log
 /tmp
+.env
+config/s3.yml
