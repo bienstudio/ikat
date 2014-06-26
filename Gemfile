@@ -10,15 +10,23 @@ gem 'puma'
 
 gem 'turbolinks'
 
+gem 'devise'
+
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'aws-sdk', '~> 1.3.4'
+
 gem 'mutations'
 
 gem 'haml-rails'
 
 gem 'sass-rails', '~> 4.0.3'
+gem 'compass-rails'
+gem 'susy'
+
 gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'rubocop'
