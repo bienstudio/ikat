@@ -53,5 +53,8 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 
+  gem 'vcr'
+  gem 'webmock', require: 'webmock/rspec'
+
   gem 'database_cleaner'
 end

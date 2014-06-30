@@ -3,3 +3,5 @@
 /tmp
 .env
 config/s3.yml
+db/mongodb
+Procfile.development
