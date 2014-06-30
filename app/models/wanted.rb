@@ -1,0 +1,2 @@
+class Wanted < List
+end

@@ -22,7 +22,14 @@ class Product
     },
     convert_options: { all: '-background white -flatten +matte' }
 
-  validates_attachment_content_type :photo, content_type: ['image/jpg', 'image/jpeg']
+  validates :name, presence: true
+  validates :link, presence: true
+  validates :price, presence: true
+  validates :currency, presence: true
 
-  belongs_to :store
+  validates_attachment :photo,
+    presence: true,
+    content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
+
+  has_and_belongs_to_many :lists
 end

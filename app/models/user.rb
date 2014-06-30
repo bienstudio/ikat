@@ -23,4 +23,17 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
+
+  has_one :wanted
+  has_one :owned
+  has_many :collections
+
+  after_save :create_lists!
+
+  private
+
+  def create_lists!
+    self.wanted = Wanted.create
+    self.owned = Owned.create
+  end
 end
