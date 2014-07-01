@@ -1,5 +1,3 @@
-include ActionDispatch::TestProcess
-
 FactoryGirl.define do
   factory :product do
     name     'Everlane Cotton Crew in Antique'

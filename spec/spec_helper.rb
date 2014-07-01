@@ -5,6 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'paperclip/matchers'
 
+FactoryGirl::SyntaxRunner.class_eval do
+  include ActionDispatch::TestProcess
+end
+
 RSpec.configure do |conf|
   conf.include FactoryGirl::Syntax::Methods
   conf.include VCR::RSpec::Macros
@@ -20,17 +24,22 @@ RSpec.configure do |conf|
   end
 
   # Show the slowest 10 examples on each run
-  conf.profile_examples = 10
+  conf.profile_examples = 5
 
-  # Set the DatabaseCleaner strategy before the suite runs
   conf.before :suite do
+    # Set the DatabaseCleaner strategy before the suite runs
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
+
+    # FactoryGirl.lint
   end
 
-  # Start DatabaseCleaner collecting transactions
   conf.before do
+    # Start DatabaseCleaner collecting transactions
     DatabaseCleaner.start
+
+    # Don't post-process during tests
+    allow_any_instance_of(Paperclip::Attachment).to(receive(:post_process).and_return(true))
   end
 
   # Clean the database
@@ -42,9 +51,6 @@ end
 VCR.configure do |conf|
   conf.cassette_library_dir = 'spec/fixtures/cassettes'
   conf.hook_into :webmock
-  conf.default_cassette_options = { record: :all }
+  conf.default_cassette_options = { record: :new_episodes, match_requests_on: [:host] }
   conf.debug_logger = File.open('log/vcr.log', 'w')
-  # conf.around_http_request do |request|
-  #   VCR.use_cassette('suite', record: :once, &request)
-  # end
 end
