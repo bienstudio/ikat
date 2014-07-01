@@ -1,0 +1,23 @@
+.index {
+  margin-bottom: rhythm(3);
+
+  header {
+    margin-top: rhythm(2);
+    text-align: center;
+
+    h2 {
+      @include adjust-font-size-to(36px);
+
+      font-weight: 700;
+    }
+
+    ul li {
+      display: inline-block;
+      margin-top: rhythm(1);
+
+      & + li {
+        margin-left: rhythm(0.5);
+      }
+    }
+  }
+}

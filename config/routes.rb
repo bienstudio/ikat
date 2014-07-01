@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  devise_scope :user do
+    get '/login'  => 'devise/sessions#new'
+    get '/logout' => 'devise/sessions#destroy'
+    get '/join'   => 'devise/registrations#new'
+  end
+
+  get '/features' => 'ikat#features'
+  get '/about' => 'ikat#about'
+  get '/blog' => 'ikat#blog'
+  get '/support' => 'ikat#support'
+
   root 'ikat#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,11 +1,38 @@
 !!!5
-%html{lang: 'en'}
+%html{lang: "en"}
   %head
     %title Ikat
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 
     = csrf_meta_tags
+
+    %script{src: "//use.typekit.net/bna3bdd.js"}
+    :coffee
+      try
+        Typekit.load()
   %body
+    %header#header
+      %aside
+        %h1.brand
+          = link_to "Ikat", root_path
+        %nav.primary
+          %ul
+            %li= link_to "Explore", ""
+      %section
+        %nav.secondary
+          %ul
+            %li= link_to "Login", login_path
+            %li= link_to "Join", join_path
+
     = yield
+
+    %footer#footer
+      %nav
+        %ul
+          %li= link_to "About", about_path
+          %li= link_to "Blog", blog_path
+          %li= link_to "Support", support_path
+      %p= "&copy; #{Time.now.year} <a href=\"http://fanzter.com\">Fanzter</a>".html_safe
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true

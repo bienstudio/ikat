@@ -1,0 +1,10 @@
+.page {
+  @include container;
+
+  margin-bottom: rhythm(1);
+  margin-top: rhythm(1);
+
+  header {
+    margin-bottom: rhythm(1);
+  }
+}
