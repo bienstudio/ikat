@@ -1,0 +1,17 @@
+a.btn, button, input[type="submit"] {
+  @include border-radius(1px);
+
+  background: $light-grey;
+  border: none;
+  color: $text;
+  font-size: 0.9em;
+  font-family: $sans-serif;
+  font-weight: 600;
+  padding: rhythm(0.25) rhythm(0.5);
+
+  &:hover {
+    background: darken($light-grey, 5%);
+    color: $text;
+    cursor: pointer;
+  }
+}

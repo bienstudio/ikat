@@ -1,0 +1,20 @@
+@import "compass/typography/vertical_rhythm";
+
+$base-font-size: 16px;
+$base-line-height: 28px;
+
+@include establish-baseline;
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+$sans-serif: "soleil", Helvetica Neue, Helvetica, Arial, sans-serif;
+$serif: "calluna", Times New Roman, Times, serif;

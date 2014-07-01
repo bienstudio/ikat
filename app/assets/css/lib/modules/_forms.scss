@@ -1,0 +1,32 @@
+form {
+  input {
+    border: 0;
+    outline: none;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"] {
+    border-bottom: 1px solid $light-grey;
+    display: block;
+    font-family: $serif;
+    font-size: 1em;
+    padding: rhythm(0.25) 0;
+    width: 100%;
+
+    &:focus {
+      border-color: $grey;
+    }
+  }
+
+  label {
+    // @include adjust-font-size-to(10px);
+
+    display: block;
+    color: $grey;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .input + .input {
+    margin-top: rhythm(0.5);
+  }
+}

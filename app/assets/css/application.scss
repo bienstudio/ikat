@@ -5,15 +5,197 @@
 
 @import "lib/base";
 
+
+/*
+
+To-do:
+- grid classes
+- more serif
+- user friendly forms
+
+*/
+
+
 /*
   = Contents
     I. Universal
 */
+
 
 /*
   I. Universal
 */
 
 body {
-  
+  @include font-size(16px);
+
+  background: $base;
+  color: $text;
+  font-family: $sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: $orange;
+  text-decoration: none;
+
+  &:hover {
+    color: $dark-orange;
+  }
+}
+
+h1 {
+  background: image-url('logo-bg.jpg');
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+  line-height: 1em;
+  margin-right: rhythm(1);
+  position: relative;
+  text-transform: uppercase;
+
+  a {
+    color: $base;
+    display: block;
+    padding: 0.5em;
+    z-index: 2;
+  }
+
+  &:hover {
+    @include background(
+      linear-gradient(
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+      ),
+      image-url('logo-bg.jpg')
+    );
+  }
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+h2 {
+  @include adjust-font-size-to(24px);
+}
+
+p + p {
+  margin-top: rhythm(1);
+}
+
+
+/*
+  II. Header
+*/
+
+header#header {
+  @include container;
+  @include trailing-border(1px, 0);
+
+  border-color: $light-grey;
+  padding: rhythm(1) 0;
+
+  a {
+    color: $text;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  h1 a {
+    color: $base;
+
+    &:hover {
+      color: $base;
+    }
+  }
+
+  aside {
+    @include span-columns(9);
+
+    h1, nav {
+      display: inline-block;
+      float: left;
+    }
+  }
+
+  section {
+    @include span-columns(3 omega);
+
+    ul {
+      float: right;
+    }
+  }
+
+  nav {
+    margin-top: rhythm(0.25);
+  }
+
+  ul li {
+    display: inline-block;
+
+    & + li {
+      margin-left: 1em;
+    }
+  }
+}
+
+
+/*
+  III. Main
+*/
+
+main {
+
+}
+
+
+/*
+  IV. Footer
+*/
+
+footer#footer {
+  @include container;
+  @include leading-border(1px, 0);
+
+  border-color: $light-grey;
+  color: $grey;
+  padding-top: rhythm(1);
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: rhythm(3);
+
+  nav, p {
+    @include adjust-font-size-to(14px);
+  }
+
+  nav {
+    float: left;
+  }
+
+  p {
+    float: right;
+  }
+
+  a {
+    color: $grey;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  li {
+    display: inline-block;
+
+    & + li {
+      &:before {
+        content: "\2022";
+        margin-right: .5em;
+      }
+    }
+  }
 }
