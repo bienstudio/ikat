@@ -33,5 +33,12 @@ module Ikat
     config.compass.require 'susy'
 
     config.action_controller.include_all_helpers = true
+
+    config.paperclip_defaults = {
+      storage:       :s3,
+      url:           ':s3_alias_url',
+      s3_credentials: File.join(Rails.root, 'config', 's3.yml'),
+      s3_host_alias:  "s3.amazonaws.com/ikat_#{Rails.env}"
+    }
   end
 end

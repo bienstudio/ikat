@@ -30,6 +30,9 @@ class User
 
   after_save :create_lists!
 
+  validates :name, presence: true
+  validates :username, presence: true, uniqueness: true
+
   private
 
   def create_lists!
