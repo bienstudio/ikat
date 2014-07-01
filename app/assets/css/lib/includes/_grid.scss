@@ -12,3 +12,27 @@ $tablet-small: 480px;
 $tablet-large: 768px;
 $screen-small: 1024px;
 $screen-large: 1280px;
+
+.row {
+  @include container;
+
+  padding: 0;
+}
+
+@for $i from 1 through $total-columns {
+  .col-#{$i} {
+    @include span-columns($i, $total-columns);
+  }
+
+  .prefix-#{$i} {
+    @include prefix($i);
+  }
+
+  .suffix-#{$i} {
+    @include suffix($i);
+  }
+}
+
+.omega {
+  @include omega;
+}

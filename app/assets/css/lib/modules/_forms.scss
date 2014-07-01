@@ -20,7 +20,7 @@ form {
   label {
     // @include adjust-font-size-to(10px);
 
-    display: block;
+    display: inline-block;
     color: $grey;
     font-size: 10px;
     text-transform: uppercase;
@@ -28,5 +28,19 @@ form {
 
   .input + .input {
     margin-top: rhythm(0.5);
+  }
+}
+
+ul.links {
+  @include adjust-font-size-to(12px);
+
+  margin-top: rhythm(0.5);
+
+  li {
+    display: inline-block;
+
+    & + li {
+      padding-left: rhythm(0.5);
+    }
   }
 }

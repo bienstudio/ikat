@@ -1,17 +1,24 @@
 .page
   %header
-    %h2 Sign up
+    %h2 Join
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = devise_error_messages!
     .input
       = f.email_field :email, autofocus: true
       = f.label :email
     .input
-      = f.password_field :password, autocomplete: "off"
-      = f.label :password
+      = f.text_field :name
+      = f.label :name
     .input
-      = f.password_field :password_confirmation, autocomplete: "off"
-      = f.label :password_confirmation
+      = f.text_field :username
+      = f.label :username
+    .input.row
+      .col-6
+        = f.password_field :password, autocomplete: "off"
+        = f.label :password
+      .col-6.omega
+        = f.password_field :password_confirmation, autocomplete: "off"
+        = f.label :password_confirmation
     .input
-      = f.submit "Sign up"
+      = f.submit "Join"
   = render "devise/shared/links"
