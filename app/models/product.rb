@@ -7,6 +7,7 @@ class Product
   field :link,     type: String
   field :price,    type: Float
   field :currency, type: Symbol
+  field :expired,  type: Boolean, default: false
 
   has_mongoid_attached_file :photo,
     path:          'products/:attachment/:id/:style.:extension',
@@ -30,4 +31,8 @@ class Product
   belongs_to :store
 
   has_and_belongs_to_many :lists
+
+  def permalink
+    "/products/#{self.id}"
+  end
 end
