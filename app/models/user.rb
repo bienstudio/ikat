@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paperclip
 
   field :name,      type: String
   field :email,     type: String
@@ -24,14 +25,28 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
+  has_mongoid_attached_file :avatar,
+    path:          'users/:attachment/:id/:style.:extension',
+    styles: {
+      original: ['900x900>', :jpg],
+      large:    ['500x500>',   :jpg],
+      medium:   ['250x250',    :jpg],
+      small:    ['100x100#',   :jpg]
+    },
+    convert_options: { all: '-background white -flatten +matte' }
+
+  validates_attachment :avatar,
+    content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
+
+  validates :name, presence: true
+  validates :username, presence: true, uniqueness: true
+
   has_one :wanted
   has_one :owned
   has_many :collections
 
   after_save :create_lists!
 
-  validates :name, presence: true
-  validates :username, presence: true, uniqueness: true
 
   private
 

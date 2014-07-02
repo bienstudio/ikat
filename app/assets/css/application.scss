@@ -81,6 +81,10 @@ h2 {
   @include adjust-font-size-to(24px);
 }
 
+img {
+  max-width: 100%;
+}
+
 p + p {
   margin-top: rhythm(1);
 }
@@ -131,6 +135,8 @@ header#header {
   }
 
   nav {
+    @include adjust-font-size-to(14px);
+
     margin-top: rhythm(0.25);
   }
 

@@ -1,30 +1,37 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  %div
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  %div= f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+.page
+  %header
+    %h2 Settings
+  .row
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      .col-4.suffix-1
+        .input
+          %figure
+            = image_tag current_user.avatar.url
+          = f.file_field :avatar
+          = f.label :avatar
+      .col-18.omega
+        = devise_error_messages!
+        .input
+          = f.email_field :email, autofocus: true
+          = f.label :email
+        .input
+          = f.text_field :name
+          = f.label :name
+        .input
+          = f.text_field :username
+          = f.label :username
+        .input.row
+          .col-12
+            = f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it"
+            = f.label :password
+          .col-12.omega
+            = f.password_field :password_confirmation, autocomplete: "off"
+            = f.label :password_confirmation
+        .input
+          = f.password_field :current_password, autocomplete: "off", placeholder: "Needed to confirm changes"
+          = f.label :current_password
+        .input
+          = f.submit "Save"
+
+  %h3
+  %p #{button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-red'}

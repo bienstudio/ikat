@@ -2,7 +2,7 @@
   %header
     %h2 Join
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
+    = render :partial => 'partials/flash'
     .input
       = f.email_field :email, autofocus: true
       = f.label :email
@@ -13,12 +13,11 @@
       = f.text_field :username
       = f.label :username
     .input.row
-      .col-6
+      .col-12
         = f.password_field :password, autocomplete: "off"
         = f.label :password
-      .col-6.omega
+      .col-12.omega
         = f.password_field :password_confirmation, autocomplete: "off"
         = f.label :password_confirmation
     .input
       = f.submit "Join"
-  = render "devise/shared/links"
