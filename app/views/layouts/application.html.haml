@@ -19,11 +19,17 @@
         %nav.primary
           %ul
             %li= link_to "Explore", ""
+            - if current_user
+              %li= link_to "You", profile_path(username: current_user.username)
       %section
         %nav.secondary
           %ul
-            %li= link_to "Login", login_path
-            %li= link_to "Join", join_path
+            - if current_user
+              %li= link_to "Settings", settings_path
+              %li= link_to "Logout", logout_path
+            - else
+              %li= link_to "Login", login_path
+              %li= link_to "Join", join_path
 
     = yield
 

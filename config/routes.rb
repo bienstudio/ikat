@@ -2,15 +2,18 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get '/login'  => 'devise/sessions#new'
-    get '/logout' => 'devise/sessions#destroy'
-    get '/join'   => 'devise/registrations#new'
+    get '/login'    => 'devise/sessions#new'
+    get '/logout'   => 'devise/sessions#destroy'
+    get '/join'     => 'devise/registrations#new'
+    get '/settings' => 'devise/registrations#edit'
   end
 
   get '/features' => 'ikat#features'
   get '/about' => 'ikat#about'
   get '/blog' => 'ikat#blog'
   get '/support' => 'ikat#support'
+
+  get '/:username' => 'users#show', as: 'profile'
 
   root 'ikat#index'
 

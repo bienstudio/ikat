@@ -14,4 +14,13 @@ a.btn, button, input[type="submit"] {
     color: $text;
     cursor: pointer;
   }
+
+  &.btn-red {
+    background: $red;
+    color: $base;
+
+    &:hover {
+      background: darken($red, 5%);
+    }
+  }
 }
