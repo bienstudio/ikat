@@ -18,7 +18,7 @@ class Store
     convert_options: { all: '-background white -flatten +matte' }
 
   validates :name, presence: true
-  validates :link, presence: true
+  validates :link, presence: true#, unqiueness: true
 
   validates_attachment :logo,
     content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
