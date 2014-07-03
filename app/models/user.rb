@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Canable::Cans
+  include Canable::Ables
 
   field :name,      type: String
   field :email,     type: String
@@ -41,17 +43,32 @@ class User
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
 
-  has_one :wanted
-  has_one :owned
+  has_one :wants
+  has_one :owns
   has_many :collections
 
   after_save :create_lists!
 
+  def viewable_by?(u)
+    true
+  end
+
+  def creatable_by?(u)
+    true
+  end
+
+  def updatable_by?(u)
+    self == u || u.admin?
+  end
+
+  def destroyable_by?(u)
+    updatable_by?(u)
+  end
 
   private
 
   def create_lists!
-    self.wanted = Wanted.create
-    self.owned = Owned.create
+    self.wants = Wants.create
+    self.owns = Owns.create
   end
 end

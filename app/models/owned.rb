@@ -1,2 +1,0 @@
-class Owned < List
-end

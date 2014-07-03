@@ -1,0 +1,2 @@
+class Owns < List
+end

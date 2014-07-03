@@ -24,7 +24,7 @@ RSpec.configure do |conf|
   end
 
   # Show the slowest 10 examples on each run
-  conf.profile_examples = 5
+  # conf.profile_examples = 5
 
   conf.before :suite do
     # Set the DatabaseCleaner strategy before the suite runs

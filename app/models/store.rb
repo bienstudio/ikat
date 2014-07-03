@@ -1,11 +1,12 @@
 class Store
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Userstamps
   include Mongoid::Paperclip
 
   field :name,        type: String
   field :description, type: String
-  field :link,        type: String
+  field :domain,      type: String
 
   has_mongoid_attached_file :logo,
     path:          'stores/:attachment/:id/:style.:extension',
@@ -17,11 +18,37 @@ class Store
     },
     convert_options: { all: '-background white -flatten +matte' }
 
-  validates :name, presence: true
-  validates :link, presence: true#, unqiueness: true
+  validates :name,   presence: true
+  validates :domain, presence: true# unqiueness: true
 
   validates_attachment :logo,
     content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   has_many :products
+
+  scope :from_link, ->(link){ where(domain: url_to_domain(link)) }
+
+  def viewable_by?(u)
+    true
+  end
+
+  def creatable_by?(u)
+    true
+  end
+
+  def updatable_by?(u)
+    u.admin?
+  end
+
+  def destroyable_by?(u)
+    updatable_by?(u)
+  end
+
+  class << self
+    def url_to_domain(url)
+      url = "http://#{url}" if URI.parse(url).scheme.nil?
+      host = URI.parse(url).host.downcase
+      host.start_with?('www.') ? host[4..-1] : host
+    end
+  end
 end
