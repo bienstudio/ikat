@@ -9,6 +9,8 @@ class User
   field :email,     type: String
   field :username,  type: String
   field :biography, type: String
+  field :location,  type: String
+  field :website,   type: String
   field :admin,     type: Boolean, default: false
 
   devise :database_authenticatable, :registerable,
@@ -30,10 +32,10 @@ class User
   has_mongoid_attached_file :avatar,
     path:          'users/:attachment/:id/:style.:extension',
     styles: {
-      original: ['900x900>', :jpg],
-      large:    ['500x500>',   :jpg],
-      medium:   ['250x250',    :jpg],
-      small:    ['100x100#',   :jpg]
+      original: ['900x900#', :jpg],
+      large:    ['500x500#', :jpg],
+      medium:   ['250x250#', :jpg],
+      small:    ['100x100#', :jpg]
     },
     convert_options: { all: '-background white -flatten +matte' }
 

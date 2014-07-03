@@ -5,12 +5,12 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .col-4.suffix-1
         .input
-          %figure
+          %figure.avatar
             = image_tag current_user.avatar.url
           = f.file_field :avatar
           = f.label :avatar
       .col-18.omega
-        = devise_error_messages!
+        = render :partial => 'partials/flash'
         .input
           = f.email_field :email, autofocus: true
           = f.label :email
@@ -20,6 +20,15 @@
         .input
           = f.text_field :username
           = f.label :username
+        .input
+          = f.text_area :biography
+          = f.label :biography
+        .input
+          = f.text_field :location
+          = f.label :location
+        .input
+          = f.text_field :website, placeholder: 'http://'
+          = f.label :website
         .input.row
           .col-12
             = f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it"
