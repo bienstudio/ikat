@@ -3,6 +3,7 @@ class Store
   include Mongoid::Timestamps
   include Mongoid::Userstamps
   include Mongoid::Paperclip
+  include Canable::Ables
 
   field :name,        type: String
   field :description, type: String

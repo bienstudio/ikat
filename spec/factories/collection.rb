@@ -11,5 +11,9 @@ FactoryGirl.define do
         end
       end
     end
+
+    trait :hidden do
+      hidden true
+    end
   end
 end
