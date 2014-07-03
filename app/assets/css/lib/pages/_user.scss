@@ -1,0 +1,25 @@
+.page.user {
+  header {
+    ul {
+      @include adjust-font-size-to(14px);
+
+      color: $grey;
+
+      li {
+        display: inline-block;
+        margin-right: 0.25em;
+
+        & + li {
+          &:before {
+            content: "\2022";
+            margin-right: 0.5em;
+          }
+        }
+      }
+    }
+
+    section {
+      margin-top: rhythm(0.75);
+    }
+  }
+}

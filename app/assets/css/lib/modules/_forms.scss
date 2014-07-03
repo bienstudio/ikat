@@ -4,11 +4,13 @@ form {
     outline: none;
   }
 
-  input[type="text"], input[type="email"], input[type="password"] {
+  input[type="text"], input[type="email"], input[type="password"], textarea {
+    border: 0;
     border-bottom: 1px solid $light-grey;
     display: block;
     font-family: $sans-serif;
     font-size: 1em;
+    outline: none;
     padding: rhythm(0.25) 0;
     width: 100%;
 
@@ -18,8 +20,6 @@ form {
   }
 
   label {
-    // @include adjust-font-size-to(10px);
-
     display: inline-block;
     color: $grey;
     font-size: 10px;
