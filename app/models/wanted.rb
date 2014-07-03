@@ -1,2 +1,0 @@
-class Wanted < List
-end

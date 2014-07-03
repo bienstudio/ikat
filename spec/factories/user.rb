@@ -13,5 +13,9 @@ FactoryGirl.define do
 
     email
     username
+
+    trait :admin do
+      admin true
+    end
   end
 end

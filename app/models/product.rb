@@ -2,6 +2,7 @@ class Product
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Canable::Ables
 
   field :name,     type: String
   field :link,     type: String
@@ -34,5 +35,21 @@ class Product
 
   def permalink
     "/products/#{self.id}"
+  end
+
+  def viewable_by?(u)
+    true
+  end
+
+  def creatable_by?(u)
+    true
+  end
+
+  def updatable_by?(u)
+    true # Only on Product update?
+  end
+
+  def destroyable_by?(u)
+    u.admin?
   end
 end

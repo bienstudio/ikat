@@ -7,6 +7,9 @@ describe Store do
     end
   end
 
+  let(:user)  { create :user }
+  let(:admin) { create :user, :admin }
+
   before do
     VCR.insert_cassette('app/models/store/all', erb: { id: 'foobar' })
   end
@@ -14,7 +17,26 @@ describe Store do
   it { expect(store).to be_valid }
 
   it { expect(store).to validate_presence_of :name }
-  it { expect(store).to validate_presence_of :link }
+  it { expect(store).to validate_presence_of :domain }
+  it 'expect(store).to validate_uniqueness_of :domain'
+
+  describe '#viewable_by?' do
+    it { expect(store.viewable_by?(user)).to eql true }
+  end
+
+  describe '#creatable_by?' do
+    it { expect(store.creatable_by?(user)).to eql true }
+  end
+
+  describe '#updatable_by?' do
+    it { expect(store.updatable_by?(user)).to eql false }
+    it { expect(store.updatable_by?(admin)).to eql true }
+  end
+
+  describe '#destroyable_by?' do
+    it { expect(store.destroyable_by?(user)).to eql false }
+    it { expect(store.destroyable_by?(admin)).to eql true }
+  end
 
   after do
     VCR.eject_cassette

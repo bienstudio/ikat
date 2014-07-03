@@ -7,6 +7,9 @@ describe Product do
     end
   end
 
+  let(:user)  { create :user }
+  let(:admin) { create :user, :admin }
+
   before do
     VCR.insert_cassette('app/models/product/all', erb: { id: 'foobar' })
   end
@@ -20,6 +23,23 @@ describe Product do
 
   it 'expect(product).to validate_attachment_presence :photo' # Waiting on Paperclip to not use deprecated RSpec matchers
   it { expect(product).to validate_attachment_content_type(:photo).allowing('image/jpg', 'image/jpeg', 'image/png', 'image/gif').rejecting('text/xml', 'text/html') }
+
+  describe '#viewable_by?' do
+    it { expect(product.viewable_by?(user)).to eql true }
+  end
+
+  describe '#creatable_by?' do
+    it { expect(product.creatable_by?(user)).to eql true }
+  end
+
+  describe '#updatable_by?' do
+    it { expect(product.updatable_by?(user)).to eql true }
+  end
+
+  describe '#destroyable_by?' do
+    it { expect(product.destroyable_by?(user)).to eql false }
+    it { expect(product.destroyable_by?(admin)).to eql true }
+  end
 
   after do
     VCR.eject_cassette
