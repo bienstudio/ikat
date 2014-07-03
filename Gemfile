@@ -13,8 +13,7 @@ gem 'turbolinks'
 gem 'devise'
 gem 'canable'
 
-gem 'fog', '~> 1.19.0'
-gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'paperclip', github: 'eturk/paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 
 gem 'mutations'
