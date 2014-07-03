@@ -6,15 +6,6 @@
 @import "lib/base";
 
 
-/*
-
-To-do:
-- grid classes
-- more serif
-- user friendly forms
-
-*/
-
 
 /*
   = Contents
@@ -36,16 +27,16 @@ body {
 }
 
 a {
-  color: $orange;
+  color: $blue;
   text-decoration: none;
 
   &:hover {
-    color: $dark-orange;
+    color: $dark-blue;
   }
 }
 
 h1 {
-  background: image-url('logo-bg.jpg');
+  background: image-url('logo-bg.jpg') -20px -100px no-repeat;
   display: inline-block;
   font-weight: 700;
   font-size: 1.25em;
@@ -68,8 +59,11 @@ h1 {
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
       ),
-      image-url('logo-bg.jpg')
+      image-url('logo-bg.jpg'),
+      no-repeat
     );
+
+    background-position: -20px -100px;
   }
 }
 
@@ -105,7 +99,7 @@ header#header {
     color: $text;
 
     &:hover {
-      color: $orange;
+      color: $blue;
     }
   }
 
@@ -190,7 +184,7 @@ footer#footer {
     color: $grey;
 
     &:hover {
-      color: $orange;
+      color: $blue;
     }
   }
 
