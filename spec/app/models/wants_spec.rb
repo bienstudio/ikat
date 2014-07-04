@@ -23,5 +23,4 @@ describe Wants do
   describe '#destroyable_by?' do
     it { expect(wants.destroyable_by?(user)).to eql false }
   end
-
 end

@@ -1,6 +1,7 @@
 class Product
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Userstamps
   include Mongoid::Paperclip
   include Canable::Ables
 
