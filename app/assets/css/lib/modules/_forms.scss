@@ -29,6 +29,16 @@ form {
   .input + .input {
     margin-top: rhythm(0.5);
   }
+
+  .field_with_errors {
+    input, textarea {
+      border-color: $red;
+    }
+
+    label {
+      color: $red;
+    }
+  }
 }
 
 ul.links {
