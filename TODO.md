@@ -5,3 +5,4 @@
 - [ ] Add permalinks to stores, products
 - [ ] Routing between usernames and store domains (both are at /:foo)
 - [ ] Follow other users, stores: make feed
+- [ ] Events
