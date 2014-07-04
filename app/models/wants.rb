@@ -16,5 +16,4 @@ class Wants < List
   def destroyable_by?(u)
     false
   end
-
 end

@@ -48,6 +48,7 @@ class User
   has_one :wants
   has_one :owns
   has_many :collections
+  has_many :relationships
 
   after_save :create_lists!
 
@@ -65,6 +66,30 @@ class User
 
   def destroyable_by?(u)
     updatable_by?(u)
+  end
+
+  def feed(actions = [:add, :follow])
+    Activity.feed(self, actions)
+  end
+
+  def following
+    Relationship.following(self).collect(&:followee)
+  end
+
+  def followers
+    Relationship.followers(self).collect(&:follower)
+  end
+
+  def follow!(obj)
+    Relationship.create(
+      follower: self,
+      followee: obj
+    )
+  end
+
+  def unfollow!(obj)
+    relationship = self.relationships.where(followee: obj).first
+    relationship.destroy
   end
 
   private
