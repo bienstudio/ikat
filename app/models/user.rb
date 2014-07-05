@@ -37,7 +37,8 @@ class User
       medium:   ['250x250#', :jpg],
       small:    ['100x100#', :jpg]
     },
-    convert_options: { all: '-background white -flatten +matte' }
+    convert_options: { all: '-background white -flatten +matte' },
+    default_url: '/assets/avatar.png'
 
   validates_attachment :avatar,
     content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
