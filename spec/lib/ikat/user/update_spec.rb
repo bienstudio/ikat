@@ -27,7 +27,7 @@ describe UserUpdate do
     it { expect(action.result.name).to eql 'Foobar' }
     it { expect(action.result.username).to eql 'foobar' }
     it { expect(action.result.password).to eql 'barfoo1' }
-    it { expect(action.result.avatar.url).to include 'amazonaws.com' }
+    it { expect(action.result.avatar.url).to include 'avatars' }
   end
 
   context 'with unpermitted user' do
