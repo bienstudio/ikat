@@ -70,7 +70,7 @@ class Store
     )
   end
 
-  def after_remove(product)
+  def remove_activity(product)
     Activity.create(
       action:  :remove,
       subject: product,

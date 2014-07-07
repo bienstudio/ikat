@@ -18,7 +18,7 @@ describe Store do
 
   it { expect(store).to validate_presence_of :name }
   it { expect(store).to validate_presence_of :domain }
-  it 'expect(store).to validate_uniqueness_of :domain'
+  it 'expect(store).to validate_uniqueness_of :domain '
 
   describe '#viewable_by?' do
     it { expect(store.viewable_by?(user)).to eql true }
@@ -36,6 +36,42 @@ describe Store do
   describe '#destroyable_by?' do
     it { expect(store.destroyable_by?(user)).to eql false }
     it { expect(store.destroyable_by?(admin)).to eql true }
+  end
+
+  describe '#followers' do
+    before do
+      user.follow!(store)
+    end
+
+    it { expect(store.followers).to include user }
+  end
+
+  describe '#add_activity' do
+    before do
+      product = create(:product)
+
+      store.products << product
+      store.save
+    end
+
+    it { expect(Activity.where(action: :add, target: store).count).to eql 1 }
+  end
+
+  describe '#remove_activity' do
+    before do
+      product = create(:product)
+
+      store.products << product
+      store.save
+
+      store.products.delete(store.products.first)
+    end
+
+    it { expect(Activity.where(action: :remove, target: store).count).to eql 1 }
+  end
+
+  describe '.url_to_domain' do
+    it { expect(Store.url_to_domain('https://foo.everlane.com/foobar')).to eql 'foo.everlane.com' }
   end
 
   after do
