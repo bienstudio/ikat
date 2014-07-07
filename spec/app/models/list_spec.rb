@@ -13,6 +13,15 @@ describe List do
   end
 
   describe '#create_activity' do
-    it { expect(Activity.where(target: wants).count).to be > 1 }
+    it { expect(Activity.where(action: :add, target: wants).count).to be > 1 }
+  end
+
+  describe '#remove_activity' do
+    before do
+      wants.products.delete(wants.products.first)
+      wants.save
+    end
+
+    it { expect(Activity.where(action: :remove, target: wants).count).to eql 1 }
   end
 end

@@ -38,4 +38,72 @@ describe User do
     it { expect(user.destroyable_by?(admin)).to eql true }
     it { expect(user.destroyable_by?(other)).to eql false }
   end
+
+  describe '#follow!' do
+    context 'user' do
+      let(:action) { user.follow!(other) }
+
+      it { expect(action).to be_an_instance_of Relationship }
+      it { expect(action.follower).to eql user }
+      it { expect(action.followee).to eql other }
+    end
+
+    context 'store' do
+      let(:store) do
+        VCR.use_cassette('app/models/user/follow/store', erb: { id: 'foobar' }) do
+          create :store
+        end
+      end
+
+      let(:action) { user.follow!(store) }
+
+      it { expect(action).to be_an_instance_of Relationship }
+      it { expect(action.follower).to eql user }
+      it { expect(action.followee).to eql store }
+    end
+  end
+
+  describe '#unfollow!' do
+    context 'user' do
+      before do
+        user.follow!(other)
+      end
+
+      let(:action) { user.unfollow!(other) }
+
+      it { expect(action).to eql true }
+    end
+
+    context 'store' do
+      before do
+        user.follow!(store)
+      end
+
+      let(:store) do
+        VCR.use_cassette('app/models/user/unfollow/store', erb: { id: 'foobar' }) do
+          create :store
+        end
+      end
+
+      let(:action) { user.unfollow!(store) }
+
+      it { expect(action).to eql true }
+    end
+  end
+
+  describe '#following' do
+    before do
+      user.follow!(other)
+    end
+
+    it { expect(user.following).to include other }
+  end
+
+  describe '#followers' do
+    before do
+      other.follow!(user)
+    end
+
+    it { expect(user.followers).to include other }
+  end
 end

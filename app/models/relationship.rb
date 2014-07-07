@@ -5,7 +5,10 @@ class Relationship
   belongs_to :follower, class_name: 'User' # Stores can't follow people
   belongs_to :followee, polymorphic: true
 
-  after_create :follow_activity
+  validates :follower, presence: true
+  validates :followee, presence: true
+
+  after_create  :follow_activity
   after_destroy :unfollow_activity
 
   scope :followers, ->(obj){ self.where(followee: obj) }
