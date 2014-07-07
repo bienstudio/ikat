@@ -58,4 +58,6 @@ group :test do
   gem 'webmock', require: 'webmock/rspec'
 
   gem 'database_cleaner'
+
+  gem 'simplecov', require: false
 end
