@@ -6,6 +6,7 @@ FactoryGirl.define do
     currency :usd
     photo    { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'tee.jpg'), 'image/jpg') }
 
+    category
     store
   end
 end

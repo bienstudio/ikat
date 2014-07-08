@@ -39,4 +39,5 @@ Rails.application.configure do
 
   # No Paperclip logging in tests
   Paperclip.options[:log] = false
+  Paperclip.options[:whiny] = false
 end
