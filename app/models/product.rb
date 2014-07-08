@@ -25,12 +25,15 @@ class Product
   validates :link,     presence: true
   validates :price,    presence: true
   validates :currency, presence: true
+  validates :store,    presence: true
+  validates :category, presence: true
 
   validates_attachment :photo,
     presence: true,
     content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   belongs_to :store
+  belongs_to :category
 
   has_and_belongs_to_many :lists
 
