@@ -9,6 +9,6 @@ FactoryGirl.define do
 
     domain
 
-    logo       { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'logo.jpeg'), 'image/jpeg') }
+    # logo       { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'logo.jpeg'), 'image/jpeg') }
   end
 end

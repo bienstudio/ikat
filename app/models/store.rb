@@ -52,7 +52,7 @@ class Store
   end
 
   class << self
-    def url_to_domain(url)
+    def domain_from_url(url)
       url = "http://#{url}" if URI.parse(url).scheme.nil?
       host = URI.parse(url).host.downcase
       host.start_with?('www.') ? host[4..-1] : host
