@@ -22,6 +22,7 @@ describe Product do
   it { expect(product).to validate_presence_of :currency }
   it { expect(product).to validate_presence_of :store }
   it { expect(product).to validate_presence_of :category }
+  it { expect(product).to validate_presence_of :original_image }
 
   it 'expect(product).to validate_attachment_presence :photo' # Waiting on Paperclip to not use deprecated RSpec matchers
   it { expect(product).to validate_attachment_content_type(:photo).allowing('image/jpg', 'image/jpeg', 'image/png', 'image/gif').rejecting('text/xml', 'text/html') }

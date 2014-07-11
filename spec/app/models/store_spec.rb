@@ -70,8 +70,8 @@ describe Store do
     it { expect(Activity.where(action: :remove, target: store).count).to eql 1 }
   end
 
-  describe '.url_to_domain' do
-    it { expect(Store.url_to_domain('https://foo.everlane.com/foobar')).to eql 'foo.everlane.com' }
+  describe '.domain_from_url' do
+    it { expect(Store.domain_from_url('https://foo.everlane.com/foobar')).to eql 'foo.everlane.com' }
   end
 
   after do

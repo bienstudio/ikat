@@ -10,6 +10,7 @@ class Product
   field :price,    type: Float
   field :currency, type: Symbol
   field :expired,  type: Boolean, default: false
+  field :original_image, type: String
 
   has_mongoid_attached_file :photo,
     path:          'products/:attachment/:id/:style.:extension',
@@ -27,6 +28,7 @@ class Product
   validates :currency, presence: true
   validates :store,    presence: true
   validates :category, presence: true
+  validates :original_image, presence: true
 
   validates_attachment :photo,
     presence: true,
