@@ -6,8 +6,11 @@
     %section.col-20.omega
       %h2= @user.name
       %ul.meta
-        - if @user.location
+        - unless @user.location.blank?
           %li= @user.location
-        - if @user.website
+        - unless @user.website.blank?
           %li= link_to @user.website, @user.website
       %p.biography= @user.biography
+  %section
+    - @user.wants.products.each do |product|
+      = render :partial => 'products/product', locals: { product: product }

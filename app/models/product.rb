@@ -58,4 +58,16 @@ class Product
   def destroyable_by?(u)
     u.admin?
   end
+
+  def full_price
+    "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i )}"
+  end
+
+  class << self
+    def currencies
+      {
+        usd: '$'
+      }
+    end
+  end
 end

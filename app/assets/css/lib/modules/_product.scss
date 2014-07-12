@@ -1,0 +1,47 @@
+figure.product {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+
+  a.block {
+    color: $text;
+
+    &:hover {
+      img {
+        @include filter(grayscale(1));
+
+        opacity: 0.33;
+      }
+
+      .info, .actions {
+        opacity: 1;
+        bottom: 1.5em;
+      }
+    }
+  }
+
+  img {
+    @include transition(opacity 0.2s ease-out);
+
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+
+  .info, .actions {
+    @include transition(opacity 0.2s ease-out, bottom 0.5s ease-out);
+
+    display: block;
+    z-index: 100;
+    opacity: 0;
+    padding: 1em 0 0 2em;
+    position: absolute;
+    bottom: 1em;
+  }
+
+  .actions {
+    right: 1em;
+  }
+}

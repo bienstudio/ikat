@@ -2,6 +2,9 @@ class IkatController < ApplicationController
 
   # GET /
   def index
+    if current_user
+      @feed = current_user.feed.limit(20)
+    end
   end
 
   # GET /features

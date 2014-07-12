@@ -21,3 +21,17 @@
     }
   }
 }
+
+.feed {
+  @include container;
+
+  margin-top: rhythm(2);
+
+  & > section {
+    @include span-columns(18, 24);
+  }
+
+  & > aside {
+    @include span-columns(6 omega, 24);
+  }
+}
