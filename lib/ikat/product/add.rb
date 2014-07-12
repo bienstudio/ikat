@@ -27,7 +27,8 @@ class ProductAdd < IkatMutation
       link: product['url'],
       price: product['price'],
       currency: product['currency'],
-      photo: product['image_url']
+      photo: product['image_url'],
+      original_image: product['image_url']
     )
 
     p.category = product['category']
@@ -43,8 +44,12 @@ class ProductAdd < IkatMutation
 
     p.save
 
+    mongoid_errors!(p)
+
     list.products << p
     list.save
+
+    mongoid_errors!(list)
 
     return p
   end

@@ -20,6 +20,8 @@ class StoreAdd < IkatMutation
 
     s.save
 
+    mongoid_errors!(s)
+
     return s
   end
 end
