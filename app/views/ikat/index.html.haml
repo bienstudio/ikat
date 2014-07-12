@@ -1,7 +1,15 @@
-.index
-  %header
-    %h2 Collect the products you love.
-    %p Ikat is a simple way for you to collect and discover products you love.
-    %ul
-      %li= link_to "Learn More", features_path, class: "btn"
-      %li= link_to "Join Now", join_path, class: "btn"
+- if current_user
+  .feed
+    %section.activities
+      - @feed.each do |activity|
+        = render :partial => 'activity/activity', locals: { activity: activity }
+    %aside
+
+- else
+  .index
+    %header
+      %h2 Collect the products you love.
+      %p Ikat is a simple way for you to collect and discover products you love.
+      %ul
+        %li= link_to "Learn More", features_path, class: "btn"
+        %li= link_to "Join Now", join_path, class: "btn"

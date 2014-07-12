@@ -1,0 +1,19 @@
+.activity {
+  @include container;
+
+  aside {
+    @include span-columns(2, 24);
+  }
+
+  section {
+    @include span-columns(20 omega, 24);
+
+    p + p {
+      margin-top: rhythm(0.5);
+    }
+  }
+
+  & + .activity {
+    margin-top: rhythm(1);
+  }
+}

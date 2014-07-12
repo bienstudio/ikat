@@ -23,4 +23,13 @@ a.btn, button, input[type="submit"] {
       background: darken($red, 5%);
     }
   }
+
+  &.btn-green {
+    background: $green;
+    color: $base;
+
+    &:hover {
+      background: darken($green, 5%);
+    }
+  }
 }
