@@ -28,7 +28,7 @@ module Ikat
     config.assets.paths << "#{Rails.root}/app/assets/css"
     config.assets.paths << "#{Rails.root}/app/assets/img"
     config.assets.paths << "#{Rails.root}/app/assets/jsc"
-    config.assets.paths << "#{Rails.root}/app/assets/webfonts"
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.compass.require 'susy'
 
