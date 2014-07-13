@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/blog' => 'ikat#blog'
   get '/support' => 'ikat#support'
 
+  get '/:store_domain' => 'stores#show', as: 'store', constraints: { store_domain: /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ }
   get '/:username' => 'users#show', as: 'profile'
 
   root 'ikat#index'

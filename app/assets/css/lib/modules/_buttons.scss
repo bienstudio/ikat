@@ -1,4 +1,4 @@
-a.btn, button, input[type="submit"] {
+.btn, button, input[type="submit"] {
   @include border-radius(1px);
 
   background: $light-grey;

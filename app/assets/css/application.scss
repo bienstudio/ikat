@@ -26,7 +26,7 @@ body {
   font-weight: 300;
 }
 
-a {
+a, [data-url] {
   color: $blue;
   text-decoration: none;
 
@@ -42,7 +42,7 @@ h1 {
   font-size: 1.25em;
   letter-spacing: 1px;
   line-height: 1em;
-  margin-right: rhythm(1);
+  margin-right: rhythm(1.5);
   position: relative;
   text-transform: uppercase;
 
@@ -121,7 +121,7 @@ header#header {
   }
 
   aside {
-    @include span-columns(9);
+    @include span-columns(16);
 
     h1, nav {
       display: inline-block;
@@ -130,7 +130,7 @@ header#header {
   }
 
   section {
-    @include span-columns(3 omega);
+    @include span-columns(8 omega);
 
     ul {
       float: right;
