@@ -1,6 +1,8 @@
 %article.activity{'data-action' => activity.action}
   %aside
-    %figure.avatar= image_tag activity.actor.avatar.url
+    %figure.avatar
+      = link_to profile_path(username: activity.actor.username) do
+        = image_tag activity.actor.avatar.url
   %section
     - case activity.action
     - when :follow
