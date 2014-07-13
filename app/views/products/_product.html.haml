@@ -1,15 +1,19 @@
+- in_wants = current_user.wants.products.include?(product)
+
 %figure.product
-  -# %a.block{href: "#"}
   = link_to("#", class: "block") do
-    .info
-      %ul
-        %li.name <strong>#{product.name}</strong> (#{product.full_price})
-        %li.store <em>from</em> #{product.store.name}
-    .actions
-      -# For the love of all that is holy, fix this
-      - if current_user.wants.products.include?(product)
-        = button_tag "Remove", class: "btn-green"
-      - else
-        = button_tag "Add", class: "btn-red"
     .photo
       = image_tag product.photo.url(:large)
+  .info
+    %ul
+      %li.name <strong><a href="#">#{product.name}</a></strong> (#{product.full_price})
+      %li.store <em>from</em> <a href="#{store_path(store_domain: product.store.domain)}">#{product.store.name}</a>
+  .actions
+    %nav
+      %a.flux.btn{class: in_wants ? 'btn-green' : 'btn-red'}
+        = in_wants ? 'Remove' : 'Add'
+      %span.collections.btn{class: in_wants ? 'btn-green' : 'btn-red'}
+        %i &#9660;
+        %ul
+          - current_user.collections.each do |collection|
+            %li= link_to collection.name, "foo"
