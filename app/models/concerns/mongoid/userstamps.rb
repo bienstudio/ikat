@@ -8,7 +8,7 @@ module Mongoid
     end
 
     def creator
-      User.find(self.created_by)
+      self.created_by ? User.find(self.created_by) : nil
     end
 
     def creator=(u)
@@ -16,7 +16,7 @@ module Mongoid
     end
 
     def updater
-      User.find(self.updated_by)
+      self.updated_by ? User.find(self.updated_by) : nil
     end
 
     def updater=(u)

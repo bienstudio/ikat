@@ -1,0 +1,15 @@
+.page
+  %header
+    %h3= link_to @product.store.name, store_path(store_domain: @product.store.domain)
+    %h2= @product.name
+  .row
+    %figure
+      = image_tag @product.photo.url
+    %ul
+      %li Name: #{@product.name}
+      %li Link: #{@product.link}
+      %li Price: #{@product.price}
+      %li Currency: #{@product.currency}
+      %li Expired: #{@product.expired}
+      %li Original image: #{@product.original_image}
+      %li Slug: #{@product.slug}

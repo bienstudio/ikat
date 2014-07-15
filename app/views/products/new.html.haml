@@ -1,0 +1,23 @@
+.page
+  %header
+    %h2 New Product
+  .row
+    = form_tag products_path, method: :post do
+      = render :partial => 'partials/flash'
+      .input
+        = text_field_tag 'product[name]'
+        = label_tag 'Name'
+      .input
+        = text_field_tag 'product[price]'
+        = label_tag 'Price'
+      .input
+        = select_tag 'product[currency]', options_for_select([['$', 'usd']])
+        = label_tag 'Currency'
+      .input
+        = url_field_tag 'product[url]'
+        = label_tag 'URL'
+      .input
+        = url_field_tag 'product[image_url]'
+        = label_tag 'Image URL'
+      .input
+        = submit_tag "Save"

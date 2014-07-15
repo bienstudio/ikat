@@ -4,7 +4,7 @@ form {
     outline: none;
   }
 
-  input[type="text"], input[type="email"], input[type="password"], textarea {
+  input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], textarea {
     border: 0;
     border-bottom: 1px solid $light-grey;
     display: block;

@@ -12,5 +12,6 @@
           %li= link_to @user.website, @user.website
       %p.biography= @user.biography
   %section
-    - @user.wants.products.each do |product|
-      = render :partial => 'products/product', locals: { product: product }
+    .products
+      - @products.each do |product|
+        = render :partial => 'products/product', locals: { product: product, size: 'small' }
