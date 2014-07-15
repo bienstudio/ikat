@@ -1,0 +1,159 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/ikat_test/products/photos/<%= id %>/original.jpg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Tue, 15 Jul 2014 00:32:34 -0400
+      Authorization:
+      - AWS AKIAIH6CZ3WVJ7PK7JUA:yZV2bAR2eNkL4nH+/1iIPV1QRy4=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 4AA0702D4954E18B
+      X-Amz-Id-2:
+      - plkMWu78lA54XcWfQ28QJYjRL/UoGO+VSUAhoy7fhOGrVRB4N+lcFZIbfzU+Kvox
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 15 Jul 2014 04:32:34 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Tue, 15 Jul 2014 04:32:35 GMT
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/ikat_test/products/photos/<%= id %>/large.jpg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Tue, 15 Jul 2014 00:32:35 -0400
+      Authorization:
+      - AWS AKIAIH6CZ3WVJ7PK7JUA:Oy4Vlt9QB6axdYy2Auf/3N7hN/A=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 432EC0E211A5889E
+      X-Amz-Id-2:
+      - z8r46iKHIOoz3NcH6oxSWEfDjL52F+IrzTU9CyOWw1+WQQMM+O5iIp4MppPqFdiF
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 15 Jul 2014 04:32:35 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Tue, 15 Jul 2014 04:32:35 GMT
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/ikat_test/products/photos/<%= id %>/medium.jpg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Tue, 15 Jul 2014 00:32:35 -0400
+      Authorization:
+      - AWS AKIAIH6CZ3WVJ7PK7JUA:nEjKK2OZnoEYnUj9LwL7RODqkk0=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 7ACC9FDBED695D19
+      X-Amz-Id-2:
+      - K/mLtwhdkkx/VYNjWCTB2WEVAQNNWwq+QS+QKFih/qpS9Mf4B9SWTaOqR5c71rZx
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 15 Jul 2014 04:32:35 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Tue, 15 Jul 2014 04:32:35 GMT
+- request:
+    method: head
+    uri: https://s3.amazonaws.com/ikat_test/products/photos/<%= id %>/small.jpg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Tue, 15 Jul 2014 00:32:35 -0400
+      Authorization:
+      - AWS AKIAIH6CZ3WVJ7PK7JUA:lxZAC6HMhnTPrMeShBXy1BMxJ/M=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 52197E7F90038137
+      X-Amz-Id-2:
+      - xY06TV+Czl9sB9KL2iU3B6WI0zy6T1HUwMMMWAbJfEGIDwZnmPHBf83posXU1nxq
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 15 Jul 2014 04:32:35 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Tue, 15 Jul 2014 04:32:36 GMT
+recorded_with: VCR 2.9.2

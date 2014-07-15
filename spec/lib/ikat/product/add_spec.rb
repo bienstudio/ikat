@@ -16,7 +16,7 @@ describe ProductAdd do
         current_user: user,
         product: {
           name: product.name,
-          price: product.price.to_s,
+          price: '20',
           currency: product.currency.to_s,
           url: product.link,
           image_url: product.original_image,
@@ -29,6 +29,7 @@ describe ProductAdd do
     it { expect(action.success?).to eql true }
     it { expect(action.result).to be_an_instance_of Product }
     it { expect(action.result).to eql product }
+    it { expect(action.result.price).to eql 20.0 }
     it { expect(user.wants.products).to include action.result }
   end
 
