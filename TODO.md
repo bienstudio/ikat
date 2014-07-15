@@ -2,5 +2,7 @@
 
 - [ ] Make product photos square
 - [ ] Fix product tiles
-- [ ] Add permalinks to stores, products
-- [ ] Routing between usernames and store domains (both are at /:foo)
+- [ ] Mutations for following/unfollowing and adding/removing from lists
+- [ ] Controllers for the above mutations
+- [ ] Light API (basically adding to lists — whatever the bookmarklet needs)
+- [ ] Bookmarklet
