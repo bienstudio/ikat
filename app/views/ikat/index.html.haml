@@ -1,5 +1,6 @@
 - if current_user
   .feed
+    = render :partial => 'partials/flash'
     %section.activities
       - @feed.each do |activity|
         = render :partial => 'activity/activity', locals: { activity: activity }

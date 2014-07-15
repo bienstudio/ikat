@@ -1,22 +1,23 @@
 - in_wants = current_user.wants.products.include?(product)
 
-%figure.product
-  = link_to("/#{product.store.domain}/#{product.id}", class: "block") do
+%figure.product{class: size}
+  = link_to(product.permalink, class: "block") do
     .photo
-      = image_tag product.photo.url(:large)
+      = image_tag product.photo.url(:medium)
   .info
     %ul
-      %li.name <strong><a href="/#{product.store.domain}/#{product.id}">#{product.name}</a></strong> (#{product.full_price})
+      %li.name <strong><a href="#{product.permalink}">#{product.name}</a></strong> (#{product.full_price})
       %li.store <em>from</em> <a href="#{store_path(store_domain: product.store.domain)}">#{product.store.name}</a>
   .actions
     %nav
       %a.flux.btn{class: in_wants ? 'btn-green' : 'btn-red'}
         = in_wants ? 'Remove' : 'Add'
-      %span.collections-trigger.btn{class: in_wants ? 'btn-green' : 'btn-red'}
-        %i.ss-icon dropdown
-      %ul.collections
-        - current_user.collections.each do |collection|
-          %li
-            %span
-              %label= collection.name
-            %input{type: 'checkbox'}/
+      - if current_user.collections.count > 0
+        %span.collections-trigger.btn{class: in_wants ? 'btn-green' : 'btn-red'}
+          %i.ss-icon dropdown
+        %ul.collections
+          - current_user.collections.each do |collection|
+            %li
+              %span
+                %label= collection.name
+              %input{type: 'checkbox'}/

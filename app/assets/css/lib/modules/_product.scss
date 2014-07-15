@@ -1,5 +1,5 @@
 figure.product {
-  display: inline-block;
+  display: block;
   position: relative;
   // overflow: hidden;
 
@@ -15,8 +15,6 @@ figure.product {
       opacity: 0.33;
     }
   }
-
-
 
   a.block {
     color: $text;
@@ -52,6 +50,8 @@ figure.product {
   }
 
   .info {
+    padding-right: rhythm(0.5);
+
     a {
       color: $text;
       border-bottom: 1px solid lighten($text, 10%);
@@ -69,7 +69,13 @@ figure.product {
       color: $base;
 
       a.flux {
-        border-right: 1px solid lighten($red, 5%);
+        &.btn-red {
+          border-right: 1px solid lighten($red, 5%);
+        }
+
+        &.btn-green {
+          border-right: 1px solid lighten($green, 5%);
+        }
       }
 
       span.collections-trigger {
@@ -77,6 +83,10 @@ figure.product {
           @include adjust-font-size-to(12px);
 
           margin-right: rhythm(0.5);
+
+          &.small {
+            margin-right: rhythm(0.25) !important;
+          }
         }
       }
 
@@ -113,5 +123,11 @@ figure.product {
         }
       }
     }
+  }
+
+  &.small {
+    @include adjust-font-size-to(12px);
+
+    max-width: 250px;
   }
 }
