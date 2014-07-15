@@ -2,19 +2,30 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get '/login'    => 'devise/sessions#new'
-    get '/logout'   => 'devise/sessions#destroy'
-    get '/join'     => 'devise/registrations#new'
-    get '/settings' => 'devise/registrations#edit'
+    get 'login',    to: 'devise/sessions#new'
+    get 'logout',   to: 'devise/sessions#destroy'
+    get 'join',     to: 'devise/registrations#new'
+    get 'settings', to: 'devise/registrations#edit'
   end
 
-  get '/features' => 'ikat#features'
-  get '/about' => 'ikat#about'
-  get '/blog' => 'ikat#blog'
-  get '/support' => 'ikat#support'
+  get 'features', to: 'ikat#features'
+  get 'about',    to: 'ikat#about'
+  get 'blog',     to: 'ikat#blog'
+  get 'support',  to: 'ikat#support'
 
-  get '/:store_domain' => 'stores#show', as: 'store', constraints: { store_domain: /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ }
-  get '/:username' => 'users#show', as: 'profile'
+  # resources :stores
+
+  resources :products, only: [:new, :create]
+
+  # get '/:store_domain' , to: 'stores#show', as: 'store', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ }
+  # get '/:store_domain/:product_slug', to: 'products#show', as: 'product', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ }
+
+  scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ } do
+    get '/', to: 'stores#show', as: 'store'
+    get '/:product_slug', to: 'products#show', as: 'product'
+  end
+
+  get '/:username', to: 'users#show', as: 'profile'
 
   root 'ikat#index'
 
@@ -25,10 +36,10 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get 'products/:id' , to: 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #   get 'products/:id/purchase' , to: 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
