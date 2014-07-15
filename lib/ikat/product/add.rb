@@ -15,7 +15,21 @@ class ProductAdd < IkatMutation
   def execute
     # First check for existing products
     if p = Product.where(original_image: product['image_url']).first
+      p.update_attributes(
+        name: product['name'],
+        link: product['url'],
+        price: product['price'],
+        currency: product['currency']
+      )
+
+      mongoid_errors!(p)
+
+      p.save
+
       list.products << p
+
+      mongoid_errors!(list)
+
       list.save
 
       return p
@@ -42,9 +56,9 @@ class ProductAdd < IkatMutation
 
     p.store = store.result
 
-    p.save
-
     mongoid_errors!(p)
+
+    p.save
 
     list.products << p
     list.save
