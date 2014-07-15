@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 
-gem 'mongoid', '4.0.0.beta2'
+gem 'mongoid', '~> 4.0.0'
 
 gem 'puma'
 
@@ -44,8 +44,6 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
-
-  gem 'spring'
 end
 
 group :test do
