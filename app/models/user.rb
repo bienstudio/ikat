@@ -90,7 +90,8 @@ class User
 
   def unfollow!(obj)
     relationship = self.relationships.where(followee: obj).first
-    relationship.destroy
+
+    relationship ? relationship.destroy : false
   end
 
   private

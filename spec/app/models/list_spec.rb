@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe List do
-  let(:wants) do
+  let(:list) do
     @w = create :wants
 
     VCR.use_cassette('app/models/list/product', erb: { id: 'foobar' }) do
@@ -13,15 +13,15 @@ describe List do
   end
 
   describe '#create_activity' do
-    it { expect(Activity.where(action: :add, target: wants).count).to be > 1 }
+    it { expect(Activity.where(action: :add, target: list).count).to be > 1 }
   end
 
   describe '#remove_activity' do
     before do
-      wants.products.delete(wants.products.first)
-      wants.save
+      list.products.delete(list.products.first)
+      list.save
     end
 
-    it { expect(Activity.where(action: :remove, target: wants).count).to eql 1 }
+    it { expect(Activity.where(action: :remove, target: list).count).to eql 1 }
   end
 end

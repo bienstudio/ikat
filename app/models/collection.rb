@@ -7,11 +7,7 @@ class Collection < List
   validates :name, presence: true
 
   def viewable_by?(u)
-    if self.hidden?
-      u == self.user
-    else
-      true
-    end
+    self.hidden? ? u == self.user : true
   end
 
   def creatable_by?(u)
