@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :relationship do
-    followee { create(:user) }
+    follower { create(:user) }
 
     trait :user do
-      follower { create(:user) }
+      followee { create(:user) }
     end
 
     trait :store do
-      follower { create(:store) }
+      followee { create(:store) }
     end
   end
 end

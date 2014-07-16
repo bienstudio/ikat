@@ -14,6 +14,22 @@ class Relationship
   scope :followers, ->(obj){ self.where(followee: obj) }
   scope :following, ->(obj){ self.where(follower: obj) }
 
+  def viewable_by?(u)
+    true
+  end
+
+  def creatable_by?(u)
+    true
+  end
+
+  def updatable_by?(u)
+    false # Can't update
+  end
+
+  def destroyable_by?(u)
+    self.follower == u
+  end
+
   protected
 
   def follow_activity
