@@ -1,14 +1,42 @@
-# Do not use directly: use one of the subclasses.
+# Do not use directly: use one of the subclasses (Wants, Owns, Collections,
+#   or Inventory).
 class List
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Userstamps
 
-  belongs_to :user
+  belongs_to :owner, polymorphic: true
 
-  has_and_belongs_to_many :products,
-    after_add:     :add_activity,
-    before_remove: :remove_activity
+  has_and_belongs_to_many :list_items
+
+  def products
+    ListItem.where(list: self).collect(&:product)
+  end
+
+  def add!(product, actor)
+    i = ListItem.create(
+      list:    self,
+      product: product,
+      creator: actor
+    )
+
+    self.list_item_ids << i.id
+    self.save
+
+    product.list_item_ids << i.id
+    product.save
+
+    i
+  end
+
+  def remove!(product, actor)
+    item = ListItem.where(
+      list:    self,
+      product: product
+    ).first
+
+    item ? item.destroy(actor) : false
+  end
 
   def viewable_by?(u)
     true
@@ -19,36 +47,10 @@ class List
   end
 
   def updatable_by?(u)
-    self.user == u
+    self.owner == u
   end
 
   def destroyable_by?(u)
-    # if %w{Wants Owns}.include?(self._type)
-    #   return false
-    # end
-    #
-    # self.user == u
-
     true
-  end
-
-  protected
-
-  def add_activity(product)
-    Activity.create(
-      action:  :add,
-      subject: product,
-      target:  self,
-      actor:   self.user
-    )
-  end
-
-  def remove_activity(product)
-    Activity.create(
-      action:  :remove,
-      subject: product,
-      target:  self,
-      actor:   self.user
-    )
   end
 end

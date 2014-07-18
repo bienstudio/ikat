@@ -13,6 +13,7 @@ class Product
   field :expired,  type: Boolean, default: false
   field :original_image, type: String
   field :slug,     type: String
+  field :store_id, type: ::BSON::ObjectId
 
   has_mongoid_attached_file :photo,
     path:          'products/:attachment/:id/:style.:extension',
@@ -30,21 +31,18 @@ class Product
   validates :link,     presence: true
   validates :price,    presence: true
   validates :currency, presence: true
-  validates :store,    presence: true
   validates :category, presence: true
   validates :original_image, presence: true
-  validates :slug,     presence: true
 
   validates_attachment :photo,
     presence: true,
     content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
-  belongs_to :store
   belongs_to :category
 
   before_validation :create_slug!
 
-  has_and_belongs_to_many :lists
+  has_and_belongs_to_many :list_items
 
   def permalink
     "/products/#{self.id}"
@@ -74,6 +72,10 @@ class Product
     product_path(store_domain: self.store.domain, product_slug: self.slug)
   end
 
+  def store
+    self.store_id ? Store.find(self.store_id) : nil
+  end
+
   class << self
     def currencies
       {
@@ -93,7 +95,9 @@ class Product
       str = str.gsub(/ /,"-")
       str = str.downcase
 
-      others = self.class.where(store_id: self.store_id, slug: str).count
+      ids = ListItem.where(list_id: self.store.inventory.id).collect(&:id) # items in the store
+      products = Product.in(list_item_ids: ids).where(slug: str)
+      others = products.count
 
       if others > 1
         str = str + "-#{others}"

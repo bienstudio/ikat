@@ -10,7 +10,7 @@ class Owns < List
   end
 
   def updatable_by?(u)
-    self.user == u
+    self.owner == u
   end
 
   def destroyable_by?(u)

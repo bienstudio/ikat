@@ -46,32 +46,12 @@ describe Store do
     it { expect(store.followers).to include user }
   end
 
-  describe '#add_activity' do
-    before do
-      product = create(:product)
-
-      store.products << product
-      store.save
-    end
-
-    it { expect(Activity.where(action: :add, target: store).count).to eql 1 }
-  end
-
-  describe '#remove_activity' do
-    before do
-      product = create(:product)
-
-      store.products << product
-      store.save
-
-      store.products.delete(store.products.first)
-    end
-
-    it { expect(Activity.where(action: :remove, target: store).count).to eql 1 }
-  end
-
   describe '.domain_from_url' do
     it { expect(Store.domain_from_url('https://foo.everlane.com/foobar')).to eql 'foo.everlane.com' }
+  end
+
+  describe '#create_inventory!' do
+    it { expect(store.inventory).to be_an_instance_of Inventory }
   end
 
   after do

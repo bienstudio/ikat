@@ -26,11 +26,9 @@ class ProductAdd < IkatMutation
 
       p.save
 
-      list.products << p
+      i = list.add!(p, current_user)
 
       mongoid_errors!(list)
-
-      list.save
 
       return p
     end
@@ -52,18 +50,23 @@ class ProductAdd < IkatMutation
       store: {
         url: product['url']
       }
-    )
+    ).result
 
-    p.store = store.result
+    d { store }
+
+    p.store_id = store.id
+
+    d { p }
+
+    # p.add_to_store(store, current_user)
 
     mongoid_errors!(p)
 
     p.save
 
-    list.products << p
-    list.save
+    store.inventory.add!(p, current_user)
 
-    mongoid_errors!(list)
+    list.add!(p, current_user)
 
     return p
   end

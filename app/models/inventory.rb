@@ -1,4 +1,4 @@
-class Wants < List
+class Inventory < List
   include Canable::Ables
 
   def viewable_by?(u)
@@ -10,7 +10,7 @@ class Wants < List
   end
 
   def updatable_by?(u)
-    self.owner == u
+    true
   end
 
   def destroyable_by?(u)

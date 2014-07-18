@@ -7,7 +7,7 @@ class Collection < List
   validates :name, presence: true
 
   def viewable_by?(u)
-    self.hidden? ? u == self.user : true
+    self.hidden? ? u == self.owner : true
   end
 
   def creatable_by?(u)
@@ -15,7 +15,7 @@ class Collection < List
   end
 
   def updatable_by?(u)
-    self.user == u
+    self.owner == u
   end
 
   def destroyable_by?(u)

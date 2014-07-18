@@ -3,4 +3,4 @@
     %h2= @current_store.name
     .row
       - @products.each do |product|
-        = render :partial => 'products/product', locals: { product: product }
+        = render :partial => 'products/product', locals: { product: product, size: 'small' }

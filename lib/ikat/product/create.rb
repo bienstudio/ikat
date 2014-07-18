@@ -17,9 +17,16 @@ class ProductCreate < IkatMutation
     product['photo'] = product['image_url']
     product.delete('image_url')
 
+    s = product.delete('store')
+
+
     p = Product.new(product)
     p.creator = current_user
     p.updater = current_user
+
+    p.store_id = s.id
+    s.inventory.add!(p, current_user)
+
     p.save
 
     mongoid_errors!(p)

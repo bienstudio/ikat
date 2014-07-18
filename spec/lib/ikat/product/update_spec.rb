@@ -21,7 +21,6 @@ describe ProductUpdate do
           expired: false,
           original_image: product.original_image,
           photo: product.photo,
-          store: product.store,
           category: product.category
         }
       )
