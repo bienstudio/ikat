@@ -95,12 +95,14 @@ class Product
       str = str.gsub(/ /,"-")
       str = str.downcase
 
-      ids = ListItem.where(list_id: self.store.inventory.id).collect(&:id) # items in the store
-      products = Product.in(list_item_ids: ids).where(slug: str)
-      others = products.count
+      if store
+        ids = ListItem.where(list_id: self.store.inventory.id).collect(&:id) # items in the store
+        products = Product.in(list_item_ids: ids).where(slug: str)
+        others = products.count
 
-      if others > 1
-        str = str + "-#{others}"
+        if others > 1
+          str = str + "-#{others}"
+        end
       end
 
       self.slug = str

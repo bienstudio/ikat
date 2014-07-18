@@ -35,6 +35,12 @@ class List
       product: product
     ).first
 
+    self.list_item_ids.delete(item.id)
+    self.save
+
+    product.list_item_ids.delete(item.id)
+    product.save
+
     item ? item.destroy(actor) : false
   end
 
