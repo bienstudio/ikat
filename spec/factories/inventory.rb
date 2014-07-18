@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :wants do
-    owner { create(:user) }
-    
+  factory :inventory do
+    owner { create(:store) }
+
     # before(:create) do |wants|
     #   VCR.use_cassette('spec/factories/wants/products', erb: { id: 'foobar' }) do
     #     3.times do

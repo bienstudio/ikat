@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Wants do
   let(:wants) { create :wants }
-  let(:user)  { wants.user }
+  let(:user)  { wants.owner }
   let(:other) { create :user }
 
   it { expect(wants).to be_valid }

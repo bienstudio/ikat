@@ -8,7 +8,7 @@ describe CollectionUpdate do
   end
 
   context 'with permitted user' do
-    let(:user) { collection.user }
+    let(:user) { collection.owner }
 
     let(:action) do
       CollectionDestroy.run(

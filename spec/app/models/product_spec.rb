@@ -20,7 +20,6 @@ describe Product do
   it { expect(product).to validate_presence_of :link }
   it { expect(product).to validate_presence_of :price }
   it { expect(product).to validate_presence_of :currency }
-  it { expect(product).to validate_presence_of :store }
   it { expect(product).to validate_presence_of :category }
   it { expect(product).to validate_presence_of :original_image }
 
@@ -42,6 +41,10 @@ describe Product do
   describe '#destroyable_by?' do
     it { expect(product.destroyable_by?(user)).to eql false }
     it { expect(product.destroyable_by?(admin)).to eql true }
+  end
+
+  describe '#create_slug!' do
+    it { expect(product.slug).to eql 'everlane-cotton-crew-in-antique' }
   end
 
   after do

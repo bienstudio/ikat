@@ -13,6 +13,9 @@ FactoryGirl.define do
     original_image
 
     category
-    store
+
+    before(:build) do |product|
+      create(:store).inventory.add!(product, create(:user))
+    end
   end
 end

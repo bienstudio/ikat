@@ -30,7 +30,7 @@ describe ProductAdd do
     it { expect(action.result).to be_an_instance_of Product }
     it { expect(action.result).to eql product }
     it { expect(action.result.price).to eql 20.0 }
-    it { expect(user.wants.products).to include action.result }
+    it { expect(ListItem.where(list: user.wants, product: action.result).first).to be_valid }
   end
 
   context 'non-existing product' do
@@ -64,7 +64,7 @@ describe ProductAdd do
       it { expect(action.result.photo.url).to_not be_nil }
       it { expect(action.result.store).to eql store }
       it { expect(action.result.category).to eql category }
-      it { expect(user.wants.products).to include action.result }
+      it { expect(ListItem.where(list: user.wants, product: action.result).first).to be_valid }
     end
 
     context 'non-existing store' do
@@ -94,7 +94,7 @@ describe ProductAdd do
       it { expect(action.result.store).to be_an_instance_of Store }
       it { expect(action.result.store.domain).to eql 'everlane.com' }
       it { expect(action.result.category).to eql category }
-      it { expect(user.wants.products).to include action.result }
+      it { expect(ListItem.where(list: user.wants, product: action.result).first).to be_valid }
     end
   end
 end

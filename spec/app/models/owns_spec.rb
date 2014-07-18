@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Owns do
   let(:owns)  { create :owns }
-  let(:user)  { owns.user }
+  let(:user)  { owns.owner }
   let(:other) { create :user }
 
   it { expect(owns).to be_valid }

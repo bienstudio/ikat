@@ -46,9 +46,10 @@ class User
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
 
-  has_one :wants
-  has_one :owns
-  has_many :collections
+  has_one :wants,        inverse_of: :owner
+  has_one :owns,         inverse_of: :owner
+  has_many :collections, inverse_of: :owner
+
   has_many :relationships
 
   after_save :create_lists!

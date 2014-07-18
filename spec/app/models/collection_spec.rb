@@ -9,7 +9,7 @@ describe Collection do
     let(:hidden) { create :collection, :hidden }
   end
 
-  let(:user)  { collection.user }
+  let(:user)  { collection.owner }
   let(:other) { create :user }
 
   it { expect(collection).to be_valid }
@@ -18,7 +18,7 @@ describe Collection do
 
   describe '#viewable_by?' do
     context 'when public' do
-      let(:user)  { collection.user }
+      let(:user)  { collection.owner }
       let(:other) { create :user }
 
       it { expect(collection.viewable_by?(user)).to eql true }
@@ -26,7 +26,7 @@ describe Collection do
     end
 
     context 'when hidden' do
-      let(:user)  { hidden.user }
+      let(:user)  { hidden.owner }
       let(:other) { create :user }
 
       it { expect(hidden.viewable_by?(user)).to eql true }

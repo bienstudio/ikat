@@ -10,7 +10,7 @@ class ProductRemove < IkatMutation
       add_error(:current_user, :unauthorized, 'user cannot perform this action')
     end
 
-    list.products.delete(product)
+    list.remove!(product, current_user)
 
     mongoid_errors!(list)
 
