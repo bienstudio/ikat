@@ -14,19 +14,11 @@ class List
   end
 
   def add!(product, actor)
-    i = ListItem.create(
+    ListItem.create(
       list:    self,
       product: product,
       creator: actor
     )
-
-    self.list_item_ids << i.id
-    self.save
-
-    product.list_item_ids << i.id
-    product.save
-
-    i
   end
 
   def remove!(product, actor)
@@ -34,12 +26,6 @@ class List
       list:    self,
       product: product
     ).first
-
-    self.list_item_ids.delete(item.id)
-    self.save
-
-    product.list_item_ids.delete(item.id)
-    product.save
 
     item ? item.destroy(actor) : false
   end

@@ -19,6 +19,20 @@ describe ListItem do
   it { expect(list_item).to validate_presence_of :product }
   it { expect(list_item).to validate_presence_of :created_by }
 
+  describe '#populate_list_item_ids' do
+    it { expect(product.list_item_ids).to include list_item.id }
+    it { expect(list.list_item_ids).to include list_item.id }
+  end
+
+  describe '#depopulate_list_item_ids' do
+    before do
+      list_item.destroy
+    end
+
+    it { expect(product.list_item_ids).to_not include list_item.id }
+    it { expect(list.list_item_ids).to_not include list_item.id }
+  end
+
   describe '#add_activity' do
     let(:activity) do
       Activity.where(

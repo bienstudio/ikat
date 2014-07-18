@@ -10,8 +10,11 @@ class ListItem
   validates :product, presence: true
   validates :created_by, presence: true
 
-  after_create  :add_activity
-  after_destroy :remove_activity
+  before_create  :populate_list_item_ids
+  before_destroy :depopulate_list_item_ids
+
+  after_create   :add_activity
+  after_destroy  :remove_activity
 
   # This is probably a terrible idea
   def destroy(actor = self.creator)
@@ -21,6 +24,22 @@ class ListItem
   end
 
   protected
+
+  def populate_list_item_ids
+    self.list.list_item_ids << self.id
+    self.list.save
+
+    self.product.list_item_ids << self.id
+    self.product.save
+  end
+
+  def depopulate_list_item_ids
+    self.list.list_item_ids.delete(self.id)
+    self.list.save
+
+    self.product.list_item_ids.delete(self.id)
+    self.product.save
+  end
 
   def add_activity
     Activity.create(
