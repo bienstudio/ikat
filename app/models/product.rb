@@ -16,14 +16,14 @@ class Product
   field :store_id, type: ::BSON::ObjectId
 
   has_mongoid_attached_file :photo,
-    path:          'products/:attachment/:id/:style.:extension',
+    path: 'products/:attachment/:id/:style.:extension',
     styles: {
-      original: ['1000x1000#', :jpg],
-      large:    ['500x500#',   :jpg],
-      medium:   ['250x250#',    :jpg],
-      small:    ['100x100#',   :jpg]
+      original: ['2000x2000>', :jpg],
+      large:    ['1000x1000>', :jpg],
+      medium:   ['500x500>',   :jpg],
+      small:    ['250x250>',   :jpg]
     },
-    convert_options: { all: '-background white -flatten +matte' }
+    convert_options: { all: '-background white -flatten +matte -trim' }
 
   # process_in_background :photo
 

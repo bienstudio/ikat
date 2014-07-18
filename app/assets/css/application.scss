@@ -27,16 +27,16 @@ body {
 }
 
 a, [data-url] {
-  color: $blue;
+  color: $primary;
   text-decoration: none;
 
   &:hover {
-    color: $dark-blue;
+    color: $dark-primary;
   }
 }
 
 h1 {
-  background: image-url('logo-bg.jpg') -20px -100px no-repeat;
+  background: image-url('logo-bg-2.png') no-repeat;
   display: inline-block;
   font-weight: 700;
   font-size: 1.25em;
@@ -59,11 +59,9 @@ h1 {
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
       ),
-      image-url('logo-bg.jpg'),
+      image-url('logo-bg-2.png'),
       no-repeat
     );
-
-    background-position: -20px -100px;
   }
 }
 
@@ -72,8 +70,8 @@ em {
 }
 
 h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  font-family: $serif;
+  font-weight: 600;
+  // font-family: $serif;
 }
 
 h2 {
@@ -108,7 +106,7 @@ header#header {
     color: $text;
 
     &:hover {
-      color: $blue;
+      color: $primary;
     }
   }
 
@@ -193,7 +191,7 @@ footer#footer {
     color: $grey;
 
     &:hover {
-      color: $blue;
+      color: $primary;
     }
   }
 
