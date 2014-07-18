@@ -52,13 +52,7 @@ class ProductAdd < IkatMutation
       }
     ).result
 
-    d { store }
-
     p.store_id = store.id
-
-    d { p }
-
-    # p.add_to_store(store, current_user)
 
     mongoid_errors!(p)
 
