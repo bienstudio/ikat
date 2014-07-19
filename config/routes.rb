@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # get '/:store_domain' , to: 'stores#show', as: 'store', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ }
   # get '/:store_domain/:product_slug', to: 'products#show', as: 'product', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ }
 
-  scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9-]{1,30}\.[a-zA-Z]{2,3})/ } do
+  scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9]{1,30}\.[a-zA-Z]{2,3})/ } do
     get '/', to: 'stores#show', as: 'store'
     get '/:product_slug', to: 'products#show', as: 'product'
   end
