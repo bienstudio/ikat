@@ -1,15 +1,24 @@
-.page
-  %header
-    %h3= link_to @product.store.name, store_path(store_domain: @product.store.domain)
-    %h2= @product.name
-  .row
-    %figure
-      = image_tag @product.photo.url
-    %ul
-      %li Name: #{@product.name}
-      %li Link: #{@product.link}
-      %li Price: #{@product.price}
-      %li Currency: #{@product.currency}
-      %li Expired: #{@product.expired}
-      %li Original image: #{@product.original_image}
-      %li Slug: #{@product.slug}
+.page.product
+  %figure
+    = image_tag @product.photo.url(:original)
+  %aside
+    %section
+      %h2= @product.name
+      %h3
+        %span from
+        = link_to @product.store.name, store_path(store_domain: @product.store.domain)
+      %p= @product.full_price
+    %section
+      %p
+        - if @product.in_wants?(current_user)
+          = link_to "Remove", "", class: "btn btn-green"
+        - else
+          = link_to "Want", "", class: "btn btn-red"
+
+        = link_to "Collect", "", class: "btn"
+        = link_to "Buy", @product.link, class: "btn btn-black"
+    %section.users
+      Wanted by...
+      %ul
+        - @product.wanted_by.each do |u|
+          %li= link_to(image_tag(u.avatar.url(:small), class: "avatar"), profile_path(username: u.username))

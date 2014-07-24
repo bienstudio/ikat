@@ -52,7 +52,7 @@ class User
 
   has_many :relationships
 
-  after_save :create_lists!
+  after_create :create_lists!
 
   def viewable_by?(u)
     true
@@ -93,6 +93,14 @@ class User
     relationship = self.relationships.where(followee: obj).first
 
     relationship ? relationship.destroy : false
+  end
+
+  def followed_by?(obj)
+    self.relationships.where(follower: obj).first ? true : false
+  end
+
+  def follows?(obj)
+    self.relationships.where(followee: obj).first ? true : false
   end
 
   private

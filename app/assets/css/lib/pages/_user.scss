@@ -22,4 +22,8 @@
       margin-top: rhythm(0.75);
     }
   }
+
+  .product {
+    @include clearfix;
+  }
 }
