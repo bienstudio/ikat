@@ -27,7 +27,7 @@ class Store
 
   has_one :inventory, inverse_of: :owner
 
-  after_save :create_inventory!
+  after_create :create_inventory!
 
   scope :from_link, ->(link){ where(domain: url_to_domain(link)) }
 
@@ -50,7 +50,7 @@ class Store
   def followers
     Relationship.followers(self).collect(&:follower)
   end
-  
+
   class << self
     def domain_from_url(url)
       url = "http://#{url}" if URI.parse(url).scheme.nil?

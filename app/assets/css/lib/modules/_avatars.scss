@@ -1,5 +1,3 @@
-figure.avatar {
-  img {
-    @include border-radius(50%);
-  }
+figure.avatar img, img.avatar {
+  @include border-radius(50%);
 }

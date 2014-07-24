@@ -32,4 +32,13 @@
       background: darken($green, 5%);
     }
   }
+
+  &.btn-black {
+    background: $text;
+    color: $base;
+
+    &:hover {
+      background: darken($text, 5%);
+    }
+  }
 }

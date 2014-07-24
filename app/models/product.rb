@@ -65,7 +65,7 @@ class Product
   end
 
   def full_price
-    "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i )}"
+    "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i)}"
   end
 
   def permalink
@@ -74,6 +74,22 @@ class Product
 
   def store
     self.store_id ? Store.find(self.store_id) : nil
+  end
+
+  def in_wants?(u)
+    ListItem.where(list: u.wants, product: self).first ? true : false
+  end
+
+  def in_owns?(u)
+    ListItem.where(list: u.owns, product: self).first ? true : false
+  end
+
+  def in_collection?(u)
+    ListItem.where(product: self).in(list: u.collections).first ? true : false
+  end
+
+  def wanted_by
+    ListItem.where(list_type: 'Wants', product: self).collect(&:creator)
   end
 
   class << self

@@ -58,7 +58,7 @@ figure.product {
     }
 
     em {
-      color: $grey;
+      color: darken($grey, 15%);
     }
   }
 

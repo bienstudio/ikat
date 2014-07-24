@@ -6,9 +6,13 @@ class ListItem
   belongs_to :list
   belongs_to :product
 
+  field :list_type, type: String
+
   validates :list, presence: true
   validates :product, presence: true
   validates :created_by, presence: true
+
+  before_save    :save_list_type
 
   before_create  :populate_list_item_ids
   before_destroy :depopulate_list_item_ids
@@ -24,6 +28,10 @@ class ListItem
   end
 
   protected
+
+  def save_list_type
+    self.list_type = self.list.class.to_s
+  end
 
   def populate_list_item_ids
     self.list.list_item_ids << self.id
