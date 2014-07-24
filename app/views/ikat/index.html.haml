@@ -2,8 +2,11 @@
   .feed
     = render :partial => 'partials/flash'
     %section.activities
-      - @feed.each do |activity|
-        = render :partial => 'activity/activity', locals: { activity: activity }
+      - if @feed.blank?
+        %p No activity for you!
+      - else
+        - @feed.each do |activity|
+          = render :partial => 'activity/activity', locals: { activity: activity }
     %aside
 
 - else

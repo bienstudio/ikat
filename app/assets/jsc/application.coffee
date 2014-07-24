@@ -3,11 +3,11 @@
 //= require turbolinks
 //= require_tree .
 
-# container = document.querySelector(".products")
-# msnry = new Masonry(container,
-#   columnWidth: 280
-#   itemSelector: ".product"
-# )
-
 $(document).ready ->
   $("img").unveil()
+
+$('.products').isotope
+  itemSelector: ".product"
+  masonry:
+    columnWidth: 300
+    gutter: 10
