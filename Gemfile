@@ -13,8 +13,8 @@ gem 'turbolinks'
 gem 'devise'
 gem 'canable'
 
-gem 'paperclip', github: 'eturk/paperclip'
-gem 'aws-sdk', '~> 1.3.4'
+gem 'paperclip'
+gem 'aws-sdk', '~> 1.48.1'
 
 gem 'mutations'
 
@@ -44,6 +44,8 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # gem 'sass-rails-source-maps'
 end
 
 group :test do
