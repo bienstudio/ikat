@@ -8,8 +8,6 @@ class ProductUpdate < IkatMutation
       string  :price
       string  :currency
       boolean :expired
-      string  :original_image
-      model   :photo
       model   :category
     end
   end

@@ -49,12 +49,7 @@ describe User do
     end
 
     context 'store' do
-      let(:store) do
-        VCR.use_cassette('app/models/user/follow/store', erb: { id: 'foobar' }) do
-          create :store
-        end
-      end
-
+      let(:store)  { create :store }
       let(:action) { user.follow!(store) }
 
       it { expect(action).to be_an_instance_of Relationship }
@@ -79,12 +74,7 @@ describe User do
         user.follow!(store)
       end
 
-      let(:store) do
-        VCR.use_cassette('app/models/user/unfollow/store', erb: { id: 'foobar' }) do
-          create :store
-        end
-      end
-
+      let(:store)  { create :store }
       let(:action) { user.unfollow!(store) }
 
       it { expect(action).to eql true }

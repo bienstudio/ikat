@@ -19,6 +19,7 @@ gem 'canable'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'fog'
 gem 'mini_magick'
+gem 'carrierwave_backgrounder'
 
 gem 'mutations'
 
