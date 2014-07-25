@@ -4,17 +4,8 @@ describe Activity do
   let(:follow)   { create :activity, :follow }
   let(:unfollow) { create :activity, :unfollow }
 
-  let(:add) do
-    VCR.use_cassette('app/models/activity/add', erb: { id: 'foobar' }) do
-      create :activity, :add
-    end
-  end
-
-  let(:remove) do
-    VCR.use_cassette('app/models/activity/remove', erb: { id: 'foobar' }) do
-      create :activity, :remove
-    end
-  end
+  let(:add) { create :activity, :add }
+  let(:remove) { create :activity, :remove }
 
   it { expect(follow).to be_valid }
   it { expect(unfollow).to be_valid }

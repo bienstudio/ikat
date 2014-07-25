@@ -40,7 +40,8 @@ class ProductAdd < IkatMutation
       price: product['price'],
       currency: product['currency'],
       photo: product['image_url'],
-      original_image: product['image_url']
+      original_image: product['image_url'],
+      remote_photo_url: product['image_url']
     )
 
     p.category = product['category']

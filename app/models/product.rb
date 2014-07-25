@@ -16,6 +16,12 @@ class Product
 
   mount_uploader :photo, PhotoUploader
 
+  # process_in_background :photo
+  # store_in_background :photo
+  #
+  # field :photo_processing, type: Boolean
+  # field :photo_tmp, type: String
+
   validates :name,     presence: true
   validates :link,     presence: true
   validates :price,    presence: true

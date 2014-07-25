@@ -1,13 +1,8 @@
 require 'spec_helper'
 
 describe Collection do
-  VCR.use_cassette('app/models/collection/collection', erb: { id: 'foobar' }) do
-    let(:collection) { create :collection }
-  end
-
-  VCR.use_cassette('app/models/collection/collection_hidden', erb: { id: 'foobar' }) do
-    let(:hidden) { create :collection, :hidden }
-  end
+  let(:collection) { create :collection }
+  let(:hidden)     { create :collection, :hidden }
 
   let(:user)  { collection.owner }
   let(:other) { create :user }

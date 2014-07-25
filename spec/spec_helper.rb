@@ -7,7 +7,8 @@ SimpleCov.start 'rails'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
-require 'paperclip/matchers'
+
+require 'carrierwave/test/matchers'
 
 FactoryGirl::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
@@ -16,7 +17,7 @@ end
 RSpec.configure do |conf|
   conf.include FactoryGirl::Syntax::Methods
   conf.include VCR::RSpec::Macros
-  conf.include Paperclip::Shoulda::Matchers
+  conf.include CarrierWave::Test::Matchers
 
   # Tag an example with the `:focus` metadata to only run them
   conf.filter_run :focus
@@ -41,14 +42,15 @@ RSpec.configure do |conf|
   conf.before do
     # Start DatabaseCleaner collecting transactions
     DatabaseCleaner.start
-
-    # Don't post-process during tests
-    allow_any_instance_of(Paperclip::Attachment).to(receive(:post_process).and_return(true))
   end
 
   # Clean the database
   conf.after do
     DatabaseCleaner.clean
+  end
+
+  conf.after(:each) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
   end
 end
 

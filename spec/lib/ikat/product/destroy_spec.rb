@@ -1,24 +1,18 @@
 require 'spec_helper'
 
 describe ProductDestroy do
-  let(:product) do
-    VCR.use_cassette('lib/ikat/product/destroy/product', erb: { id: 'foobar' }) do
-      create :product
-    end
-  end
+  let(:product) { create :product }
 
   context 'with permitted user' do
     let(:user) { create :user, :admin }
 
     let(:action) do
-      VCR.use_cassette('lib/ikat/product/destroy/permitted/action', erb: { id: 'foobar' }) do
-        ProductDestroy.run(
-          current_user: user,
-          product: {
-            id: product.id.to_s
-          }
-        )
-      end
+      ProductDestroy.run(
+        current_user: user,
+        product: {
+          id: product.id.to_s
+        }
+      )
     end
 
     it { expect(action.success?).to eql true }
@@ -29,14 +23,12 @@ describe ProductDestroy do
     let(:user) { create :user }
 
     let(:action) do
-      VCR.use_cassette('lib/ikat/product/destroy/unpermitted/action', erb: { id: 'foobar' }) do
-        ProductDestroy.run(
-          current_user: user,
-          product: {
-            id: product.id.to_s
-          }
-        )
-      end
+      ProductDestroy.run(
+        current_user: user,
+        product: {
+          id: product.id.to_s
+        }
+      )
     end
 
     it { expect(action.success?).to eql false }
