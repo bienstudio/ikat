@@ -9,7 +9,7 @@ class ProductUpdate < IkatMutation
       string  :currency
       boolean :expired
       string  :original_image
-      model   :photo, class: Paperclip::Attachment
+      model   :photo
       model   :category
     end
   end

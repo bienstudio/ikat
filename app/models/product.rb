@@ -2,7 +2,6 @@ class Product
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Userstamps
-  include Mongoid::Paperclip
   include Canable::Ables
   include Rails.application.routes.url_helpers
 
@@ -15,17 +14,7 @@ class Product
   field :slug,     type: String
   field :store_id, type: ::BSON::ObjectId
 
-  has_mongoid_attached_file :photo,
-    path: 'products/:attachment/:id/:style.:extension',
-    styles: {
-      original: ['2000x2000>', :jpg],
-      large:    ['1000x1000>', :jpg],
-      medium:   ['500x500>',   :jpg],
-      small:    ['250x250>',   :jpg]
-    },
-    convert_options: { all: '-background white -flatten +matte -trim' }
-
-  # process_in_background :photo
+  mount_uploader :photo, PhotoUploader
 
   validates :name,     presence: true
   validates :link,     presence: true
@@ -33,10 +22,6 @@ class Product
   validates :currency, presence: true
   validates :category, presence: true
   validates :original_image, presence: true
-
-  validates_attachment :photo,
-    presence: true,
-    content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   belongs_to :category
 

@@ -1,7 +1,6 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
   include Canable::Cans
   include Canable::Ables
 
@@ -29,19 +28,7 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
-  has_mongoid_attached_file :avatar,
-    path:          'users/:attachment/:id/:style.:extension',
-    styles: {
-      original: ['900x900#', :jpg],
-      large:    ['500x500#', :jpg],
-      medium:   ['250x250#', :jpg],
-      small:    ['100x100#', :jpg]
-    },
-    convert_options: { all: '-background white -flatten +matte' },
-    default_url: '/assets/avatar.png'
-
-  validates_attachment :avatar,
-    content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
+  mount_uploader :avatar, AvatarUploader
 
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
