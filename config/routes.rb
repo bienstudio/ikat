@@ -38,4 +38,8 @@ Rails.application.routes.draw do
   end
 
   root 'ikat#index'
+
+  # require 'sidekiq/web'
+  #
+  # mount Sidekiq::Web => '/sidekiq'
 end
