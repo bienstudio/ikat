@@ -56,7 +56,22 @@ class Product
   end
 
   def full_price
-    "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i)}"
+    # "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i)}"
+
+    str = "#{self.class.currencies[self.currency]}#{self.price.to_s.split('.').first}"
+
+    decimals = self.price.to_s.split('.').last
+
+    if decimals == 0
+    end
+
+    if decimals.size == 1
+      str << ".#{decimals}0"
+    else
+      str << ".#{decimals}"
+    end
+
+    str
   end
 
   def permalink
