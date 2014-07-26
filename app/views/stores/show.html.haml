@@ -3,5 +3,4 @@
     %h2= @current_store.name
     %p= link_to @current_store.domain, "http://#{@current_store.domain}"
   %section.products
-    - @products.each do |product|
-      = render :partial => 'products/product', locals: { product: product, size: 'small' }
+    = render :partial => 'products/products', locals: { products: @products }

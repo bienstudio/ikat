@@ -10,7 +10,7 @@
     - when :unfollow
       %p= "#{activity.actor.username} unfollow #{activity.target.username}"
     - when :add
-      = render :partial => "products/product", locals: { product: activity.subject }
+      = render :partial => "products/product", locals: { product: activity.subject, size: 'large' }
       - case activity.target_type
       - when "Wants"
         %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} wants #{link_to(activity.subject.name, '#')}
