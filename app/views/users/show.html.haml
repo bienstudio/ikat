@@ -19,5 +19,4 @@
             = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
       %p.biography= @user.biography
   %section.products
-    - @products.each do |product|
-      = render :partial => 'products/product', locals: { product: product, size: 'small' }
+    = render :partial => 'products/products', locals: { products: @products }
