@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
+  mount Sidekiq::Web => '/sidekiq'
+
   devise_for :users
 
   devise_scope :user do
@@ -38,8 +42,4 @@ Rails.application.routes.draw do
   end
 
   root 'ikat#index'
-
-  # require 'sidekiq/web'
-  #
-  # mount Sidekiq::Web => '/sidekiq'
 end

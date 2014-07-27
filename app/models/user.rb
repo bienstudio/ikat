@@ -30,6 +30,12 @@ class User
 
   mount_uploader :avatar, AvatarUploader
 
+  process_in_background :avatar
+  store_in_background   :avatar
+
+  field :avatar_processing, type: Boolean
+  field :avatar_tmp,        type: String
+
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
 

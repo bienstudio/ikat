@@ -1,5 +1,10 @@
 class LogoUploader < CarrierWave::Uploader::Base
+  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   version :large do
     process resize_to_limit: [1000, 1000]
