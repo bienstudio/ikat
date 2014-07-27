@@ -5,20 +5,18 @@ describe UserUpdate do
 
   context 'with permitted user' do
     let(:action) do
-      VCR.use_cassette('lib/ikat/user/update/permitted', erb: { id: 'foobar' }) do
-        UserUpdate.run(
-          current_user: user,
-          user: {
-            id:                    user.id.to_s,
-            email:                 'foo@bar.com',
-            name:                  'Foobar',
-            username:              'foobar',
-            password:              'barfoo1',
-            password_confirmation: 'barfoo1',
-            avatar:                 File.open(Rails.root.join('spec/fixtures/logo.jpeg'))
-          }
-        )
-      end
+      UserUpdate.run(
+        current_user: user,
+        user: {
+          id:                    user.id.to_s,
+          email:                 'foo@bar.com',
+          name:                  'Foobar',
+          username:              'foobar',
+          password:              'barfoo1',
+          password_confirmation: 'barfoo1',
+          avatar:                 File.open(Rails.root.join('spec/fixtures/logo.jpeg'))
+        }
+      )
     end
 
     it { expect(action.success?).to eql true }
@@ -27,27 +25,24 @@ describe UserUpdate do
     it { expect(action.result.name).to eql 'Foobar' }
     it { expect(action.result.username).to eql 'foobar' }
     it { expect(action.result.password).to eql 'barfoo1' }
-    it { expect(action.result.avatar.url).to include 'avatars' }
   end
 
   context 'with unpermitted user' do
     let(:other) { create :user }
 
     let(:action) do
-      VCR.use_cassette('lib/ikat/user/update/unpermitted', erb: { id: 'foobar' }) do
-        UserUpdate.run(
-          current_user: other,
-          user: {
-            id:                    user.id.to_s,
-            email:                 user.email,
-            name:                  user.name,
-            username:              user.username,
-            password:              nil,
-            password_confirmation: nil,
-            avatar:                nil
-          }
-        )
-      end
+      UserUpdate.run(
+        current_user: other,
+        user: {
+          id:                    user.id.to_s,
+          email:                 user.email,
+          name:                  user.name,
+          username:              user.username,
+          password:              nil,
+          password_confirmation: nil,
+          avatar:                nil
+        }
+      )
     end
 
     it { expect(action.success?).to eql false }

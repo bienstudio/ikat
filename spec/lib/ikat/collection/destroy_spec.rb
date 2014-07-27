@@ -1,11 +1,7 @@
 require 'spec_helper'
 
 describe CollectionUpdate do
-  let(:collection) do
-    VCR.use_cassette('lib/ikat/collection/destroy/collection', erb: { id: 'foobar' }) do
-      create :collection
-    end
-  end
+  let(:collection) { create :collection }
 
   context 'with permitted user' do
     let(:user) { collection.owner }

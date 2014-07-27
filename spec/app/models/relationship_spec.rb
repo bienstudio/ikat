@@ -31,11 +31,7 @@ describe Relationship do
     end
 
     context 'store' do
-      let(:relationship) do
-        VCR.use_cassette('app/models/relationship/store', erb: { id: 'foobar' }) do
-          create :relationship, :store
-        end
-      end
+      let(:relationship) { create :relationship, :store }
 
       it { expect(relationship).to be_valid }
 

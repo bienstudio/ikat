@@ -17,7 +17,7 @@ class IkatController < ApplicationController
 
   # GET /blog
   def blog
-    redirect_to 'http://getikat.tumblr.com'
+    redirect_to 'https://medium.com/@getikat'
   end
 
   # GET /support

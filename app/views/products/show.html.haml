@@ -1,6 +1,6 @@
 .page.product
   %figure
-    = image_tag @product.photo.url(:original)
+    = image_tag @product.photo_url
   %aside
     %section
       %h2= @product.name
@@ -21,4 +21,4 @@
       Wanted by...
       %ul
         - @product.wanted_by.each do |u|
-          %li= link_to(image_tag(u.avatar.url(:small), class: "avatar"), profile_path(username: u.username))
+          %li= link_to(image_tag(u.avatar_url(:small), class: "avatar"), profile_path(username: u.username))
