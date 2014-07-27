@@ -1,5 +1,10 @@
 class AvatarUploader < CarrierWave::Uploader::Base
+  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   def default_url
     ActionController::Base.helpers.asset_path('avatar.png')

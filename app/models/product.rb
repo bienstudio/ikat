@@ -16,11 +16,11 @@ class Product
 
   mount_uploader :photo, PhotoUploader
 
-  # process_in_background :photo
-  # store_in_background :photo
-  #
-  # field :photo_processing, type: Boolean
-  # field :photo_tmp, type: String
+  process_in_background :photo
+  store_in_background   :photo
+
+  field :photo_processing, type: Boolean
+  field :photo_tmp,        type: String
 
   validates :name,     presence: true
   validates :link,     presence: true
@@ -56,14 +56,9 @@ class Product
   end
 
   def full_price
-    # "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i)}"
-
     str = "#{self.class.currencies[self.currency]}#{self.price.to_s.split('.').first}"
 
     decimals = self.price.to_s.split('.').last
-
-    if decimals == 0
-    end
 
     if decimals.size == 1
       str << ".#{decimals}0"

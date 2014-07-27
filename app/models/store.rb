@@ -10,6 +10,12 @@ class Store
 
   mount_uploader :logo, LogoUploader
 
+  process_in_background :logo
+  store_in_background   :logo
+
+  field :logo_processing, type: Boolean
+  field :logo_tmp,        type: String
+
   validates :name,   presence: true
   validates :domain, presence: true# unqiueness: true
 
