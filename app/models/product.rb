@@ -2,7 +2,6 @@ class Product
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Userstamps
-  include Mongoid::Paperclip
   include Canable::Ables
   include Rails.application.routes.url_helpers
 
@@ -15,17 +14,13 @@ class Product
   field :slug,     type: String
   field :store_id, type: ::BSON::ObjectId
 
-  has_mongoid_attached_file :photo,
-    path: 'products/:attachment/:id/:style.:extension',
-    styles: {
-      original: ['2000x2000>', :jpg],
-      large:    ['1000x1000>', :jpg],
-      medium:   ['500x500>',   :jpg],
-      small:    ['250x250>',   :jpg]
-    },
-    convert_options: { all: '-background white -flatten +matte -trim' }
+  mount_uploader :photo, PhotoUploader
 
-  # process_in_background :photo
+  process_in_background :photo
+  store_in_background   :photo
+
+  field :photo_processing, type: Boolean
+  field :photo_tmp,        type: String
 
   validates :name,     presence: true
   validates :link,     presence: true
@@ -33,10 +28,6 @@ class Product
   validates :currency, presence: true
   validates :category, presence: true
   validates :original_image, presence: true
-
-  validates_attachment :photo,
-    presence: true,
-    content_type: { content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   belongs_to :category
 
@@ -64,8 +55,26 @@ class Product
     u.admin?
   end
 
+  def photo_url(style = nil)
+    if self.photo_processing
+      ActionController::Base.helpers.asset_path('loading.png')
+    else
+      self.photo.url(style)
+    end
+  end
+
   def full_price
-    "#{self.class.currencies[self.currency]}#{(self.price % 1 != 0 ? self.price : self.price.to_i)}"
+    str = "#{self.class.currencies[self.currency]}#{self.price.to_s.split('.').first}"
+
+    decimals = self.price.to_s.split('.').last
+
+    if decimals.size == 1
+      str << ".#{decimals}0"
+    else
+      str << ".#{decimals}"
+    end
+
+    str
   end
 
   def permalink

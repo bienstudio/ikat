@@ -1,18 +1,10 @@
 require 'spec_helper'
 
 describe Product do
-  let(:product) do
-    VCR.use_cassette('app/models/product/product', erb: { id: 'foobar' }) do
-      create :product
-    end
-  end
+  let(:product) { create :product }
 
   let(:user)  { create :user }
   let(:admin) { create :user, :admin }
-
-  before do
-    VCR.insert_cassette('app/models/product/all', erb: { id: 'foobar' })
-  end
 
   it { expect(product).to be_valid }
 
@@ -22,9 +14,6 @@ describe Product do
   it { expect(product).to validate_presence_of :currency }
   it { expect(product).to validate_presence_of :category }
   it { expect(product).to validate_presence_of :original_image }
-
-  it 'expect(product).to validate_attachment_presence :photo' # Waiting on Paperclip to not use deprecated RSpec matchers
-  it { expect(product).to validate_attachment_content_type(:photo).allowing('image/jpg', 'image/jpeg', 'image/png', 'image/gif').rejecting('text/xml', 'text/html') }
 
   describe '#viewable_by?' do
     it { expect(product.viewable_by?(user)).to eql true }
@@ -45,9 +34,5 @@ describe Product do
 
   describe '#create_slug!' do
     it { expect(product.slug).to eql 'everlane-cotton-crew-in-antique' }
-  end
-
-  after do
-    VCR.eject_cassette
   end
 end

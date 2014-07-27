@@ -2,7 +2,7 @@
   %header.row
     %aside.col-3.suffix-1
       %figure.avatar
-        = image_tag @user.avatar.url(:medium)
+        = image_tag @user.avatar_url(:medium)
     %section.col-20.omega
       .information
         %h2= @user.name
@@ -19,5 +19,4 @@
             = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
       %p.biography= @user.biography
   %section.products
-    - @products.each do |product|
-      = render :partial => 'products/product', locals: { product: product, size: 'small' }
+    = render :partial => 'products/products', locals: { products: @products }

@@ -3,11 +3,14 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready ->
+ready = ->
   $("img").unveil()
 
-$('.products').isotope
-  itemSelector: ".product"
-  masonry:
-    columnWidth: 300
-    gutter: 10
+  # $('.products').isotope
+  #   itemSelector: ".product"
+  #   masonry:
+  #     columnWidth: 209
+  #     gutter: 5
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

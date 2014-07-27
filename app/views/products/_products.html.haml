@@ -1,0 +1,10 @@
+- @products.each_with_index do |product, index|
+  :erb
+    <% if index == 0 %>
+      <div class='row'>
+    <% end %>
+    <% if index % 4 == 0 && index > 0 %>
+      </div>
+      <div class='row'>
+    <% end %>
+    <%= render :partial => 'products/product', locals: { product: product, size: 'small' } %>

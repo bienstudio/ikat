@@ -1,0 +1,15 @@
+section.products {
+  .row {
+    margin-top: rhythm(1);
+  }
+
+  .product {
+    @include span-columns(6, 24);
+
+    &:last-child {
+      @include omega;
+
+      float: left;
+    }
+  }
+}

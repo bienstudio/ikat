@@ -1,0 +1,7 @@
+---
+:verbose: false
+:concurrency: 10
+:queues:
+  - [carrierwave, 5]
+  - [critical, 4]
+  - [default, 1]

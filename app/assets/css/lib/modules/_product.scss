@@ -1,12 +1,22 @@
+/*
+  Ikat.
+    file: css/lib/modules/_product.scss
+*/
+
+/*
+  This is the styling for a product tile — basically, if products are aligned
+  in a grid, this is the styling for each individual product.
+*/
+
 figure.product {
   display: block;
   position: relative;
-  // overflow: hidden;
 
+  // hover states
   &:hover, &.active {
     .info, .actions {
       opacity: 1;
-      bottom: 1.5em;
+      bottom: 0.5em;
     }
 
     img {
@@ -44,13 +54,13 @@ figure.product {
     display: block;
     z-index: 100;
     opacity: 0;
-    margin: 1em 0 0 2em;
+    margin: 1em 0 0 1em;
     position: absolute;
-    bottom: 1em;
+    bottom: 0.25em;
   }
 
   .info {
-    padding-right: rhythm(0.5);
+    padding-right: rhythm(0.25);
 
     a {
       color: $text;
@@ -63,10 +73,15 @@ figure.product {
   }
 
   .actions {
-    right: 2em;
+    right: 1em;
 
     nav {
-      color: $base;
+      a, span {
+        @include box-shadow(2px 2px 15px 15px rgba(#fff, 0.35));
+
+        color: $base;
+        z-index: 100;
+      }
 
       a.flux {
         &.btn-red {

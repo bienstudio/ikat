@@ -1,19 +1,10 @@
 require 'spec_helper'
 
 describe List do
-  let(:list) do
-    VCR.use_cassette('app/models/list/list', erb: { id: 'foobar' }) do
-      create(:wants)
-    end
-  end
+  let(:list)    { create(:wants) }
+  let(:user)    { list.owner }
 
-  let(:user) { list.owner }
-
-  let(:product) do
-    VCR.use_cassette('app/models/list/product', erb: { id: 'foobar' }) do
-      create :product
-    end
-  end
+  let(:product) { create :product }
 
   describe '#products' do
     before do
@@ -24,11 +15,7 @@ describe List do
   end
 
   describe '#add!' do
-    let!(:product) do
-      VCR.use_cassette('app/models/list/add/product', erb: { id: 'foobar' }) do
-        create :product
-      end
-    end
+    let!(:product) { create :product }
 
     let(:addition) do
       list.add!(product, user)
@@ -41,11 +28,7 @@ describe List do
   end
 
   describe '#remove!' do
-    let!(:product) do
-      VCR.use_cassette('app/models/list/remove/product', erb: { id: 'foobar' }) do
-        create :product
-      end
-    end
+    let!(:product) { create :product }
 
     let(:removal) do
       list.add!(product, user)

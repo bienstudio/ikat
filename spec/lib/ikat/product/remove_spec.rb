@@ -1,16 +1,12 @@
 require 'spec_helper'
 
 describe ProductRemove do
-  VCR.use_cassette('lib/ikat/product/remove/list', erb: { id: 'foobar' }) do
-    let(:list) { create :collection }
-  end
+  let(:list) { create :collection }
 
   let(:product) do
-    VCR.use_cassette('app/models/store/store', erb: { id: 'foobar' }) do
-      i = list.add!(create(:product), list.owner)
+    i = list.add!(create(:product), list.owner)
 
-      i.product
-    end
+    i.product
   end
 
   context 'with permitted user' do

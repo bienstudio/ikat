@@ -1,11 +1,7 @@
 require 'spec_helper'
 
 describe ListItem do
-  let!(:list_item) do
-    VCR.use_cassette('app/models/list_item/list_item', erb: { id: 'foobar' }) do
-      create :list_item
-    end
-  end
+  let!(:list_item) { create :list_item }
 
   let(:list)      { list_item.list }
   let(:product)   { list_item.product }

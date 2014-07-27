@@ -10,11 +10,16 @@ gem 'puma'
 
 gem 'turbolinks'
 
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+
 gem 'devise'
 gem 'canable'
 
-gem 'paperclip'
-gem 'aws-sdk', '~> 1.48.1'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave_backgrounder'
 
 gem 'mutations'
 

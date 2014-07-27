@@ -1,18 +1,9 @@
 require 'spec_helper'
 
 describe Store do
-  let(:store) do
-    VCR.use_cassette('app/models/store/store', erb: { id: 'foobar' }) do
-      create :store
-    end
-  end
-
+  let(:store) { create :store }
   let(:user)  { create :user }
   let(:admin) { create :user, :admin }
-
-  before do
-    VCR.insert_cassette('app/models/store/all', erb: { id: 'foobar' })
-  end
 
   it { expect(store).to be_valid }
 
@@ -52,9 +43,5 @@ describe Store do
 
   describe '#create_inventory!' do
     it { expect(store.inventory).to be_an_instance_of Inventory }
-  end
-
-  after do
-    VCR.eject_cassette
   end
 end
