@@ -61,7 +61,7 @@ describe ProductAdd do
       it { expect(action.result.name).to eql 'Men\'s Crew Antique' }
       it { expect(action.result.price).to eql 20.0 }
       it { expect(action.result.currency).to eql :usd }
-      it { expect(action.result.photo.url).to_not be_nil }
+      it { expect(action.result.photo_url).to_not be_nil }
       it { expect(action.result.store).to eql store }
       it { expect(action.result.category).to eql category }
       it { expect(ListItem.where(list: user.wants, product: action.result).first).to be_valid }
@@ -90,7 +90,7 @@ describe ProductAdd do
       it { expect(action.result.name).to eql 'Men\'s Crew Antique' }
       it { expect(action.result.price).to eql 20.0 }
       it { expect(action.result.currency).to eql :usd }
-      it { expect(action.result.photo.url).to_not be_nil }
+      it { expect(action.result.photo_url).to_not be_nil }
       it { expect(action.result.store).to be_an_instance_of Store }
       it { expect(action.result.store.domain).to eql 'everlane.com' }
       it { expect(action.result.category).to eql category }

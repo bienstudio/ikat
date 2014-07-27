@@ -2,7 +2,7 @@
   %aside
     %figure.avatar
       = link_to profile_path(username: activity.actor.username) do
-        = image_tag activity.actor.avatar.url
+        = image_tag activity.actor.avatar_url
   %section
     - case activity.action
     - when :follow
