@@ -55,6 +55,14 @@ class Product
     u.admin?
   end
 
+  def photo_url(style = nil)
+    if self.photo_processing
+      ActionController::Base.helpers.asset_path('loading.png')
+    else
+      self.photo.url(style)
+    end
+  end
+
   def full_price
     str = "#{self.class.currencies[self.currency]}#{self.price.to_s.split('.').first}"
 

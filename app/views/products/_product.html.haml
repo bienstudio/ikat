@@ -3,7 +3,7 @@
 %figure.product{class: size}
   = link_to(product.permalink, class: "block") do
     .photo
-      %img{src: image_path('loader.gif'), 'data-src' => product.photo.url(:large), alt: product.name}
+      %img{src: image_path('loader.gif'), 'data-src' => product.photo_url(:large), alt: product.name}
   .info
     %ul
       %li.name <strong><a href="#{product.permalink}">#{product.name}</a></strong> (#{product.full_price})

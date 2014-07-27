@@ -63,6 +63,14 @@ class User
     updatable_by?(u)
   end
 
+  def avatar_url(style = nil)
+    if self.avatar_processing
+      ActionController::Base.helpers.asset_path('avatar.png')
+    else
+      self.avatar.url(style)
+    end
+  end
+
   def feed(actions = [:add, :follow])
     Activity.feed(self, actions)
   end

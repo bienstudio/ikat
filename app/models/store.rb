@@ -41,6 +41,14 @@ class Store
     updatable_by?(u)
   end
 
+  def logo_url(style = nil)
+    if self.logo_processing
+      ActionController::Base.helpers.asset_path('avatar.png')
+    else
+      self.logo.url(style)
+    end
+  end
+
   def followers
     Relationship.followers(self).collect(&:follower)
   end
