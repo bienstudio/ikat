@@ -1,11 +1,12 @@
 module Ikat
   class API
-    get '/products/:id.json' do
-      @product = Product.find(params[:id])
-
-      rabl :'products/show'
+    before do
+      authorize!
     end
 
+    # POST /products/add.json
+    #
+    # Add a Product to a List.
     post '/products/add.json' do
       params[:product][:category] = Category.find(params[:product][:category][:id])
 
@@ -20,7 +21,7 @@ module Ikat
 
         rabl :'products/show'
       else
-        return action.errors.to_json
+        return action.errors.symbolic.to_json
       end
     end
   end
