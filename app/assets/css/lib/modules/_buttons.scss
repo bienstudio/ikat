@@ -15,6 +15,15 @@
     cursor: pointer;
   }
 
+  &.btn-black {
+    background: $text;
+    color: $base;
+
+    &:hover {
+      background: darken($text, 5%);
+    }
+  }
+
   &.btn-red {
     background: $red;
     color: $base;

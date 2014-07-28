@@ -1,6 +1,7 @@
 if development?
   require 'better_errors'
   require 'sinatra/reloader'
+  require 'log_buddy'
 end
 
 IKAT_ROOT ||= File.join(File.expand_path(File.dirname(__FILE__)), '..', '..', '..')

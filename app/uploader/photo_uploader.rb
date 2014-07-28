@@ -1,6 +1,6 @@
 class PhotoUploader < CarrierWave::Uploader::Base
-  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
+  include ::CarrierWave::Backgrounder::Delay
 
   def extension_white_list
     %w(jpg jpeg gif png)
@@ -8,6 +8,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   def default_url
     ActionController::Base.helpers.asset_path('loading.png')
+  end
+
+  def store_dir
+    'products/photos'
+  end
+
+  def cache_dir
+    '/tmp/uploads'
   end
 
   version :large do
