@@ -15,9 +15,13 @@ module Ikat
         list: List.find(params[:list][:id])
       )
 
-      @product = action.result
+      if action.success?
+        @product = action.result
 
-      rabl :'products/show'
+        rabl :'products/show'
+      else
+        return action.errors.to_json
+      end
     end
   end
 end
