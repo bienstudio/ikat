@@ -13,6 +13,10 @@ class List
     ListItem.where(list: self).collect(&:product)
   end
 
+  def product_count
+    self.list_item_ids.count
+  end
+
   def add!(product, actor)
     ListItem.create(
       list:    self,

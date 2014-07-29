@@ -1,16 +1,19 @@
+require 'securerandom'
+
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Canable::Cans
   include Canable::Ables
 
-  field :name,      type: String
-  field :email,     type: String
-  field :username,  type: String
-  field :biography, type: String
-  field :location,  type: String
-  field :website,   type: String
-  field :admin,     type: Boolean, default: false
+  field :name,         type: String
+  field :email,        type: String
+  field :username,     type: String
+  field :biography,    type: String
+  field :location,     type: String
+  field :website,      type: String
+  field :admin,        type: Boolean, default: false
+  field :access_token, type: String
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -44,6 +47,8 @@ class User
   has_many :collections, inverse_of: :owner
 
   has_many :relationships
+
+  before_create :create_access_token!
 
   after_create :create_lists!
 
@@ -105,6 +110,10 @@ class User
   end
 
   private
+
+  def create_access_token!
+    self.access_token = SecureRandom.uuid
+  end
 
   def create_lists!
     self.wants = Wants.create
