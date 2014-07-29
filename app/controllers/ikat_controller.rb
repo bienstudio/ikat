@@ -28,4 +28,15 @@ class IkatController < ApplicationController
   def explore
     @products = Product.order('created_at desc').limit(10)
   end
+
+  # GET /bookmarklet
+  def bookmarklet
+    fetch = BookmarkletFetchImages.run(
+      url: params[:url]
+    )
+
+    @images = fetch.result
+
+    render layout: false
+  end
 end

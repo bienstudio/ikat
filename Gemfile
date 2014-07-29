@@ -24,6 +24,8 @@ gem 'carrierwave_backgrounder'
 
 gem 'mutations'
 
+gem 'nokogiri'
+
 gem 'haml-rails'
 gem 'rabl'
 gem 'oj'

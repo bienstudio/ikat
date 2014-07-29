@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'support',  to: 'ikat#support'
   get 'explore',  to: 'ikat#explore'
 
+  get 'bookmarklet/:url', to: 'ikat#bookmarklet', constraints: { url: /.*/ }
+
   resources :products, only: [:new, :create]
 
   scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9]{1,30}\.[a-zA-Z]{2,3})/ } do

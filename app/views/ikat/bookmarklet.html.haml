@@ -1,0 +1,20 @@
+!!!5
+%html{lang: "en"}
+  %head
+    %title Ikat
+
+    = stylesheet_link_tag "bookmarklet", media: "all", "data-turbolinks-track" => true
+
+    = csrf_meta_tags
+
+    %script{src: "//use.typekit.net/bna3bdd.js"}
+    :coffee
+      try
+        Typekit.load()
+  %body
+    .select{'data-step' => 0}
+      %ul.images
+        - @images.each do |image|
+          %li= image
+
+    = javascript_include_tag "bookmarklet", "data-turbolinks-track" => true
