@@ -1,0 +1,26 @@
+/*
+  Ikat.
+    file: css/application.scss
+*/
+
+@import "lib/base";
+
+
+/*
+  = Contents
+    I. Universal
+*/
+
+
+/*
+  I. Universal
+*/
+
+body {
+  @include font-size(16px);
+
+  background: $base;
+  color: $text;
+  font-family: $sans-serif;
+  font-weight: 300;
+}
