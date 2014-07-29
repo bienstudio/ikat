@@ -11,19 +11,22 @@ gem 'puma'
 gem 'turbolinks'
 
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', require: nil
+
+gem 'sinatra'
 
 gem 'devise'
 gem 'canable'
 
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
-gem 'fog'
 gem 'mini_magick'
+gem 'fog'
 gem 'carrierwave_backgrounder'
 
 gem 'mutations'
 
 gem 'haml-rails'
+gem 'rabl'
+gem 'oj'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'compass-rails'
@@ -35,6 +38,8 @@ gem 'uglifier', '>= 1.3.0'
 
 
 group :development, :test do
+  gem 'sinatra-contrib', require: false
+
   gem 'rubocop'
 
   gem 'log_buddy'

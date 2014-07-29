@@ -1,22 +1,28 @@
 .page.user
-  %header.row
-    %aside.col-3.suffix-1
-      %figure.avatar
-        = image_tag @user.avatar_url(:medium)
-    %section.col-20.omega
-      .information
-        %h2= @user.name
-        %ul.meta
-          - unless @user.location.blank?
-            %li= @user.location
-          - unless @user.website.blank?
-            %li= link_to @user.website, @user.website
-      .actions
-        - unless current_user == @user
-          - if current_user.follows?(@user)
-            = link_to "Unfollow", unfollow_user_path(username: @user.username), class: "relationship-flux unfollow btn btn-red", method: :delete
-          - else
-            = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
-      %p.biography= @user.biography
+  %header
+    .info.row
+      %aside.col-3.suffix-1
+        %figure.avatar
+          = image_tag @user.avatar_url(:medium)
+      %section.col-20.omega
+        .information
+          %h2= @user.name
+          %ul.meta
+            - unless @user.location.blank?
+              %li= @user.location
+            - unless @user.website.blank?
+              %li= link_to @user.website, @user.website
+        .actions
+          - unless current_user == @user
+            - if current_user.follows?(@user)
+              = link_to "Unfollow", unfollow_user_path(username: @user.username), class: "relationship-flux unfollow btn btn-red", method: :delete
+            - else
+              = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
+        %p.biography= @user.biography
+    .lists.row
+      %ul
+        %li= link_to "<span>#{@user.wants.product_count}</span> Wants".html_safe, wants_path(username: @user.username), class: "btn btn-black"
+        %li= link_to "<span>#{@user.owns.product_count}</span> Owns".html_safe, owns_path(username: @user.username), class: "btn"
+        %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, collections_path(username: @user.username), class: "btn"
   %section.products
     = render :partial => 'products/products', locals: { products: @products }
