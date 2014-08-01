@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     get '/wants', to: 'wants#show', as: 'wants'
     get '/owns', to: 'owns#show', as: 'owns'
+    
     get '/collections', to: 'collections#index', as: 'collections'
     get '/collections/:collection_slug', to: 'collections#show', as: 'collection'
 

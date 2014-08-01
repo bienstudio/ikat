@@ -2,9 +2,10 @@ class Collection < List
   include Canable::Ables
 
   field :name,   type: String
+  field :slug,   type: String
   field :hidden, type: Boolean, default: false
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def viewable_by?(u)
     self.hidden? ? u == self.owner : true
@@ -20,5 +21,20 @@ class Collection < List
 
   def destroyable_by?(u)
     self.updatable_by?(u)
+  end
+
+  protected
+
+  def create_slug!
+    if self.name
+      str = self.name
+
+      str = str.gsub(/[^a-zA-Z0-9 ]/,"")
+      str = str.gsub(/[ ]+/," ")
+      str = str.gsub(/ /,"-")
+      str = str.downcase
+
+      self.slug = str
+    end
   end
 end

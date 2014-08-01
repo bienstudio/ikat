@@ -13,23 +13,24 @@
         Typekit.load()
   %body
     %header#header
-      %aside
-        %h1.brand
-          = link_to "Ikat", root_path
-        %nav.primary
-          %ul
-            %li= link_to "Explore", explore_path
-            - if current_user
-              %li= link_to "You", profile_path(username: current_user.username)
-      %section
-        %nav.secondary
-          %ul
-            - if current_user
-              %li= link_to "Settings", settings_path
-              %li= link_to "Logout", logout_path
-            - else
-              %li= link_to "Login", login_path
-              %li= link_to "Join", join_path
+      .row
+        %aside
+          %h1.brand
+            = link_to "Ikat", root_path
+          %nav.primary
+            %ul
+              %li= link_to "Explore", explore_path
+              - if current_user
+                %li= link_to "You", profile_path(username: current_user.username)
+        %section
+          %nav.secondary
+            %ul
+              - if current_user
+                %li= link_to "Settings", settings_path
+                %li= link_to "Logout", logout_path
+              - else
+                %li= link_to "Login", login_path
+                %li= link_to "Join", join_path
 
     = yield
 

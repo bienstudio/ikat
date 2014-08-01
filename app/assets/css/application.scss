@@ -6,7 +6,6 @@
 @import "lib/base";
 
 
-
 /*
   = Contents
     I. Universal
@@ -36,7 +35,9 @@ a, [data-url] {
 }
 
 h1 {
-  background: image-url('logo-bg-2.png') no-repeat;
+  // background: image-url('logo-bg-2.png') no-repeat;
+  background: $black;
+
   display: inline-block;
   font-weight: 700;
   font-size: 1.25em;
@@ -49,16 +50,17 @@ h1 {
   a {
     color: $base;
     display: block;
+    border: 5px solid $base;
     padding: 0.5em;
     z-index: 2;
   }
 
   &:hover {
     @include background(
-      linear-gradient(
-        rgba(0, 0, 0, 0.25),
-        rgba(0, 0, 0, 0.25)
-      ),
+      // linear-gradient(
+      //   rgba(0, 0, 0, 0.25),
+      //   rgba(0, 0, 0, 0.25)
+      // ),
       image-url('logo-bg-2.png'),
       no-repeat
     );
@@ -71,7 +73,7 @@ em {
 
 h2, h3, h4, h5, h6 {
   font-weight: 600;
-  // font-family: $serif;
+  font-family: $serif;
 }
 
 h2 {
@@ -96,14 +98,16 @@ strong {
 */
 
 header#header {
-  @include container;
+  // @include container;
   @include trailing-border(1px, 0);
 
+  background: $black;
+  color: $base;
   border-color: $light-grey;
   padding: rhythm(1) 0;
 
   a {
-    color: $text;
+    color: $base;
 
     &:hover {
       color: $primary;
@@ -138,7 +142,7 @@ header#header {
   nav {
     @include adjust-font-size-to(14px);
 
-    margin-top: rhythm(0.25);
+    margin-top: rhythm(0.5);
   }
 
   ul li {
