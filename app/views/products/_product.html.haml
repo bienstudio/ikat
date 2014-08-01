@@ -6,9 +6,10 @@
       %img{src: image_path('loader.gif'), 'data-src' => product.photo_url(:large), alt: product.name}
   .info
     %ul
-      %li.name <strong><a href="#{product.permalink}">#{product.name}</a></strong> (#{product.full_price})
+      %li.name <strong><a href="#{product.permalink}">#{product.name}</a></strong>
       %li.store <em>from</em> <a href="#{store_path(store_domain: product.store.domain)}">#{product.store.name}</a>
   .actions
+    %span.price= product.full_price
     %nav
       %a.flux.btn{class: in_wants ? 'btn-green' : 'btn-red'}
         = in_wants ? 'Remove' : 'Add'

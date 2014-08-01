@@ -9,6 +9,7 @@
 */
 
 figure.product {
+  color: $text;
   display: block;
   position: relative;
 
@@ -16,7 +17,6 @@ figure.product {
   &:hover, &.active {
     .info, .actions {
       opacity: 1;
-      bottom: 0.5em;
     }
 
     img {
@@ -49,14 +49,19 @@ figure.product {
   }
 
   .info, .actions {
-    @include transition(opacity 0.2s ease-out, bottom 0.5s ease-out);
-
     display: block;
     z-index: 100;
     opacity: 0;
     margin: 1em 0 0 1em;
     position: absolute;
-    bottom: 0.25em;
+  }
+
+  .info {
+    top: 0.15em;
+  }
+
+  .actions {
+    bottom: 0.5em;
   }
 
   .info {
@@ -73,12 +78,22 @@ figure.product {
   }
 
   .actions {
-    right: 1em;
+    // right: 1em;
+    width: 100%;
+
+    span.price, nav {
+      display: inline-block;
+    }
+
+    span.price {
+      float: left;
+    }
 
     nav {
-      a, span {
-        @include box-shadow(2px 2px 15px 15px rgba(#fff, 0.35));
+      float: right;
+      margin-right: 1em;
 
+      a, span {
         color: $base;
         z-index: 100;
       }
@@ -129,7 +144,7 @@ figure.product {
         }
 
         li {
-          @include adjust-font-size-to(12px);
+          @include adjust-font-size-to(14px);
 
           input {
             float: right;

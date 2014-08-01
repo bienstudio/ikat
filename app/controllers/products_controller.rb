@@ -28,6 +28,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  # POST /products/flux
+  #
+  # Flux the membership of the
+  def flux
+
+  end
+
   protected
 
   def current_store

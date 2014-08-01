@@ -1,0 +1,6 @@
+.page.user
+  = render :partial => 'users/header', locals: { list: 'collections' }
+  %section.products
+    .row
+      %h3= @collection.name
+    = render :partial => 'products/products', locals: { products: @collection.products }
