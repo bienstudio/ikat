@@ -97,6 +97,10 @@ class Product
     ListItem.where(product: self).in(list: u.collections).first ? true : false
   end
 
+  def in_list?(l)
+    ListItem.where(list: l, product: self).first ? true : false
+  end
+
   def wanted_by
     ListItem.where(list_type: 'Wants', product: self).collect(&:creator)
   end
