@@ -1,7 +1,7 @@
 .page.product
   %figure
-    = image_tag @product.photo_url
-  %aside
+    = link_to image_tag(@product.photo_url), @product.buy_permalink, target: "_blank"
+  .information
     %section
       %h2= @product.name
       %h3
@@ -10,15 +10,10 @@
       %p= @product.full_price
     %section
       %p
-        - if @product.in_wants?(current_user)
-          = link_to "Remove", "", class: "btn btn-green"
-        - else
-          = link_to "Want", "", class: "btn btn-red"
-
+        = render :partial => "products/buttons/wants", locals: { product: @product }
         = link_to "Collect", "", class: "btn"
-        = link_to "Buy", @product.link, class: "btn btn-black", target: "_blank"
+        = link_to "Buy", @product.buy_permalink, class: "btn btn-black", target: "_blank"
     %section.users
-      Wanted by...
       %ul
         - @product.wanted_by.each do |u|
           %li= link_to(image_tag(u.avatar_url(:small), class: "avatar"), profile_path(username: u.username))

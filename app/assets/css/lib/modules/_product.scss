@@ -49,6 +49,8 @@ figure.product {
   }
 
   .info, .actions {
+    @include transition(opacity 0.2s ease-out);
+
     display: block;
     z-index: 100;
     opacity: 0;
@@ -91,28 +93,49 @@ figure.product {
 
     nav {
       float: right;
-      margin-right: 1em;
+      margin-right: 2em;
 
       a, span {
         color: $base;
+        display: inline-block;
         z-index: 100;
+        margin-right: -3px; // This gets rid of the spaces between inline-block elements (http://css-tricks.com/fighting-the-space-between-inline-block-elements/)
+        line-height: 1em;
       }
 
-      a.flux {
+      a.wants-flux {
+        @include border-radius(1px 0 0 1px);
+
+        padding: rhythm(0.5) !important;
+
         &.btn-red {
           border-right: 1px solid lighten($red, 5%);
+
+          span.collections-trigger {
+            background: $red;
+          }
         }
 
         &.btn-green {
           border-right: 1px solid lighten($green, 5%);
+
+          .span.collections-trigger {
+            background: $green;
+          }
         }
       }
 
       span.collections-trigger {
+        @include border-radius(0 1px 1px 0);
+
+        padding: rhythm(0.3) !important;
+
         i {
           @include adjust-font-size-to(12px);
 
-          margin-right: rhythm(0.5);
+          // margin-right: rhythm(0.5);
+          margin: 0 rhythm(0.25);
+          text-align: center;
 
           &.small {
             margin-right: rhythm(0.25) !important;
@@ -146,9 +169,17 @@ figure.product {
         li {
           @include adjust-font-size-to(14px);
 
-          input {
-            float: right;
-            margin-top: 0.75em;
+          form {
+            display: inline;
+
+            input {
+              float: right;
+              margin-top: 0.5em;
+            }
+
+            label {
+              text-transform: capitalize;
+            }
           }
         }
       }
