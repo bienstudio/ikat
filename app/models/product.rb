@@ -81,6 +81,10 @@ class Product
     product_path(store_domain: self.store.domain, product_slug: self.slug)
   end
 
+  def buy_permalink
+    self.permalink + '/buy'
+  end
+
   def store
     self.store_id ? Store.find(self.store_id) : nil
   end
@@ -93,8 +97,8 @@ class Product
     ListItem.where(list: u.owns, product: self).first ? true : false
   end
 
-  def in_collection?(u)
-    ListItem.where(product: self).in(list: u.collections).first ? true : false
+  def in_collection?(c)
+    ListItem.where(product: self).in(list: c).first ? true : false
   end
 
   def in_list?(l)

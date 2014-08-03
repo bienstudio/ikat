@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :current_store
+  before_filter :current_product
 
   def index
   end
@@ -9,7 +10,13 @@ class ProductsController < ApplicationController
 
   def show
     @store = @current_store
-    @product = Product.where(store_id: @store, slug: params[:product_slug]).first
+    @product = Product.where(store_id: @current_store, slug: params[:product_slug]).first
+  end
+
+  def buy
+    @product = Product.where(store_id: @current_store, slug: params[:product_slug]).first
+
+    redirect_to @product.link
   end
 
   def create
@@ -28,11 +35,22 @@ class ProductsController < ApplicationController
     end
   end
 
-  # POST /products/flux
+  # POST /products/:product_id/flux
   #
-  # Flux the membership of the
+  # Flux the membership the product in a list.
   def flux
+    p = ProductFlux.run(
+      current_user: current_user,
+      product: @current_product,
+      list: List.find(params[:list])
+    )
 
+    if p.success?
+      # Is this a security vector?
+      render json: p.result.first
+    else
+      render json: p.errors
+    end
   end
 
   protected
@@ -40,5 +58,17 @@ class ProductsController < ApplicationController
   def current_store
     @current_store = Store.where(domain: params[:store_domain]).first
     @current_store
+  end
+
+  def current_product
+    if params[:product_slug]
+      @current_product = Product.where(store_id: @current_store, slug: params[:product_slug]).first
+    end
+
+    if params[:product_id]
+      @current_product = Product.find(params[:product_id])
+    end
+
+    @current_product
   end
 end

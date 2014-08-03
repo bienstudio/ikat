@@ -11,14 +11,14 @@
   .actions
     %span.price= product.full_price
     %nav
-      %a.flux.btn{class: in_wants ? 'btn-green' : 'btn-red'}
-        = in_wants ? 'Remove' : 'Add'
+      = render :partial => "products/buttons/wants", locals: { product: product }
       - if current_user.collections.count > 0
         %span.collections-trigger.btn{class: in_wants ? 'btn-green' : 'btn-red'}
           %i.ss-icon dropdown
         %ul.collections
           - current_user.collections.each do |collection|
             %li
-              %span
-                %label= collection.name
-              %input{type: 'checkbox'}/
+              = form_tag(product_flux_path(product_id: product.id, list: collection), remote: true, method: :post) do
+                %span
+                  %label= link_to collection.name, collection_path(collection_slug: collection.slug)
+                %input.collection-flux{type: 'checkbox', checked: product.in_collection?(collection)}
