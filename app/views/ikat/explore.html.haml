@@ -1,3 +1,6 @@
 .page
-  - @products.each do |product|
-    = render :partial => 'products/product', locals: { product: product, size: 'original' }
+  %header
+    %h2 Explore
+    %p The latest products added to Ikat.
+  %section.products
+    = render :partial => 'products/products', locals: { products: @products }

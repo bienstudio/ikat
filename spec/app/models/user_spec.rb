@@ -16,7 +16,6 @@ describe User do
 
   describe '#create_lists!' do
     it { expect(user.wants).to be_an_instance_of Wants }
-    it { expect(user.owns).to be_an_instance_of Owns }
   end
 
   describe '#viewable_by?' do

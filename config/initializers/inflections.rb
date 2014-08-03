@@ -16,5 +16,5 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.uncountable %w(owns wants)
+  inflect.uncountable %w(wants)
 end

@@ -1,8 +1,8 @@
-$("span.collections-trigger").on("click", (e) ->
+$(".collections-trigger").on("click", (e) ->
   product = $(@).parent().parent().parent()
   product.addClass("active")
 
-  list = $(@).parent().children().last()
+  list = $(@).parent().children('ul.collections')
 
   if list.hasClass("active")
     list.removeClass("active")

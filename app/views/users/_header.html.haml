@@ -14,9 +14,8 @@
   .lists.row
     %ul.col-21
       %li= link_to "<span>#{@user.wants.product_count}</span> Wants".html_safe, profile_path(username: @user.username), class: "btn #{list == 'wants' ? 'btn-black' : nil}"
-      %li= link_to "<span>#{@user.owns.product_count}</span> Owns".html_safe, owns_path(username: @user.username), class: "btn #{list == 'owns' ? 'btn-black' : nil}"
-      %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}"
-      %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, "#", class: "btn btn-green"
+      %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, user_collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}"
+      %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, new_collection_path, class: "btn btn-green"
     %nav.col-3.omega
       - unless current_user == @user
         - if current_user.follows?(@user)

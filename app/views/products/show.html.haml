@@ -11,7 +11,7 @@
     %section
       %p
         = render :partial => "products/buttons/wants", locals: { product: @product }
-        = link_to "Collect", "", class: "btn"
+        = link_to "Collect", "#", class: "btn collections-trigger"
         = link_to "Buy", @product.buy_permalink, class: "btn btn-black", target: "_blank"
     %section.users
       %ul

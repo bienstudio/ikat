@@ -93,10 +93,6 @@ class Product
     ListItem.where(list: u.wants, product: self).first ? true : false
   end
 
-  def in_owns?(u)
-    ListItem.where(list: u.owns, product: self).first ? true : false
-  end
-
   def in_collection?(c)
     ListItem.where(product: self).in(list: c).first ? true : false
   end

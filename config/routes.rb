@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     post 'flux', to: 'products#flux', as: 'flux'
   end
 
+  resources :collections, except: [:index, :show]
+
   scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9]{1,30}\.[a-zA-Z]{2,3})/ } do
     get '/', to: 'stores#show', as: 'store'
 
@@ -36,11 +38,10 @@ Rails.application.routes.draw do
   scope '/:username' do
     get '/', to: 'users#show', as: 'profile'
 
-    get '/wants', to: 'wants#show', as: 'wants'
-    get '/owns', to: 'owns#show', as: 'owns'
+    get '/wants', to: 'wants#show', as: 'user_wants'
 
-    get '/collections', to: 'collections#index', as: 'collections'
-    get '/collections/:collection_slug', to: 'collections#show', as: 'collection'
+    get '/collections', to: 'collections#index', as: 'user_collections'
+    get '/collections/:collection_slug', to: 'collections#show', as: 'user_collection'
 
     post '/follow', to: 'users#follow', as: 'follow_user'
     patch '/unfollow', to: 'users#unfollow', as: 'unfollow_user'
