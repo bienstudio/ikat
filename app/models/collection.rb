@@ -7,6 +7,8 @@ class Collection < List
 
   validates :name, presence: true, uniqueness: true
 
+  before_validation :create_slug!
+
   def viewable_by?(u)
     self.hidden? ? u == self.owner : true
   end
