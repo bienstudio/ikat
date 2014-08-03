@@ -1,6 +1,6 @@
 .page.user {
   header {
-    .info {
+    .information {
       ul {
         @include adjust-font-size-to(14px);
 
@@ -19,9 +19,6 @@
         }
       }
 
-      section {
-        margin-top: rhythm(0.5);
-      }
     }
 
     .lists {
@@ -33,6 +30,10 @@
         span {
           font-weight: normal;
         }
+      }
+
+      nav {
+        text-align: center;
       }
     }
   }
