@@ -4,19 +4,54 @@ class BookmarkletFetchImages < IkatMutation
   end
 
   def execute
-    url = fix_url(self.url)
+    unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
+      str = "http://#{url}"
+    end
 
-    doc = Nokogiri::HTML(open(url))
+    begin
+      doc = Nokogiri::HTML(open(str))
+    # handle if the server doesn't support redirecting http => https
+    rescue RuntimeError => e
+      # if it's a redirection error, try again
+      if e.to_s.include?('redirection forbidden: http://')
+        # add an 's' to make 'https' (BAD)
+        str = str.insert(4, 's')
 
+        # try again
+        doc = Nokogiri::HTML(open(str))
+      end
+    end
+
+    # get all the images
     images = doc.css('img')
 
-    images.map { |img| img.to_s }
+    vetted_images = []
+    images.each do |img|
+      src = format_image_uri(img['src'], str)
 
-    images
+      if check_image_dimensions(src)
+        vetted_images << src
+      end
+    end
+
+    return vetted_images
   end
 
-  def fix_url(str)
-    str = str.insert(str.index(':') + 1, '/')
-    str
+  def format_image_uri(str, source_url)
+    if str.include?('http') # it has a protocol, assume it has host (BAD)
+      return str
+    else
+      u = URI.parse(source_url)
+
+      str = "#{u.scheme}://#{u.host}#{str}"
+
+      return str
+    end
+  end
+
+  def check_image_dimensions(uri, width = 200, height = 200)
+    dimensions = FastImage.size(uri)
+
+    dimensions[0] >= width && dimensions[1] >= height
   end
 end

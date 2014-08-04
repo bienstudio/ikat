@@ -2,7 +2,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= stub bookmarklet
+
+//= stub ./bookmarklet/load
+//= stub ./bookmarklet/add
 
 ready = ->
   $("img").unveil()

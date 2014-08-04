@@ -43,7 +43,7 @@
           = f.submit "Save"
 
   %h3 Bookmarklet
-  %p= link_to "Bookmarklet", "javascript:void((function()%7Bvar hsb%3Ddocument.createElement(%27script%27)%3Bhsb.setAttribute(%27src%27,%27https://ikat.dev/assets/bookmarklet.js%27)%3Bhsb.setAttribute(%27type%27,%27text/javascript%27)%3Bdocument.getElementsByTagName(%27head%27)%5B0%5D.appendChild(hsb)%3B%7D)())%3B"
+  %p= link_to "Bookmarklet", "javascript:void((function()%7Bvar hsb%3Ddocument.createElement(%27script%27)%3Bhsb.setAttribute(%27src%27,%27http://ikat.dev/assets/bookmarklet/load.js%27)%3Bhsb.setAttribute(%27type%27,%27text/javascript%27)%3Bdocument.getElementsByTagName(%27head%27)%5B0%5D.appendChild(hsb)%3B%7D)())%3B"
 
   %h3
   %p #{button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-red'}

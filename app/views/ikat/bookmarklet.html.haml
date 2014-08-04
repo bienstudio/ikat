@@ -12,9 +12,44 @@
       try
         Typekit.load()
   %body
-    .select{'data-step' => 0}
-      %ul.images
-        - @images.each do |image|
-          %li= image
+    %header
+      %h1.brand
+        = link_to "Ikat", root_path
+      %span.directions 1. Select the product image
 
-    = javascript_include_tag "bookmarklet", "data-turbolinks-track" => true
+    %main
+      - if current_user
+        .select{'data-step' => 0}
+          %ul.images
+            - @images.each_with_index do |img, index|
+              %li= image_tag img, 'data-index' => index
+
+        .form{'data-step' => 1}
+          %figure= image_tag ""
+          = form_tag '', method: :post, 'data-step' => 1 do
+            = hidden_field_tag 'access_token', current_user.access_token
+            = hidden_field_tag 'product[url]', params[:url]
+            .input
+              = text_field_tag 'product[name]', nil, placeholder: 'Name'
+            .input
+              = select_tag 'product[currency]', options_for_select([['$', 'usd']]), class: 'currency'
+              = text_field_tag 'product[price]', nil, class: 'price', placeholder: 'Price'
+            .input.categories
+              .field
+                %select{id: 'product_category', name: 'product[category]', class: 'dependent'}
+                  %option Category
+                  - Category.as_options.each do |c|
+                    %option{value: c.first}= c.last.gsub("'", "\u2019").html_safe
+
+            .input.lists
+              .buttons
+                %a.btn.btn-red{'data-list' => current_user.wants.id, 'data-finish' => true} Want
+
+              .messages
+                %p.success
+                %p.failure Something went wrong!
+
+      - else
+        %p Please #{link_to("login", login_path)} to add products.
+
+    = javascript_include_tag "bookmarklet/add", "data-turbolinks-track" => true
