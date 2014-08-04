@@ -1,4 +1,4 @@
-# Do not use directly: use one of the subclasses (Wants, Owns, Collections,
+# Do not use directly: use one of the subclasses (Wants, Collections,
 #   or Inventory).
 class List
   include Mongoid::Document

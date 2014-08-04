@@ -26,7 +26,20 @@ class IkatController < ApplicationController
 
   # GET /explore
   def explore
-    @products = Product.order('created_at desc').limit(10)
+    if params[:categories].nil?
+      @category = nil
+      @products = Product.order('created_at desc').limit(10)
+      @breadcrumbs = []
+      @children = Category.toplevel
+    else
+      params[:categories] = params[:categories].split('/')
+
+      @category = Category.where(slug: params[:categories].last).first
+      @breadcrumbs = @category.all_parents
+      @children = @category.children
+
+      @products = Product.in(category_ids: [@category.id]).order('updated_at desc').all
+    end
   end
 
   # GET /bookmarklet

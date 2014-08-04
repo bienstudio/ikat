@@ -1,0 +1,8 @@
+.page.user
+  = render :partial => 'users/header', locals: { list: 'collections' }
+  %section.products
+    .row
+      %h3= @collection.name
+    = render :partial => 'products/products', locals: { products: @collection.products }
+  %footer
+    -# = link_to "Delete #{@collection.name}", collection_path(id: @collection.id), class: "btn btn-red", method: :delete, "data-confirm" => "Are you sure you want to delete #{@collection.name}?" 

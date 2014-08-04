@@ -20,7 +20,6 @@ FactoryGirl.define do
       action :add
 
       subject { create(:product) }
-      target  { create(:owns) }
       actor   { create(:user) }
     end
 
@@ -28,7 +27,6 @@ FactoryGirl.define do
       action :remove
 
       subject { create(:product) }
-      target  { create(:owns) }
       actor   { create(:user) }
     end
   end

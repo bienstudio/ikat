@@ -1,0 +1,9 @@
+%figure.collection
+  = link_to(user_collection_path(username: collection.owner.username, collection_slug: collection.slug), class: "block") do
+    .photo
+      - if collection.products.first
+        %img{src: image_path('loader.gif'), 'data-src' => collection.products.first.photo_url(:large), alt: collection.name}
+      - else
+        = image_tag 'loading.png'
+  .info
+    %span= link_to collection.name, user_collection_path(username: collection.owner.username, collection_slug: collection.slug)

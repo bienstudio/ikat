@@ -1,0 +1,14 @@
+.page
+  %header
+    %h2 New Collection
+  .row
+    = form_tag collections_path, method: :post do
+      = render :partial => 'partials/flash'
+      .input
+        = text_field_tag 'collection[name]'
+        = label_tag 'Name'
+      .input
+        = check_box_tag 'collection[hidden]'
+        = label_tag 'Hidden?'
+      .input
+        = submit_tag "Save"

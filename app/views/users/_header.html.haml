@@ -1,0 +1,24 @@
+%header
+  .information.row
+    %section.col-21
+      %h2= @user.name
+      %ul.meta
+        - unless @user.location.blank?
+          %li= @user.location
+        - unless @user.website.blank?
+          %li= link_to @user.website, @user.website
+      %p.biography= @user.biography
+    %aside.col-3.omega
+      %figure.avatar
+        = image_tag @user.avatar_url(:medium)
+  .lists.row
+    %ul.col-21
+      %li= link_to "<span>#{@user.wants.product_count}</span> Wants".html_safe, profile_path(username: @user.username), class: "btn #{list == 'wants' ? 'btn-black' : nil}"
+      %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, user_collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}"
+      %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, new_collection_path, class: "btn btn-green"
+    %nav.col-3.omega
+      - unless current_user == @user
+        - if current_user.follows?(@user)
+          = link_to "Unfollow", unfollow_user_path(username: @user.username), class: "relationship-flux unfollow btn btn-red", method: :delete
+        - else
+          = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
