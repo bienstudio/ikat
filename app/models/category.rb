@@ -43,6 +43,39 @@ class Category
     "/explore/#{str}"
   end
 
+  class << self
+    def lowest
+      cats = []
+
+      self.all.each do |c|
+        cats << c
+      end
+
+      cats
+    end
+
+    def as_options
+      options = []
+
+      lowest.each do |c|
+        str = " > #{c.name}"
+
+        current = c
+        while current.has_parent?
+          str.insert(0, " > #{current.parent.name}")
+
+          current = current.parent
+        end
+
+        str = str[3..-1]
+
+        options << [c.id.to_s, str]
+      end
+
+      options
+    end
+  end
+
   protected
 
   def create_slug!

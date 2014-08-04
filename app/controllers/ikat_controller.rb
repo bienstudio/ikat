@@ -44,6 +44,9 @@ class IkatController < ApplicationController
 
   # GET /bookmarklet
   def bookmarklet
+    # Prevent Rails from blocking the display of a page on an external site.
+    response.headers.delete('X-Frame-Options')
+
     fetch = BookmarkletFetchImages.run(
       url: params[:url]
     )

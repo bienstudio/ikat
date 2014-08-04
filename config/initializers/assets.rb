@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( bookmarklet.css )
+Rails.application.config.assets.precompile += %w(bookmarklet.css bookmarklet/add.js)
