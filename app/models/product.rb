@@ -13,6 +13,7 @@ class Product
   field :original_image, type: String
   field :slug,     type: String
   field :store_id, type: ::BSON::ObjectId
+  field :category_ids, type: Array
 
   mount_uploader :photo, PhotoUploader
 
@@ -32,6 +33,7 @@ class Product
   belongs_to :category
 
   before_validation :create_slug!
+  before_save :populate_category_ids
 
   has_and_belongs_to_many :list_items
 
@@ -85,6 +87,14 @@ class Product
     self.permalink + '/buy'
   end
 
+  def categories
+    self.category.all_parents
+  end
+
+  def category_ids
+    self.category.all_parents.collect(&:id)
+  end
+
   def store
     self.store_id ? Store.find(self.store_id) : nil
   end
@@ -136,5 +146,9 @@ class Product
 
       self.slug = str
     end
+  end
+
+  def populate_category_ids
+    self.category_ids = self.categories.collect(&:id)
   end
 end
