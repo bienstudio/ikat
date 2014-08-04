@@ -1,0 +1,4 @@
+- if product.in_wants?(current_user)
+  = link_to "Remove", product_flux_path(product_id: product.id, list: current_user.wants), class: "btn btn-green wants-flux remove", remote: true, method: :post
+- else
+  = link_to "Want", product_flux_path(product_id: product.id, list: current_user.wants), class: "btn btn-red wants-flux add", remote: true, method: :post

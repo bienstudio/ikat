@@ -43,7 +43,6 @@ class User
   validates :username, presence: true, uniqueness: true
 
   has_one :wants,        inverse_of: :owner
-  has_one :owns,         inverse_of: :owner
   has_many :collections, inverse_of: :owner
 
   has_many :relationships
@@ -117,6 +116,5 @@ class User
 
   def create_lists!
     self.wants = Wants.create
-    self.owns = Owns.create
   end
 end

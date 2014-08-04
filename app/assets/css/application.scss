@@ -6,7 +6,6 @@
 @import "lib/base";
 
 
-
 /*
   = Contents
     I. Universal
@@ -19,6 +18,8 @@
 
 body {
   @include font-size(16px);
+  @include debug-vertical-alignment;
+
 
   background: $base;
   color: $text;
@@ -35,43 +36,13 @@ a, [data-url] {
   }
 }
 
-h1 {
-  background: image-url('logo-bg-2.png') no-repeat;
-  display: inline-block;
-  font-weight: 700;
-  font-size: 1.25em;
-  letter-spacing: 1px;
-  line-height: 1em;
-  margin-right: rhythm(1.5);
-  position: relative;
-  text-transform: uppercase;
-
-  a {
-    color: $base;
-    display: block;
-    padding: 0.5em;
-    z-index: 2;
-  }
-
-  &:hover {
-    @include background(
-      linear-gradient(
-        rgba(0, 0, 0, 0.25),
-        rgba(0, 0, 0, 0.25)
-      ),
-      image-url('logo-bg-2.png'),
-      no-repeat
-    );
-  }
-}
-
 em {
   font-style: italic;
 }
 
 h2, h3, h4, h5, h6 {
   font-weight: 600;
-  // font-family: $serif;
+  font-family: $sans-serif;
 }
 
 h2 {
@@ -96,11 +67,11 @@ strong {
 */
 
 header#header {
-  @include container;
   @include trailing-border(1px, 0);
 
+  color: $base;
   border-color: $light-grey;
-  padding: rhythm(1) 0;
+  padding: rhythm(0.5) 0;
 
   a {
     color: $text;
@@ -110,35 +81,54 @@ header#header {
     }
   }
 
-  h1 a {
-    color: $base;
+  h1 {
+    @include background(
+      image-url('logo-bg-2.png')
+    );
+    @include adjust-font-size-to(18px);
 
-    &:hover {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1em;
+    padding: 0.5em;
+    text-transform: uppercase;
+
+    a {
       color: $base;
+
+      &:hover {
+        color: $base;
+      }
     }
   }
 
   aside {
-    @include span-columns(16);
-
-    h1, nav {
-      display: inline-block;
-      float: left;
-    }
+    @include span-columns(4, 24);
   }
 
   section {
-    @include span-columns(8 omega);
+    nav {
+      margin-top: rhythm(0.25);
+    }
 
-    ul {
-      float: right;
+    nav.primary {
+      @include span-columns(10, 24);
+    }
+
+    nav.secondary {
+      @include span-columns(10 omega, 24);
+
+      ul {
+        float: right;
+      }
     }
   }
 
   nav {
     @include adjust-font-size-to(14px);
 
-    margin-top: rhythm(0.25);
+    // margin-top: rhythm(0.35);
   }
 
   ul li {

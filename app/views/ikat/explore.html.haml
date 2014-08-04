@@ -1,3 +1,15 @@
-.page
-  - @products.each do |product|
-    = render :partial => 'products/product', locals: { product: product, size: 'original' }
+.page.explore
+  %header
+    %h2 Explore
+    %nav.categories
+      - unless @breadcrumbs.empty?
+        %ul.breadcrumbs
+          %li= link_to "All", explore_path
+          - @breadcrumbs.each do |c|
+            %li= link_to c.name, c.permalink
+      %ul.children
+        - unless @children.empty?
+          - @children.each do |c|
+            %li= link_to c.name, c.permalink
+  %section.products
+    = render :partial => 'products/products', locals: { products: @products }

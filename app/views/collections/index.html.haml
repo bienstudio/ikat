@@ -1,0 +1,16 @@
+.page.user
+  = render :partial => 'users/header', locals: { list: 'collections' }
+  %section.collections
+    - if @collections
+      - @collections.each_with_index do |collection, index|
+        :erb
+          <% if index == 0 %>
+            <div class='row'>
+          <% end %>
+          <% if index % 4 == 0 && index > 0 %>
+            </div>
+            <div class='row'>
+          <% end %>
+          <%= render :partial => 'collections/collection', locals: { collection: collection } %>
+    - else
+      %p No products yet!

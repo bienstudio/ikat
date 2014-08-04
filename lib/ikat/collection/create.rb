@@ -14,6 +14,8 @@ class CollectionCreate < IkatMutation
 
     current_user.collections << c
 
+    c.owner_type = 'User'
+
     mongoid_errors!(current_user)
 
     current_user.save

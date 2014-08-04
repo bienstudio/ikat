@@ -13,6 +13,7 @@ class Product
   field :original_image, type: String
   field :slug,     type: String
   field :store_id, type: ::BSON::ObjectId
+  field :category_ids, type: Array
 
   mount_uploader :photo, PhotoUploader
 
@@ -32,6 +33,7 @@ class Product
   belongs_to :category
 
   before_validation :create_slug!
+  before_save :populate_category_ids
 
   has_and_belongs_to_many :list_items
 
@@ -81,6 +83,18 @@ class Product
     product_path(store_domain: self.store.domain, product_slug: self.slug)
   end
 
+  def buy_permalink
+    self.permalink + '/buy'
+  end
+
+  def categories
+    self.category.all_parents
+  end
+
+  def category_ids
+    self.category.all_parents.collect(&:id)
+  end
+
   def store
     self.store_id ? Store.find(self.store_id) : nil
   end
@@ -89,12 +103,12 @@ class Product
     ListItem.where(list: u.wants, product: self).first ? true : false
   end
 
-  def in_owns?(u)
-    ListItem.where(list: u.owns, product: self).first ? true : false
+  def in_collection?(c)
+    ListItem.where(product: self).in(list: c).first ? true : false
   end
 
-  def in_collection?(u)
-    ListItem.where(product: self).in(list: u.collections).first ? true : false
+  def in_list?(l)
+    ListItem.where(list: l, product: self).first ? true : false
   end
 
   def wanted_by
@@ -132,5 +146,9 @@ class Product
 
       self.slug = str
     end
+  end
+
+  def populate_category_ids
+    self.category_ids = self.categories.collect(&:id)
   end
 end
