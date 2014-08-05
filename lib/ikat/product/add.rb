@@ -26,7 +26,8 @@ class ProductAdd < IkatMutation
 
       p.save
 
-      i = list.add!(p, current_user)
+      # i = list.add!(p, current_user)
+      add_to_list!(list, p, current_user)
 
       mongoid_errors!(list)
 
@@ -59,10 +60,18 @@ class ProductAdd < IkatMutation
 
     p.save
 
-    store.inventory.add!(p, current_user)
+    add_to_list!(store.inventory, p, current_user)
 
-    list.add!(p, current_user)
+    add_to_list!(list, p, current_user)
 
     return p
+  end
+
+  def add_to_list!(l, p, u)
+    if i = ListItem.where(product: p, list: l).first
+      return i
+    end
+
+    return l.add!(p, u)
   end
 end
