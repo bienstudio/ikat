@@ -44,6 +44,8 @@
             .input.lists
               .buttons
                 %a.btn.btn-red{'data-list' => current_user.wants.id, 'data-finish' => true} Want
+                - current_user.collections.each do |c|
+                  %a.btn{'data-list' => c.id, 'data-finish' => true}= c.name
 
               .messages
                 %p.success
