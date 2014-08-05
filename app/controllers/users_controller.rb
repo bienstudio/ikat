@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :find_user
+  before_action :find_user
 
   # GET /:username
   def show
     @user = User.where(username: params[:username]).first
-    @products = ListItem.where(list: @user.wants).order('created_at desc').limit(25).collect(&:product)
+    @products = ListItem.where(list: @user.wants).order('created_at desc').limit(25).map { |i| i.product }
   end
 
   # POST /:username/follow

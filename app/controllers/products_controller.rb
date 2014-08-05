@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :current_store
-  before_filter :current_product
+  before_action :current_store, :current_product
 
   def index
   end
@@ -45,7 +44,7 @@ class ProductsController < ApplicationController
     )
 
     if p.success?
-      render :json => p.result.to_json
+      render json: p.result.to_json
     else
       d { p.errors }
     end

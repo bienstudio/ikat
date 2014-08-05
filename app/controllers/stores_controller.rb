@@ -1,8 +1,8 @@
 class StoresController < ApplicationController
-  before_filter :current_store
+  before_action :current_store
 
   def show
-    @products = @current_store.inventory.list_items.order('created_at desc').collect(&:product)
+    @products = @current_store.inventory.list_items.order('created_at desc').map { |i| i.product }
   end
 
   protected

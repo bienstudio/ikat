@@ -1,10 +1,10 @@
 class WantsController < ApplicationController
-  before_filter :find_user!
+  before_action :find_user!
 
   def show
-    @products = ListItem.where(list: @user.wants).order('created_at desc').limit(25).collect(&:product)
+    @products = ListItem.where(list: @user.wants).order('created_at desc').limit(25).map { |i| i.product }
   end
-  
+
   protected
 
   def find_user!
