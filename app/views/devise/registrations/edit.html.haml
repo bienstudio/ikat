@@ -1,49 +1,52 @@
 .page
   %header
     %h2 Settings
-  .row
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      .col-4.suffix-1
-        .input
-          %figure.avatar
-            = image_tag current_user.avatar_url
-          = f.file_field :avatar
-          = f.label :avatar
-      .col-18.omega
-        = render :partial => 'partials/flash'
-        .input
-          = f.email_field :email, autofocus: true
-          = f.label :email
-        .input
-          = f.text_field :name
-          = f.label :name
-        .input
-          = f.text_field :username
-          = f.label :username
-        .input
-          = f.text_area :biography
-          = f.label :biography
-        .input
-          = f.text_field :location
-          = f.label :location
-        .input
-          = f.text_field :website, placeholder: 'http://'
-          = f.label :website
-        .input.row
-          .col-12
-            = f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it"
-            = f.label :password
-          .col-12.omega
-            = f.password_field :password_confirmation, autocomplete: "off"
-            = f.label :password_confirmation
-        .input
-          = f.password_field :current_password, autocomplete: "off", placeholder: "Needed to confirm changes"
-          = f.label :current_password
-        .input
-          = f.submit "Save"
-
-  %h3 Bookmarklet
-  %p= link_to "Bookmarklet", "javascript:void((function()%7Bvar hsb%3Ddocument.createElement(%27script%27)%3Bhsb.setAttribute(%27src%27,%27http://ikat.dev/assets/bookmarklet/load.js%27)%3Bhsb.setAttribute(%27type%27,%27text/javascript%27)%3Bdocument.getElementsByTagName(%27head%27)%5B0%5D.appendChild(hsb)%3B%7D)())%3B"
-
-  %h3
-  %p #{button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-red'}
+  %section
+    .row
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        .col-4.suffix-1
+          .input
+            %figure.avatar
+              = image_tag current_user.avatar_url
+            = f.file_field :avatar
+            = f.label :avatar
+        .col-19.omega
+          = render :partial => 'partials/flash'
+          .input
+            = f.email_field :email, autofocus: true
+            = f.label :email
+          .input
+            = f.text_field :name
+            = f.label :name
+          .input
+            = f.text_field :username
+            = f.label :username
+          .input
+            = f.text_area :biography
+            = f.label :biography
+          .input
+            = f.text_field :location
+            = f.label :location
+          .input
+            = f.text_field :website, placeholder: 'http://'
+            = f.label :website
+          .input.row
+            .col-12
+              = f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it"
+              = f.label :password
+            .col-12.omega
+              = f.password_field :password_confirmation, autocomplete: "off"
+              = f.label :password_confirmation
+          .input
+            = f.password_field :current_password, autocomplete: "off", placeholder: "Needed to confirm changes"
+            = f.label :current_password
+          .input
+            = f.submit "Save"
+    .row
+      %section.prefix-5.col-19.omega
+        %h3 Bookmarklet
+        %p= link_to "Bookmarklet", "javascript:void((function()%7Bvar hsb%3Ddocument.createElement(%27script%27)%3Bhsb.setAttribute(%27src%27,%27http://ikat.dev/assets/bookmarklet/load.js%27)%3Bhsb.setAttribute(%27type%27,%27text/javascript%27)%3Bdocument.getElementsByTagName(%27head%27)%5B0%5D.appendChild(hsb)%3B%7D)())%3B"
+    .row
+      %section.prefix-5.col-19.omega
+        %h3 Delete Account
+        %p #{button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-red'}
