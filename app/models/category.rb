@@ -17,7 +17,7 @@ class Category
 
   scope :toplevel, ->{ where(parent_id: nil) }
 
-  def all_parents
+  def tree
     unless self.parent_id.nil?
       p = [self, self.parent]
 
@@ -32,8 +32,8 @@ class Category
   end
 
   def permalink
-    if !self.all_parents.nil?
-      arr = self.all_parents
+    if !self.tree.nil?
+      arr = self.tree
     else
       arr = [self]
     end

@@ -88,11 +88,11 @@ class Product
   end
 
   def categories
-    self.category.all_parents
+    self.category.tree
   end
 
   def category_ids
-    self.category.all_parents.collect(&:id)
+    self.category.tree.collect(&:id)
   end
 
   def store

@@ -19,7 +19,7 @@ $screen-large: 1280px;
   padding: 0;
 }
 
-@for $i from 1 through $total-columns {
+@for $i from 1 through $total-columns {  
   .col-#{$i} {
     @include span-columns($i, $total-columns);
   }
