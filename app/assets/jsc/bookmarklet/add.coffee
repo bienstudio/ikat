@@ -33,16 +33,19 @@ step = (num) ->
     $('.directions').html('2. Fill in the product information')
 
 $('[data-finish]').on 'click', ->
-  data.access_token = $('#access_token').val()
-  data.product.name = $('#product_name').val()
-  data.product.price = $('#product_price').val()
-  data.product.currency = $('#product_currency').val()
-  data.product.url = $('#product_url').val()
-  data.product.category = $('[name="product[category]"').val()
-  data.list = $(@).attr('data-list')
-  data.authenticity_token = $('[name="authenticity_token"]').val()
+  unless $(@).hasClass("disabled")
+    $(@).html('Saving...')
 
-  submit(data)
+    data.access_token = $('#access_token').val()
+    data.product.name = $('#product_name').val()
+    data.product.price = $('#product_price').val()
+    data.product.currency = $('#product_currency').val()
+    data.product.url = $('#product_url').val()
+    data.product.category = $('[name="product[category]"').val()
+    data.list = $(@).attr('data-list')
+    data.authenticity_token = $('[name="authenticity_token"]').val()
+
+    submit(data)
 
 submit = (params) ->
   $.ajax(
@@ -50,12 +53,14 @@ submit = (params) ->
     data: params,
     type: 'POST'
   ).done((data) ->
-    $('.success').html("<a href='#{data.product.permalink}' target='_blank'>Go see this product in your Wants</a>")
+    $('.success').html("<a href='#{data.product.permalink}' target='_blank'>Go see this product on Ikat</a>")
     $('.success').show()
 
     $('[data-finish]').removeClass('btn-red')
     $('[data-finish]').addClass('btn-green')
     $('[data-finish]').html('Wanted')
+
+    $('a.btn').addClass('disabled')
 
     return
   ).fail((data) ->

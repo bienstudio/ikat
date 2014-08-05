@@ -51,6 +51,7 @@ class IkatController < ApplicationController
       url: params[:url]
     )
 
+    @url = "http://#{params[:url]}"
     @images = fetch.result
 
     render layout: false

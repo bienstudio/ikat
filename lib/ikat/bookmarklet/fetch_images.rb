@@ -40,13 +40,19 @@ class BookmarkletFetchImages < IkatMutation
   def format_image_uri(str, source_url)
     if str.include?('http') # it has a protocol, assume it has host (BAD)
       return str
-    else
-      u = URI.parse(source_url)
-
-      str = "#{u.scheme}://#{u.host}#{str}"
-
-      return str
     end
+
+    # account for urls starting with //
+    if str[0, 2] == '//'
+      return "http:#{str}"
+    end
+
+    u = URI.parse(source_url)
+
+
+    str = "#{u.scheme}://#{u.host}#{str}"
+
+    return str
   end
 
   def check_image_dimensions(uri, width = 200, height = 200)

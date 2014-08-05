@@ -28,7 +28,7 @@
           %figure= image_tag ""
           = form_tag '', method: :post, 'data-step' => 1 do
             = hidden_field_tag 'access_token', current_user.access_token
-            = hidden_field_tag 'product[url]', params[:url]
+            = hidden_field_tag 'product[url]', @url
             .input
               = text_field_tag 'product[name]', nil, placeholder: 'Name'
             .input
