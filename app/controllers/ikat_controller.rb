@@ -1,10 +1,7 @@
 class IkatController < ApplicationController
-
   # GET /
   def index
-    if current_user
-      @feed = current_user.feed.limit(20)
-    end
+    @feed = current_user.feed.limit(20) if current_user
   end
 
   # GET /features
@@ -35,7 +32,7 @@ class IkatController < ApplicationController
       params[:categories] = params[:categories].split('/')
 
       @category = Category.where(slug: params[:categories].last).first
-      @breadcrumbs = @category.all_parents
+      @breadcrumbs = @category.tree
       @children = @category.children
 
       @products = Product.in(category_ids: [@category.id]).order('updated_at desc').all

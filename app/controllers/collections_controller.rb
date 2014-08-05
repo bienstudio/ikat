@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_filter :find_user!, :find_collection!
+  before_action :find_user!, :find_collection!
 
   def index
     @collections = @user.collections
@@ -53,8 +53,6 @@ class CollectionsController < ApplicationController
   end
 
   def find_collection!
-    if @user
-      @collection = Collection.where(owner_id: @user.id, slug: params[:collection_slug]).first
-    end
+    @collection = Collection.where(owner_id: @user.id, slug: params[:collection_slug]).first if @user
   end
 end

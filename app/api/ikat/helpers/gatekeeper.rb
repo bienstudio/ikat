@@ -6,11 +6,7 @@ module Ikat
       end
 
       def authorize!
-        if auth_user.nil?
-          d { params[:access_token] }
-
-          error!(:not_authenticated)
-        end
+        return error!(:not_authenticated) if auth_user.nil?
       end
     end
   end

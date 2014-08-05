@@ -7,6 +7,7 @@ end
 IKAT_ROOT ||= File.join(File.expand_path(File.dirname(__FILE__)), '..', '..', '..')
 
 module Ikat
+  # Version 1 of the Ikat API.
   class API < Sinatra::Base
     configure :development do
       register Sinatra::Reloader
@@ -34,7 +35,7 @@ module Ikat
       require f
     end
 
-    enable  :raise_errors
+    enable :raise_errors
     disable :show_exceptions
 
     set :haml, escape_html: true

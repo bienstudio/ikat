@@ -1,0 +1,20 @@
+AllCops:
+  RunRailsCops: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/LineLength:
+  Enabled: false
+
+Style/MethodLength:
+  Max: 20
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Rails/DefaultScope:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
