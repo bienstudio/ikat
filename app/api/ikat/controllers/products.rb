@@ -8,12 +8,12 @@ module Ikat
     #
     # Add a Product to a List.
     post '/products/add.json' do
-      params[:product][:category] = Category.find(params[:product][:category][:id])
+      params[:product][:category] = Category.find(params[:product][:category])
 
       action = ProductAdd.run(
         current_user: auth_user,
         product: params[:product],
-        list: List.find(params[:list][:id])
+        list: List.find(params[:list])
       )
 
       if action.success?

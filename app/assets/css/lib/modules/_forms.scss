@@ -4,7 +4,9 @@ form {
     outline: none;
   }
 
-  input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], textarea {
+  input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], textarea, select {
+    @include border-radius(0px);
+
     border: 0;
     border-bottom: 1px solid $light-grey;
     display: block;
@@ -17,6 +19,10 @@ form {
     &:focus {
       border-color: $grey;
     }
+  }
+
+  select {
+    width: auto !important;
   }
 
   label {

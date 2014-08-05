@@ -35,6 +35,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add
+    params[:product][:category] = Category.find(params[:product][:category])
+
+    p = ProductAdd.run(
+      current_user: current_user,
+      product: params[:product],
+      list: List.find(params[:list])
+    )
+
+    if p.success?
+      render :json => p.result.to_json
+    else
+      d { p.errors }
+    end
+  end
+
   # POST /products/:product_id/flux
   #
   # Flux the membership the product in a list.

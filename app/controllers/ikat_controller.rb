@@ -41,4 +41,19 @@ class IkatController < ApplicationController
       @products = Product.in(category_ids: [@category.id]).order('updated_at desc').all
     end
   end
+
+  # GET /bookmarklet
+  def bookmarklet
+    # Prevent Rails from blocking the display of a page on an external site.
+    response.headers.delete('X-Frame-Options')
+
+    fetch = BookmarkletFetchImages.run(
+      url: params[:url]
+    )
+
+    @url = "http://#{params[:url]}"
+    @images = fetch.result
+
+    render layout: false
+  end
 end
