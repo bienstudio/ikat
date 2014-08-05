@@ -45,9 +45,9 @@ $('[data-finish]').on 'click', ->
     data.list = $(@).attr('data-list')
     data.authenticity_token = $('[name="authenticity_token"]').val()
 
-    submit(data)
+    submit(data, $(@))
 
-submit = (params) ->
+submit = (params, list_button) ->
   $.ajax(
     url: '/api/v1/products/add.json',
     data: params,
@@ -56,11 +56,15 @@ submit = (params) ->
     $('.success').html("<a href='#{data.product.permalink}' target='_blank'>Go see this product on Ikat</a>")
     $('.success').show()
 
-    $('[data-finish]').removeClass('btn-red')
-    $('[data-finish]').addClass('btn-green')
-    $('[data-finish]').html('Wanted')
+    list_button.removeClass('btn-red')
+    list_button.addClass('btn-green')
 
-    $('a.btn').addClass('disabled')
+    if list_button.html() == "Want"
+      list_button.html('Wanted')
+    else
+      list_button.html("Added")
+
+    list_button.addClass('disabled')
 
     return
   ).fail((data) ->
