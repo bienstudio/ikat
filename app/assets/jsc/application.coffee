@@ -4,7 +4,6 @@
 //= require_tree ./lib
 //= require turbolinks
 
-
 ready = ->
   $("img").unveil()
 
