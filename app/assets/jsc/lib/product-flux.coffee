@@ -3,35 +3,30 @@
 
 # Handles flux Ajax calls and events.
 
-# This is a button
-$(".wants-flux").bind "ajax:complete", (data, status, xhr) ->
-  trigger = $(@).parent().children('span.collections-trigger')
+$(document).ready ->
 
-  # Just added, so change to remove
-  if $(@).hasClass "add"
-    $(@).removeClass "add"
-    $(@).addClass "remove"
+  # This is a button
+  $(".wants-flux").bind "ajax:complete", (data, status, xhr) ->
+    trigger = $(@).parent().children('span.collections-trigger')
 
-    $(@).removeClass "btn-red"
-    $(@).addClass "btn-green"
+    # Just added, so change to remove
+    if $(@).hasClass "add"
+      $(@).switchClass "add", "remove"
+      $(@).switchClass "btn-red", "btn-green"
 
-    trigger.removeClass "btn-red"
-    trigger.addClass "btn-green"
+      trigger.switchClass "btn-red", "btn-green"
 
-    $(@).html "Remove"
-  # Just removed, so change to add
-  else
-    $(@).removeClass "remove"
-    $(@).addClass "add"
+      $(@).html "Remove"
 
-    $(@).removeClass "btn-green"
-    $(@).addClass "btn-red"
+    # Just removed, so change to add
+    else
+      $(@).switchClass "remove", "add"
+      $(@).switchClass "btn-green", "btn-red"
 
-    trigger.removeClass "btn-green"
-    trigger.addClass "btn-red"
+      trigger.switchClass "btn-green", "btn-red"
 
-    $(@).html "Want"
+      $(@).html "Want"
 
-# This is a checkbox
-$(".collection-flux").on "click", ->
-  $(@).closest("form").submit()
+  # This is a checkbox
+  $(".collection-flux").on "click", ->
+    $(@).closest("form").submit()
