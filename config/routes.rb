@@ -29,8 +29,11 @@ Rails.application.routes.draw do
   scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9]{1,30}\.[a-zA-Z]{2,3})/ } do
     get '/', to: 'stores#show', as: 'store'
 
+    post '/flux', to: 'stores#flux', as: 'store_flux'
     post '/follow', to: 'stores#follow', as: 'follow_store'
     patch '/unfollow', to: 'stores#unfollow', as: 'unfollow_store'
+
+    get '/followers', to: 'stores#followers', as: 'store_followers'
 
     get '/:product_slug', to: 'products#show', as: 'product'
 
@@ -45,8 +48,12 @@ Rails.application.routes.draw do
     get '/collections', to: 'collections#index', as: 'user_collections'
     get '/collections/:collection_slug', to: 'collections#show', as: 'user_collection'
 
+    post '/flux', to: 'users#flux', as: 'user_flux'
     post '/follow', to: 'users#follow', as: 'follow_user'
     patch '/unfollow', to: 'users#unfollow', as: 'unfollow_user'
+
+    get '/followers', to: 'users#followers', as: 'followers'
+    get '/following', to: 'users#following', as: 'following'
   end
 
   root 'ikat#index'

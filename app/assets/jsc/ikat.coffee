@@ -1,1 +1,2 @@
-@.Ikat = {}
+$(document).ready ->
+  @.Ikat = {}

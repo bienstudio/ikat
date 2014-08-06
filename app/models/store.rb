@@ -42,7 +42,7 @@ class Store
   end
 
   def logo_url(style = nil)
-    if self.logo_processing
+    if self.logo_processing || self.logo == nil
       ActionController::Base.helpers.asset_path('avatar.png')
     else
       self.logo.url(style)

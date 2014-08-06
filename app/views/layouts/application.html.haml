@@ -6,6 +6,8 @@
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 
     = csrf_meta_tags
+    
+    = javascript_include_tag "application", "data-turbolinks-track" => true
 
     %script{src: "//use.typekit.net/bna3bdd.js"}
     :coffee
@@ -41,5 +43,3 @@
           %li= link_to "Blog", blog_path
           %li= link_to "Support", support_path
       %p &copy; #{Time.now.year} #{link_to("Ikat", root_path)}
-
-    = javascript_include_tag "application", "data-turbolinks-track" => true

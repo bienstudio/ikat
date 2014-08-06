@@ -1,5 +1,5 @@
 # Ikat.
-#   file: jsc/lib/flux.coffee
+#   file: jsc/lib/product-flux.coffee
 
 # Handles flux Ajax calls and events.
 
