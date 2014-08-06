@@ -1,0 +1,12 @@
+%article.user
+  %aside
+    %figure.avatar
+      = image_tag user.avatar_url(:small)
+  %section
+    %h3= link_to user.name, profile_path(username: user.username)
+    %ul.meta
+      - unless user.location.blank?
+        %li= user.location
+      - unless user.website.blank?
+        %li= link_to user.website, user.website
+    %p.biography= user.biography

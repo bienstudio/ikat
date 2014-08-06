@@ -14,7 +14,7 @@
       - case activity.target_type
       - when "Wants"
         %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} wants #{link_to(activity.subject.name, '#')}
-      - when "Owns"
-        %p= "#{activity.actor.username} added #{activity.subject.name} to Owns"
       - when "Collection"
         %p= "#{activity.actor.username} added #{activity.subject.name} to #{activity.target.name}"
+      - when "Inventory"
+        %p #{link_to(activity.target.owner.name, store_path(store_domain: activity.target.owner.domain))} added #{activity.subject.name} to their Inventory

@@ -7,6 +7,22 @@ class UsersController < ApplicationController
     @products = ListItem.where(list: @user.wants).order('created_at desc').limit(25).map { |i| i.product }
   end
 
+  # POST /:username/flux
+  def flux
+    action = UserFlux.run(
+      current_user: current_user,
+      user: {
+        id: @user.id.to_s
+      }
+    )
+
+    if action.success?
+      redirect_to profile_path(username: @user.username)
+    else
+      d { action.errors }
+    end
+  end
+
   # POST /:username/follow
   def follow
     follow = UserFollow.run(
@@ -37,6 +53,15 @@ class UsersController < ApplicationController
     else
       d { unfollow.errors }
     end
+  end
+
+  def following
+    @users = Relationship.following(@user).where(followee_type: 'User').order('created_at desc').all
+    @stores = Relationship.following(@user).where(followee_type: 'Store').order('created_at desc').all
+  end
+
+  def followers
+    @users = Relationship.followers(@user).order('created_at desc').all
   end
 
   protected

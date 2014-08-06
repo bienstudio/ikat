@@ -2,7 +2,10 @@ class Relationship
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  # The User doing the following.
   belongs_to :follower, class_name: 'User' # Stores can't follow people
+
+  # The User or Store being followed.
   belongs_to :followee, polymorphic: true
 
   validates :follower, presence: true
@@ -11,8 +14,11 @@ class Relationship
   after_create  :follow_activity
   after_destroy :unfollow_activity
 
-  scope :followers, ->(obj){ self.where(followee: obj) }
-  scope :following, ->(obj){ self.where(follower: obj) }
+  # Followers of the Object.
+  scope :followers, ->(obj){ where(followee: obj) }
+
+  # Objects the Object is following.
+  scope :following, ->(obj){ where(follower: obj).ne(followee_id: obj.id) }
 
   def viewable_by?(u)
     true

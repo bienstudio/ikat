@@ -1,6 +1,7 @@
 .page.product
   %figure
-    = link_to image_tag(@product.photo_url), @product.buy_permalink, target: "_blank"
+    = link_to @product.buy_permalink, target: "_blank" do
+      %img{src: image_path('loader.gif'), 'data-src' => @product.photo_url, alt: @product.name}
   .information
     %section
       %h2= @product.name

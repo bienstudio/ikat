@@ -1,0 +1,14 @@
+.page.user
+  = render :partial => 'users/header', locals: { list: 'following' }
+  %section.relationships.row
+    %h2 Following
+    %section.col-18
+      %h3 #{@users.count} Users
+      - @users.each do |r|
+        = render partial: 'users/user', locals: { user: r.followee }
+        -# %article
+        -#   %p= link_to r.followee.name, profile_path(username: r.followee.username)
+    %section.col-6.omega
+      %h3 #{@stores.count} Stores
+      - @stores.each do |r|
+        = r

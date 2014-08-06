@@ -1,0 +1,6 @@
+.page.store
+  = render :partial => 'stores/header', locals: { list: 'followers' }
+  %section.relationships.row
+    %h2 Followers
+    - @users.each do |r|
+      = render partial: 'users/user', locals: { user: r.follower }
