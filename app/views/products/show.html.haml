@@ -10,10 +10,10 @@
         = link_to @product.store.name, store_path(store_domain: @product.store.domain)
       %p= @product.full_price
     %section
-      %p
-        = render :partial => "products/buttons/wants", locals: { product: @product }
-        = link_to "Collect", "#", class: "btn collections-trigger"
-        = link_to "Buy", @product.buy_permalink, class: "btn btn-black", target: "_blank"
+      %ul
+        %li= render :partial => "products/buttons/wants", locals: { product: @product }
+        %li= render :partial => "products/buttons/collections", locals: { product: @product }
+        %li= link_to "Buy", @product.buy_permalink, class: "btn btn-black", target: "_blank"
       %p
         = @product.categories.collect { |c| link_to(c.name, c.permalink) }.join(', ').html_safe
 

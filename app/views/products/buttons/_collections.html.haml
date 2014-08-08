@@ -1,0 +1,9 @@
+= link_to "Collect", "##{product.id}-collections-popover", class: "btn collections-trigger"
+.collections-popover{id: "#{product.id}-collections-popover"}
+  %ul.collections
+    - current_user.collections.each do |collection|
+      %li
+        = form_tag(product_flux_path(product_id: product.id, list: collection), remote: true, method: :post) do
+          %span
+            %label= link_to collection.name, user_collection_path(username: collection.owner.username, collection_slug: collection.slug)
+          %input.collection-flux{type: 'checkbox', checked: product.in_collection?(collection)}
