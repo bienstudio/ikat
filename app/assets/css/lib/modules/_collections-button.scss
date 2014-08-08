@@ -1,0 +1,67 @@
+.collections-popover {
+  color: $base;
+  // margin-left: rhythm(0.5);
+  // padding: rhythm(0.15) rhythm(0.25);
+  position: absolute;
+  min-width: rhythm(4);
+  text-align: left;
+
+  a {
+    color: $grey;
+    text-transform: capitalize;
+  }
+
+  // li {
+  //   display: block !important;
+  //   list-style-type: none;
+  //   padding: 0;
+  //   margin: 0;
+  //
+  //   form {
+  //     @include clearfix;
+  //   }
+  //
+  //   span, input {
+  //     display: inline-block;
+  //   }
+  //
+  //   input {
+  //     float: right;
+  //     margin-top: rhythm(0.5);
+  //   }
+  // }
+
+  ul.collections {
+    background: $text;
+    font-weight: 300;
+    padding: rhythm(0.25) rhythm(0.5);
+    position: absolute;
+    margin-top: rhythm(0.25);
+    top: 100%;
+    min-width: rhythm(5);
+    float: left;
+
+    a {
+      color: $base;
+    }
+
+    li {
+      @include adjust-font-size-to(14px);
+
+      display: block !important;
+
+      form {
+        display: inline;
+
+        input {
+          float: right;
+          margin-top: 0.5em;
+        }
+
+        label {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

@@ -30,3 +30,4 @@ $(document).ready ->
   # This is a checkbox
   $(".collection-flux").on "click", ->
     $(@).closest("form").submit()
+      

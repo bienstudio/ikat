@@ -7,11 +7,9 @@
 ready = ->
   $("img").unveil()
 
-  # $('.products').isotope
-  #   itemSelector: ".product"
-  #   masonry:
-  #     columnWidth: 209
-  #     gutter: 5
+  $(".collections-trigger").popover
+    my: 'top'
+    at: 'bottom'
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
