@@ -133,6 +133,22 @@ main {
         padding: 0.5em;
       }
 
+      select {
+        border-radius: 1px !important;
+        padding: 0.5em;
+        height: 37px !important;
+        width: auto;
+        margin-left: 0;
+        position: relative;
+        // bottom: 1px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+      }
+
       .input {
         margin: 0;
       }
@@ -142,9 +158,19 @@ main {
       }
 
       .currency {
-        border-radius: 1px !important;
-        padding: 0.5em;
-        height: 40px !important;
+        // border-radius: 1px !important;
+        // padding: 0.5em;
+        // height: 37px !important;
+        // width: auto;
+        // margin-left: 0;
+        // position: relative;
+        // // bottom: 1px;
+        // -webkit-appearance: none;
+        // -moz-appearance: none;
+        // appearance: none;
+        // border-radius: 0;
+        // -moz-border-radius: 0;
+        // -webkit-border-radius: 0;
       }
 
       .price {
@@ -153,6 +179,7 @@ main {
 
       .categories {
         margin-top: 0.5em;
+        margin-left: 0;
 
         select {
           display: inline-block;
