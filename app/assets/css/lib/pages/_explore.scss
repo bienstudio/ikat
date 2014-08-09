@@ -4,6 +4,14 @@
 
     ul li {
       display: inline-block;
+      margin-right: 0.25em;
+
+      & + li {
+        &:before {
+          content: "\2022";
+          margin-right: 0.5em;
+        }
+      }
     }
   }
 }
