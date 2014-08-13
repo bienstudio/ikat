@@ -104,7 +104,7 @@ header#header {
   }
 
   aside {
-    @include span-columns(4, 24);
+    @include span-columns(3, 24);
   }
 
   section {
@@ -113,7 +113,7 @@ header#header {
     }
 
     nav.primary {
-      @include span-columns(10, 24);
+      @include span-columns(11, 24);
     }
 
     nav.secondary {
@@ -127,8 +127,6 @@ header#header {
 
   nav {
     @include adjust-font-size-to(14px);
-
-    // margin-top: rhythm(0.35);
   }
 
   ul li {

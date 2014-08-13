@@ -60,7 +60,7 @@ class ProductAdd < IkatMutation
 
     p.save
 
-    add_to_list!(store.inventory, p, current_user)
+    add_to_list!(store.inventory, p, store) # the store itself is adding the product
 
     add_to_list!(list, p, current_user)
 
