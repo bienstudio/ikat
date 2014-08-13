@@ -1,0 +1,12 @@
+%article.store
+  -# %aside
+  -#   %figure.avatar
+  -#     = image_tag user.avatar_url(:small)
+  %section
+    %h3= link_to store.name, store_path(store_domain: store.domain)
+    -# %ul.meta
+    -#   - unless user.location.blank?
+    -#     %li= user.location
+    -#   - unless user.website.blank?
+    -#     %li= link_to user.website, user.website
+    -# %p.biography= user.biography

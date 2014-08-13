@@ -11,4 +11,4 @@
     %section.col-6.omega
       %h3 #{@stores.count} Stores
       - @stores.each do |r|
-        = r
+        = render partial: 'stores/store', locals: { store: r.followee }
