@@ -21,8 +21,9 @@
       - if current_user
         .select{'data-step' => 0}
           %ul.images
-            - @images.each_with_index do |img, index|
-              %li= image_tag img, 'data-index' => index
+            = image_tag 'loader.gif'
+            -# - @images.each_with_index do |img, index|
+            -#   %li= image_tag img, 'data-index' => index
 
         .form{'data-step' => 1}
           %figure= image_tag ""
@@ -55,4 +56,5 @@
       - else
         %p Please #{link_to("login", login_path)} to add products.
 
+    = javascript_include_tag "http://localhost:5000/faye/client.js"
     = javascript_include_tag "bookmarklet/add", "data-turbolinks-track" => true

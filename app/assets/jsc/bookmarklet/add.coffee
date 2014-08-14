@@ -1,8 +1,18 @@
 //= require jquery
 //= require ../lib/vendor/jquery.dependent-selects.js
 
+
 $(document).ready ->
   $('.dependent').dependentSelects()
+
+  client = new Faye.Client('http://localhost:5000/faye')
+  subscription = client.subscribe '/workers', (message) ->
+    $('ul.images').html('')
+
+    images = message.images
+
+    for image in images
+      $('ul.images').append("<li><img src='#{image}' data-index='#{images.indexOf(image)}' /></li>")
 
 data =
   authenticity_token: null
