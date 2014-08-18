@@ -9,6 +9,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 
 require 'carrierwave/test/matchers'
+require 'sidekiq/testing'
+
+Sidekiq::Testing.fake!
 
 FactoryGirl::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
@@ -37,6 +40,10 @@ RSpec.configure do |conf|
     DatabaseCleaner.clean_with(:truncation)
 
     # FactoryGirl.lint
+  end
+
+  conf.before :each do
+    Sidekiq::Worker.clear_all
   end
 
   conf.before do
