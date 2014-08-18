@@ -2,8 +2,6 @@ class BookmarkletFetchImagesWorker
   include Sidekiq::Worker
 
   def perform(url)
-    logger.info 'starting...'
-
     a = BookmarkletFetchImages.run(
       url: url
     )
@@ -15,7 +13,5 @@ class BookmarkletFetchImagesWorker
     request = Net::HTTP::Post.new('/faye')
     request.set_form_data({ message: message.to_json })
     response = http.request(request)
-
-    logger.info response.to_s
   end
 end
