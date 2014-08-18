@@ -1,4 +1,6 @@
 class IkatController < ApplicationController
+  include ActionController::Live
+
   # GET /
   def index
     @feed = current_user.feed.limit(20) if current_user
@@ -41,16 +43,6 @@ class IkatController < ApplicationController
 
   # GET /bookmarklet
   def bookmarklet
-    # Prevent Rails from blocking the display of a page on an external site.
-    response.headers.delete('X-Frame-Options')
-
-    fetch = BookmarkletFetchImages.run(
-      url: params[:url]
-    )
-
-    @url = "http://#{params[:url]}"
-    @images = fetch.result
-
-    render layout: false
+    
   end
 end
