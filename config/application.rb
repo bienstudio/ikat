@@ -40,5 +40,8 @@ module Ikat
       s3_credentials: File.join(Rails.root, 'config', 's3.yml'),
       s3_host_alias:  "s3.amazonaws.com/ikat_#{Rails.env}"
     }
+
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', timeout: 30
   end
 end

@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   get 'explore(/:categories)', to: 'ikat#explore', as: 'explore', constraints: { categories: /.*/ }
 
   # GET /bookmarklet/:url
-  get 'bookmarklet/:url', to: 'ikat#bookmarklet', constraints: { url: /.*/ }
+  get 'bookmarklet/:url', to: 'bookmarklet#show', constraints: { url: /.*/ }
 
   # GET /products/new
   # POST /products
