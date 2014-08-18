@@ -21,6 +21,8 @@ module Ikat
 
         rabl :'products/show'
       else
+        status 400
+
         return action.errors.symbolic.to_json
       end
     end

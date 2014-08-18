@@ -14,7 +14,7 @@ $(document).ready ->
     # Remove the loading image.
     $('ul.images').html('')
 
-    # Add the vettedimages to the page.
+    # Add the vetted images to the page.
     images = message.images
 
     for image in images
@@ -34,7 +34,11 @@ $(document).ready ->
     $('ul.images li').on 'click', ->
       selected = $(@)
 
+      console.log selected
+
       img = $(selected.children('img')[0])
+
+      console.log img
 
       data.product.image_url = img.attr('src')
 
