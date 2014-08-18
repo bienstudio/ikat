@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 25 Jul 2014 04:29:23 GMT
+      - Mon, 18 Aug 2014 19:31:31 GMT
       Server:
       - imgix-fe
       Cache-Control:
@@ -31,11 +31,11 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '5'
+      - '1'
       Content-Type:
       - image/jpeg
       X-Imgix-Request-Id:
-      - 8d217d16d4cf1dcd45d9152d2eb70272840c88f6
+      - bd44b601d0f0f40318b77a07e77582e5173d66ac
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -568,5 +568,5 @@ http_interactions:
         UOITdOfuGg2ZsJ1P/V7Rq7u/2Tf9R5I/wTl6m6DN+f8AHCZX5hf+z1nFxbFi
         Ymb/AGIqQwiUwjgFlBr/AOo7/DmGzr3OI7aO2myMXM//2Q==
     http_version: 
-  recorded_at: Fri, 25 Jul 2014 04:29:24 GMT
+  recorded_at: Mon, 18 Aug 2014 19:31:31 GMT
 recorded_with: VCR 2.9.2

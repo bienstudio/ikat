@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe BookmarkletFetchImages do
   let(:action) do
-    VCR.use_cassette('spec/bookmarklet/fetch_images/action') do
+    VCR.use_cassette('lib/bookmarklet/fetch_images/action') do
       BookmarkletFetchImages.run(
-        url: 'http%3A//shop.outlier.cc/shop/retail/ultrafine-merino-tee.html'
+        url: 'needsupply.com/mens/outerwear/explorer-jacket.html'
       )
     end
   end
