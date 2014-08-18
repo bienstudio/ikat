@@ -17,10 +17,12 @@ module Mongoid
     def creator=(o)
       self.created_by = o.id
       self.created_by_type = o.class.to_s
+
+      self.updater = o
     end
 
     def updater
-      self.updated_by ? self.updated_by_type.constantize(self.updated_by) : nil
+      self.updated_by ? self.updated_by_type.constantize.find(self.updated_by) : nil
     end
 
     def updater=(o)
