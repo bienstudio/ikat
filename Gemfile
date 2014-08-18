@@ -6,8 +6,8 @@ gem 'rails', '4.1.4'
 
 gem 'mongoid', '>= 4.0.0'
 
-# gem 'puma'
-gem 'thin'
+gem 'puma' # Puma for web...
+gem 'thin' # Thin for EventMachine...
 
 gem 'turbolinks'
 

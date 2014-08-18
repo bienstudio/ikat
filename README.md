@@ -22,4 +22,4 @@ After that, it may be wise to run the test suite to make sure everything it work
 
 To start the server and workers:
 
-- `bundle exec foreman start`
+- `bundle exec foreman start -f Procfile.development`
