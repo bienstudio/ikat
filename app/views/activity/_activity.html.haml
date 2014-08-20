@@ -1,10 +1,11 @@
 %article.activity{'data-action' => activity.action}
   %aside
-    %figure.avatar
-      - if activity.actor.is_a?(User)
+    - if activity.actor.is_a?(User)
+      %figure.avatar
         = link_to profile_path(username: activity.actor.username) do
           = image_tag activity.actor.avatar_url
-      - else
+    - else
+      %figure.logo
         = link_to store_path(store_domain: activity.actor.domain) do
           = image_tag activity.actor.logo_url
   %section
@@ -17,8 +18,8 @@
       = render :partial => "products/product", locals: { product: activity.subject, size: 'large' }
       - case activity.target_type
       - when "Wants"
-        %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} wants #{link_to(activity.subject.name, '#')}
+        %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} wants #{link_to(activity.subject.name, activity.subject.permalink)}
       - when "Collection"
         %p= "#{activity.actor.username} added #{activity.subject.name} to #{activity.target.name}"
       - when "Inventory"
-        %p #{link_to(activity.target.owner.name, store_path(store_domain: activity.target.owner.domain))} added #{activity.subject.name} to their Inventory
+        %p #{link_to(activity.target.owner.name, store_path(store_domain: activity.target.owner.domain))} added #{activity.subject.name}

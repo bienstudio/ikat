@@ -23,8 +23,11 @@ body {
 
   background: $base;
   color: $text;
-  font-family: $sans-serif;
-  font-weight: 300;
+
+  font: {
+    family: $sans-serif;
+    weight: 300;
+  }
 }
 
 a, [data-url] {
@@ -82,10 +85,14 @@ header#header {
   }
 
   h1 {
-    @include background(
-      image-url('logo-bg-2.png')
-    );
+
     @include adjust-font-size-to(18px);
+
+    background: {
+      image: image-url('logo-bg-2.png');
+      repeat: no-repeat;
+      position: top right;
+    }
 
     display: inline-block;
     font-weight: 700;
@@ -95,6 +102,7 @@ header#header {
     text-transform: uppercase;
 
     a {
+      display: block;
       color: $base;
 
       &:hover {

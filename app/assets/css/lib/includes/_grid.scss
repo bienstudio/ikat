@@ -1,6 +1,8 @@
 @import "compass/layout";
 @import "susy";
 
+// Variables
+
 $total-columns: 24;
 $column-width: 1.5em;
 $gutter-width: 0.75em;
@@ -19,7 +21,7 @@ $screen-large: 1280px;
   padding: 0;
 }
 
-@for $i from 1 through $total-columns {  
+@for $i from 1 through $total-columns {
   .col-#{$i} {
     @include span-columns($i, $total-columns);
   }
@@ -35,4 +37,11 @@ $screen-large: 1280px;
 
 .omega {
   @include omega;
+}
+
+@mixin inner-container {
+  @include container;
+
+  padding-left: 0;
+  padding-right: 0;
 }

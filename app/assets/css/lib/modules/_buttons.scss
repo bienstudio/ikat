@@ -15,6 +15,14 @@
     cursor: pointer;
   }
 
+  &.btn-grey {
+    background: $light-grey;
+
+    &:hover {
+      background: darken($light-grey, 5%);
+    }
+  }
+
   &.btn-black {
     background: $black;
     color: $base;
