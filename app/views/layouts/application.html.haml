@@ -6,8 +6,9 @@
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 
     = csrf_meta_tags
-    
+
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "//assets.helpful.io/assets/widget.js"
 
     %script{src: "//use.typekit.net/bna3bdd.js"}
     :coffee
@@ -41,5 +42,5 @@
         %ul
           %li= link_to "About", about_path
           %li= link_to "Blog", blog_path
-          %li= link_to "Support", support_path
+          %li= helpful_link "Support"
       %p &copy; #{Time.now.year} #{link_to("Ikat", root_path)}
