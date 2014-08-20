@@ -30,4 +30,15 @@ $(document).ready ->
   # This is a checkbox
   $(".collection-flux").on "click", ->
     $(@).closest("form").submit()
-      
+
+  $(".collection-button-flux").bind "ajax:complete", (data, status, xhr) ->
+
+    # Just added, so change to remove
+    if $(@).hasClass "add"
+      $(@).switchClass "add", "remove"
+      $(@).switchClass "btn-grey", "btn-black"
+
+    # Just removed, so change to add
+    else
+      $(@).switchClass "remove", "add"
+      $(@).switchClass "btn-black", "btn-grey"

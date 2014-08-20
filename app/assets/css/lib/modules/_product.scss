@@ -191,4 +191,14 @@ figure.product {
 
     max-width: 300px;
   }
+
+  &.large {
+    span.collections-trigger {
+      @include adjust-font-size-to(10px);
+
+      position: relative;
+      bottom: 2px;
+      right: 1px;
+    }
+  }
 }

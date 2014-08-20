@@ -43,7 +43,9 @@ class Store
 
   def logo_url(style = nil)
     if self.logo_processing || self.logo == nil
-      ActionController::Base.helpers.asset_path('avatar.png')
+      default = %w{logo-bg-2.png logo-bg-old.jpg logo-bg.jpg}
+
+      ActionController::Base.helpers.asset_path(default.sample)
     else
       self.logo.url(style)
     end

@@ -1,5 +1,5 @@
 .activity {
-  @include container;
+  @include inner-container;
 
   aside {
     @include span-columns(2, 24);
@@ -7,6 +7,10 @@
 
   section {
     @include span-columns(20 omega, 24);
+
+    .product {
+      margin-bottom: rhythm(0.5);
+    }
 
     p + p {
       margin-top: rhythm(0.5);
