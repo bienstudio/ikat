@@ -49,7 +49,7 @@ class User
 
   before_create :create_access_token!
 
-  after_create :create_lists!
+  after_create :create_lists!, :add_activity, :analytics_identify!
 
   def viewable_by?(u)
     true
@@ -116,5 +116,26 @@ class User
 
   def create_lists!
     self.wants = Wants.create
+  end
+
+  def add_activity
+    Activity.create(
+      action: :join,
+      subject: nil,
+      target: nil,
+      actor: self
+    )
+  end
+
+  def analytics_identify!
+    Analytics.identify(
+      user_id: self.id.to_s,
+      traits: {
+        name:       self.name,
+        email:      self.email,
+        username:   self.username,
+        created_at: self.created_at
+      }
+    )
   end
 end

@@ -32,6 +32,8 @@ gem 'mutations'
 gem 'nokogiri'
 gem 'fastimage'
 
+gem 'analytics-ruby', require: 'segment/analytics'
+
 gem 'haml-rails'
 gem 'rabl'
 gem 'oj'
@@ -46,6 +48,8 @@ gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
+  gem 'dotenv-rails'
+
   gem 'sinatra-contrib', require: false
 
   gem 'rubocop'

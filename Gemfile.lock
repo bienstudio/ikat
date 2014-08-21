@@ -35,6 +35,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    analytics-ruby (2.0.6)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     backports (3.6.0)
@@ -93,6 +94,8 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -345,6 +348,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  analytics-ruby
   better_errors
   binding_of_caller
   canable
@@ -354,6 +358,7 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
+  dotenv-rails
   eventmachine
   factory_girl_rails
   fastimage
