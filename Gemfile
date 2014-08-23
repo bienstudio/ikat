@@ -30,6 +30,8 @@ gem 'mutations'
 gem 'nokogiri'
 gem 'fastimage'
 
+gem 'rails_admin'#, github: 'eturk/rails_admin'
+
 gem 'haml-rails'
 gem 'rabl'
 gem 'oj'
