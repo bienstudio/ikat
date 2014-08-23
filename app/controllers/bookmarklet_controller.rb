@@ -9,6 +9,10 @@ class BookmarkletController < ApplicationController
     @url = "http://#{params[:url]}" # FIXME: Actually do this correctly.
     @job_id = BookmarkletFetchImagesWorker.perform_async(params[:url])
 
+    # Use Gon to give Pusher info.
+    gon.pusher_channel = "worker_#{@job_id}"
+    gon.pusher_key = ENV['PUSHER_KEY']
+
     render layout: false
   end
 end

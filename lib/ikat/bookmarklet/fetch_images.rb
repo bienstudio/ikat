@@ -1,6 +1,7 @@
 class BookmarkletFetchImages < IkatMutation
   required do
     string :url
+    string :pusher_channel, nils: true
   end
 
   def execute
@@ -31,6 +32,10 @@ class BookmarkletFetchImages < IkatMutation
 
       if check_image_dimensions(src)
         vetted_images << src
+
+        if pusher_channel
+          Pusher.trigger(pusher_channel, 'event', { image: src })
+        end
       end
     end
 
@@ -58,6 +63,10 @@ class BookmarkletFetchImages < IkatMutation
   def check_image_dimensions(uri, width = 200, height = 200)
     dimensions = FastImage.size(uri)
 
-    dimensions[0] >= width && dimensions[1] >= height
+    if dimensions
+      dimensions[0] >= width && dimensions[1] >= height
+    else
+      false
+    end
   end
 end
