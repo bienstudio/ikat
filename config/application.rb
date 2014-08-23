@@ -42,6 +42,6 @@ module Ikat
     }
 
     config.middleware.delete Rack::Lock
-    config.middleware.use FayeRails::Middleware, mount: '/faye', timeout: 30
+    # config.middleware.use FayeRails::Middleware, mount: '/faye', timeout: 30
   end
 end

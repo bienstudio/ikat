@@ -76,10 +76,8 @@ GEM
     compass-rails (2.0.0)
       compass (>= 0.12.2)
     connection_pool (2.0.0)
-    cookiejar (0.3.2)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
-    daemons (1.1.9)
     database_cleaner (1.3.0)
     debug_inspector (0.0.2)
     devise (3.3.0)
@@ -93,16 +91,7 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
-    em-http-request (1.1.2)
-      addressable (>= 2.3.4)
-      cookiejar
-      em-socksify (>= 0.3)
-      eventmachine (>= 1.0.3)
-      http_parser.rb (>= 0.6.0)
-    em-socksify (0.3.0)
-      eventmachine (>= 1.0.0.beta.4)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     excon (0.39.4)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -112,20 +101,6 @@ GEM
       railties (>= 3.0.0)
     fastimage (1.6.3)
       addressable (~> 2.3, >= 2.3.5)
-    faye (1.0.3)
-      cookiejar (>= 0.3.0)
-      em-http-request (>= 0.3.0)
-      eventmachine (>= 0.12.0)
-      faye-websocket (>= 0.7.0)
-      multi_json (>= 1.0.0)
-      rack (>= 1.0.0)
-      websocket-driver (>= 0.3.0)
-    faye-rails (2.0.0)
-      eventmachine (~> 1.0.0)
-      faye (~> 1.0.1)
-    faye-websocket (0.7.4)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.3.1)
     fog (1.23.0)
       fog-brightbox
       fog-core (~> 1.23)
@@ -154,6 +129,11 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     fssm (0.2.10)
+    gon (5.1.2)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -162,7 +142,7 @@ GEM
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
     hike (1.2.3)
-    http_parser.rb (0.6.0)
+    httpclient (2.4.0)
     i18n (0.6.11)
     inflecto (0.0.2)
     ipaddress (0.8.0)
@@ -220,6 +200,10 @@ GEM
       pry (>= 0.9.10)
     puma (2.9.0)
       rack (>= 1.1, < 2.0)
+    pusher (0.14.1)
+      httpclient (~> 2.3)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     rabl (0.10.1)
       activesupport (>= 2.3.14)
     rack (1.5.2)
@@ -247,6 +231,7 @@ GEM
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
+    request_store (1.1.0)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -285,6 +270,7 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    signature (0.1.7)
     simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
@@ -315,10 +301,6 @@ GEM
     susy (1.0.9)
       compass (>= 0.12.2)
       sass (>= 3.2.0)
-    thin (1.6.2)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -339,7 +321,6 @@ GEM
     webmock (1.18.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
-    websocket-driver (0.3.4)
 
 PLATFORMS
   ruby
@@ -354,12 +335,11 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
-  eventmachine
   factory_girl_rails
   fastimage
-  faye-rails
   fog
   foreman
+  gon
   haml-rails
   jquery-rails
   jquery-turbolinks
@@ -371,6 +351,7 @@ DEPENDENCIES
   oj
   pry-rails
   puma
+  pusher
   rabl
   rails (= 4.1.4)
   rspec-rails (= 3.0.1)
@@ -383,7 +364,6 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   susy
-  thin
   turbolinks
   uglifier (>= 1.3.0)
   vcr

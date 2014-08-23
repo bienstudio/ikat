@@ -16,14 +16,15 @@
       %h1.brand
         = link_to "Ikat", root_path
       %span.directions 1. Select the product image
+      %span.close
+        %a{href: "#"} &times;
 
     %main
       - if current_user
+        .no-images No usable images found on this page.
         .select{'data-step' => 0}
           %ul.images
-            = image_tag 'loader.gif'
-            -# - @images.each_with_index do |img, index|
-            -#   %li= image_tag img, 'data-index' => index
+            = image_tag 'loader.gif', class: 'loader'
 
         .form{'data-step' => 1}
           %figure= image_tag ""
@@ -56,5 +57,6 @@
       - else
         %p Please #{link_to("login", login_path)} to add products.
 
-    = javascript_include_tag "http://localhost:5000/faye/client.js"
+    = include_gon
+    = javascript_include_tag "//js.pusher.com/2.2/pusher.min.js"
     = javascript_include_tag "bookmarklet/add", "data-turbolinks-track" => true

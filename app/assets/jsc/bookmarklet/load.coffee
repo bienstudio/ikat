@@ -7,7 +7,7 @@ $("body").append("<iframe class='ikat' src='#{iframe_url}' style='background: #0
 
 $(document).keyup (e) ->
   if e.keyCode == 27
-    $("iframe.ikat").remove()
+    closeBookmarklet()
 
-$("a.close").on "click", ->
+@.closeBookmarklet = ->
   $("iframe.ikat").remove()

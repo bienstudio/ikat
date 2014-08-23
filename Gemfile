@@ -6,16 +6,14 @@ gem 'rails', '4.1.4'
 
 gem 'mongoid', '>= 4.0.0'
 
-gem 'puma' # Puma for web...
-gem 'thin' # Thin for EventMachine...
+gem 'puma'
 
 gem 'turbolinks'
 
 gem 'sidekiq'
 gem 'sidekiq-status', github: 'utgarda/sidekiq-status'
 
-gem 'faye-rails'
-gem 'eventmachine'
+gem 'pusher'
 
 gem 'sinatra'
 
@@ -44,6 +42,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'gon'
 
 group :development, :test do
   gem 'sinatra-contrib', require: false

@@ -45,10 +45,13 @@ header {
   }
 
   h1 {
-    @include background(
-      image-url('logo-bg-2.png')
-    );
     @include adjust-font-size-to(18px);
+
+    background: {
+      image: image-url('logo-bg-2.png');
+      repeat: no-repeat;
+      position: top right;
+    }
 
     display: inline-block;
     font-weight: 700;
@@ -73,13 +76,20 @@ header {
     font-weight: 700;
     margin-left: rhythm(0.5);
   }
+
+  span.close {
+    float: right;
+  }
 }
 
 main {
   margin-top: 12.5px;
 
-  .select {
+  .no-images {
+    display: none;
+  }
 
+  .select {
     ul.images {
       height: 225px;
       overflow-x: scroll;
