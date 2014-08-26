@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   # DELETE /collections/:id
   resources :collections, except: [:index, :show, :edit]
 
-  scope '/:store_domain', constraints: { store_domain: /[a-zA-Z0-9][a-zA-Z0-9]{0,61}[a-zA-Z0-9]{0,1}\.([a-zA-Z]{1,6}|[a-zA-Z0-9]{1,30}\.[a-zA-Z]{2,3})/ } do
+  scope '/:store_domain', constraints: { store_domain: /([a-z0-9]+\.)*[a-z0-9]+\.[a-z]{2,}+/ } do
     # GET /:store_domain
     get '/', to: 'stores#show', as: 'store'
 

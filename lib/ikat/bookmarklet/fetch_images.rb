@@ -33,7 +33,7 @@ class BookmarkletFetchImages < IkatMutation
       if check_image_dimensions(src)
         vetted_images << src
 
-        if pusher_channel
+        unless pusher_channel.nil?
           Pusher.trigger(pusher_channel, 'event', { image: src })
         end
       end

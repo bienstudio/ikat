@@ -2,13 +2,13 @@
   = render :partial => 'users/header', locals: { list: 'following' }
   %section.relationships.row
     %h2 Following
-    %section.col-18
-      %h3 #{@users.count} Users
+    %section.col-12
+      %h3 #{pluralize(@users.count, 'User')}
       - @users.each do |r|
         = render partial: 'users/user', locals: { user: r.followee }
         -# %article
         -#   %p= link_to r.followee.name, profile_path(username: r.followee.username)
-    %section.col-6.omega
-      %h3 #{@stores.count} Stores
+    %section.col-12.omega
+      %h3 #{pluralize(@stores.count, 'Store')}
       - @stores.each do |r|
         = render partial: 'stores/store', locals: { store: r.followee }

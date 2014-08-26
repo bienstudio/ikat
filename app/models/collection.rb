@@ -1,13 +1,14 @@
 class Collection < List
   include Canable::Ables
 
-  field :name,   type: String
-  field :slug,   type: String
-  field :hidden, type: Boolean, default: false
+  field :name,        type: String
+  field :description, type: String
+  field :slug,        type: String
+  field :hidden,      type: Boolean, default: false
 
   validates :name, presence: true, uniqueness: true
 
-  before_validation :create_slug!
+  before_validation :create_slug!, :set_owner_type!
 
   def viewable_by?(u)
     self.hidden? ? u == self.owner : true
@@ -38,5 +39,9 @@ class Collection < List
 
       self.slug = str
     end
+  end
+
+  def set_owner_type!
+    self.owner_type = 'User'
   end
 end
