@@ -4,7 +4,8 @@ describe BookmarkletFetchImages do
   let(:action) do
     VCR.use_cassette('lib/bookmarklet/fetch_images/action') do
       BookmarkletFetchImages.run(
-        url: 'needsupply.com/mens/outerwear/explorer-jacket.html'
+        url: 'needsupply.com/mens/outerwear/explorer-jacket.html',
+        pusher_channel: nil
       )
     end
   end

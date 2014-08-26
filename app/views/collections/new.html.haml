@@ -8,6 +8,9 @@
         = text_field_tag 'collection[name]'
         = label_tag 'Name'
       .input
+        = text_area_tag 'collection[description]'
+        = label_tag 'Description'
+      .input
         = check_box_tag 'collection[hidden]'
         = label_tag 'Hidden?'
       .input

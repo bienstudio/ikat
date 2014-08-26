@@ -26,9 +26,8 @@
           display: block;
           list-style-type: none;
 
-
           &:first-child {
-            margin-top: rhythm(0.5)
+            margin-top: rhythm(0.1)
           }
 
           & + li {

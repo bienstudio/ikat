@@ -9,6 +9,8 @@ class List
 
   has_and_belongs_to_many :list_items
 
+  before_create :set_owner_type!
+
   def products
     ListItem.where(list: self).collect(&:product)
   end
@@ -48,5 +50,11 @@ class List
 
   def destroyable_by?(u)
     true
+  end
+
+  protected
+
+  def set_owner_type!
+    self.owner_type = nil
   end
 end

@@ -7,6 +7,7 @@ describe CollectionCreate do
       current_user: user,
       collection: {
         name:   'Purchase',
+        description: 'Stuff I am going to purchase.',
         hidden: true
       }
     )
