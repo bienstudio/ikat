@@ -3,7 +3,6 @@
 coverage/
 log/*.log
 tmp
-config/s3.yml
 db/mongodb
 public/uploads
 Procfile.development

@@ -32,6 +32,9 @@ Rails.application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
+  # Turn on assets in production.
+  config.assets.enabled = true
+
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
@@ -77,4 +80,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Keep the assets separate from app uploads on S3.
+  config.assets.prefix = "/assets"
 end
