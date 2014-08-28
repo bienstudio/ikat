@@ -46,6 +46,9 @@ gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'gon'
 
+gem 'asset_sync'
+gem 'unf'
+
 gem 'tugboat'
 
 group :development, :test do
