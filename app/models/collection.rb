@@ -32,9 +32,9 @@ class Collection < List
     if self.name
       str = self.name
 
-      str = str.gsub(/[^a-zA-Z0-9 ]/,"")
-      str = str.gsub(/[ ]+/," ")
-      str = str.gsub(/ /,"-")
+      str = str.gsub(/[^a-zA-Z0-9 ][-]/, "")
+      str = str.gsub(/[ ]+/, " ")
+      str = str.gsub(/ /, "-")
       str = str.downcase
 
       self.slug = str
