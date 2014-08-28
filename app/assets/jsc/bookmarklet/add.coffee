@@ -86,6 +86,8 @@ $(document).ready ->
 
       list_button.addClass('disabled')
 
+      $('.failure').hide()
+
       return
     ).fail((data) ->
       console.log data
