@@ -54,3 +54,9 @@ Then, download the `ikat.pem` file from Google Drive as well and stick it in you
 $ bundle exec tugboat droplets
 fury (ip: 104.131.33.41, status: active, region: 8, id: 2484986)
 ```
+
+Now, add `fury` as a git remote host:
+
+```
+$ git remote add fury dokku@getikat.com:ikat
+```
