@@ -41,7 +41,7 @@
                 %select{id: 'product_category', name: 'product[category]', class: 'dependent'}
                   %option
                     Category &#9660;
-                  - Category.as_options.each do |c|
+                  - Rails.configuration.categories_as_options.each do |c|
                     %option{value: c.first}= c.last.gsub("'", "\u2019").html_safe
 
             .input.lists
