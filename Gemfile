@@ -46,6 +46,8 @@ gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'gon'
 
+gem 'tugboat'
+
 group :development, :test do
   gem 'sinatra-contrib', require: false
 

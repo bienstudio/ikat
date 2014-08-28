@@ -70,6 +70,8 @@ class Category
         str = str[3..-1]
 
         options << [c.id.to_s, str]
+
+        options.sort_by { |a| a.last }
       end
 
       options
