@@ -51,6 +51,7 @@ gem 'unf'
 
 gem 'tugboat'
 
+gem 'dotenv'
 gem 'dotenv-deployment'
 
 group :development, :test do
