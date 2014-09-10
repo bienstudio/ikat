@@ -8,9 +8,9 @@ require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
 
-require 'dotenv'
-
-Dotenv.load '.env'
+# require 'dotenv'
+#
+# Dotenv.load '.env'
 
 module Ikat
   class Application < Rails::Application
