@@ -70,4 +70,9 @@ namespace :deploy do
     end
   end
 
+  desc 'Reload the database with seed data'
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=staging"
+  end
+
 end
