@@ -72,7 +72,9 @@ namespace :deploy do
 
   desc 'Reload the database with seed data'
   task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=staging"
+    on "ubuntu@staging.fanzter.com" do
+      execute "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=staging; exit"
+    end
   end
 
 end
