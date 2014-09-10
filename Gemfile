@@ -51,6 +51,8 @@ gem 'unf'
 
 gem 'tugboat'
 
+gem 'dotenv-deployment'
+
 group :development, :test do
   gem 'sinatra-contrib', require: false
 
@@ -70,6 +72,11 @@ group :development do
   gem 'binding_of_caller'
 
   # gem 'sass-rails-source-maps'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
 end
 
 group :test do

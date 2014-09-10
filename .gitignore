@@ -1,8 +1,9 @@
 .bundle
 .env
+config/ec2.yml
 coverage/
 log/*.log
-tmp
+tmp/
 db/mongodb
 public/uploads
 Procfile.development
