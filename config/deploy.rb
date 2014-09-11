@@ -13,7 +13,8 @@ set :deploy_to, '/var/www/ikat'
 # Default value for :scm is :git
 set :scm, :git
 
-set :rbenv_type, :user
+# set :rbenv_type, :user
+set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 set :rbenv_ruby, '2.1.2'
 
 set :linked_files, %w{.env}
@@ -58,6 +59,8 @@ namespace :deploy do
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
+
+  # after :publishing, :assets
 
   after :publishing, :restart
 

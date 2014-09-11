@@ -1,4 +1,5 @@
 //= require jquery
+//= require ../lib/vendor/pusher
 //= require ../lib/vendor/jquery.dependent-selects.js
 
 $(document).ready ->
