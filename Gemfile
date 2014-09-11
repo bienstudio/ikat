@@ -69,15 +69,17 @@ end
 group :development do
   gem 'foreman'
 
-  gem 'better_errors'
-  gem 'binding_of_caller'
-
   # gem 'sass-rails-source-maps'
 
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+end
+
+group :development, :staging do
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
