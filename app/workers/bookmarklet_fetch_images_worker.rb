@@ -3,7 +3,6 @@ class BookmarkletFetchImagesWorker
 
   def perform(url)
     str = "BookmarkletFetchImagesWorker#perform: #{jid}"
-    d { str }
 
     a = BookmarkletFetchImages.run(
       url: url,
