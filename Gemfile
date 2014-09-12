@@ -46,6 +46,7 @@ gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'gon'
 
+gem 'non-stupid-digest-assets'
 gem 'asset_sync'
 gem 'unf'
 
