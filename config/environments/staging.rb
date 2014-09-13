@@ -88,4 +88,6 @@ Rails.application.configure do
   config.assets.prefix = "/assets"
 
   config.action_controller.asset_host = "//#{ENV['AWS_S3_BUCKET']}.s3.amazonaws.com"
+
+  config.fqdn = 'http://staging.getikat.com'
 end

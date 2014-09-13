@@ -33,4 +33,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_controller.asset_host = 'http://ikat.dev'
+
+  config.fqdn = 'http://ikat.dev'
 end
