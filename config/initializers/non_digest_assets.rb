@@ -1,1 +1,1 @@
-NonStupidDigestAssets.whitelist = ['bookmarklet/add.js']
+NonStupidDigestAssets.whitelist = ['bookmarklet/load.js']
