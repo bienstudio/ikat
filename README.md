@@ -12,6 +12,17 @@ Right now it's a pretty basic Ruby on Rails install. The follow dependencies are
 - MongoDB 2.3.6
 - Redis 2.8.12
 
+You'll need a few environment variables. Add them as Yaml in `.env`.
+
+Variable              | Description
+----------------------|------------------
+AWS_ACCESS_KEY_ID     | An AWS access key ID.
+AWS_SECRET_ACCESS_KEY | An AWS secret access key.
+AWS_S3_BUCKET         | The bucket you want to save uploads to.
+PUSHER_APP_ID         | A Pusher app ID.
+PUSHER_KEY            | A Pusher app key.
+PUSHER_SECRET         | A Pusher app secret.
+
 After those are all installed, just use Bundler and the built-in Rails rake tasks:
 
 1. `bundle install`
