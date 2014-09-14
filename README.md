@@ -22,6 +22,7 @@ AWS_S3_BUCKET         | The bucket you want to save uploads to.
 PUSHER_APP_ID         | A Pusher app ID.
 PUSHER_KEY            | A Pusher app key.
 PUSHER_SECRET         | A Pusher app secret.
+SENTRY_DSN            | DSN from Sentry. Not entirely necessary in development.
 
 After those are all installed, just use Bundler and the built-in Rails rake tasks:
 
