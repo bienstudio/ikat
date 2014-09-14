@@ -333,6 +333,10 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    sentry-raven (0.9.4)
+      faraday (>= 0.7.6)
+      hashie (>= 1.1.0)
+      uuidtools
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     sidekiq (3.2.4)
@@ -398,6 +402,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
+    uuidtools (2.1.5)
     vcr (2.9.3)
     warden (1.2.3)
       rack (>= 1.0)
@@ -450,6 +455,7 @@ DEPENDENCIES
   rspec-rails (= 3.0.1)
   rubocop
   sass-rails (~> 4.0.3)
+  sentry-raven
   shoulda-matchers
   sidekiq
   sidekiq-status!

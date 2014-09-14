@@ -55,6 +55,9 @@ gem 'tugboat'
 gem 'dotenv'
 gem 'dotenv-deployment'
 
+gem 'better_errors'
+gem 'binding_of_caller'
+
 group :development, :test do
   gem 'sinatra-contrib', require: false
 
@@ -67,6 +70,10 @@ group :development, :production do
   gem 'pry-rails'
 end
 
+group :staging, :production do
+  gem 'sentry-raven'
+end
+
 group :development do
   gem 'foreman'
 
@@ -77,11 +84,6 @@ group :development do
   gem 'capistrano-rbenv', github: 'joost/rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-sidekiq'
-end
-
-group :development, :staging do
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :test do
