@@ -7,21 +7,27 @@
           %li= @user.location
         - unless @user.website.blank?
           %li
-            = link_to @user.website do
-              = @user.website
-              %i.ss-icon out
+            = outgoing_link_to @user.website, @user.website
       %p.biography= @user.biography
     %aside.col-4
       %ul.counts
-        %li= link_to "#{@user.followers.count} Followers", followers_path(username: @user.username), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
+        %li= link_to pluralize(@user.followers.count, 'Followers'), followers_path(username: @user.username), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
         %li= link_to "#{@user.following.count} Following", following_path(username: @user.username), class: "btn #{list == 'following' ? 'btn-black' : nil}"
     %aside.col-3.omega
       %figure.avatar
         = image_tag @user.avatar_url(:medium)
   .lists.row
     %ul.col-21
-      %li= link_to "<span>#{@user.wants.product_count}</span> Wants".html_safe, profile_path(username: @user.username), class: "btn #{list == 'wants' ? 'btn-black' : nil}"
-      %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, user_collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}"
+      %li
+        = link_to profile_path(username: @user.username), class: "btn #{list == 'wants' ? 'btn-black' : nil}" do
+          %span
+            = pluralize(@user.wants.product_count, 'Want')
+
+      %li
+        = link_to user_collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}" do
+          %span
+            = pluralize(@user.collections.count, 'Collection')
+
       %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, new_collection_path, class: "btn btn-green"
     %nav.col-3.omega
       - unless current_user == @user
