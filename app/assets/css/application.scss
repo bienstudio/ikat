@@ -167,7 +167,8 @@ main {
 footer#footer {
   @include container;
 
-  color: $grey;
+  // color: $grey;
+  color: $light-grey;
   padding-top: rhythm(1);
   padding-left: 0;
   padding-right: 0;
