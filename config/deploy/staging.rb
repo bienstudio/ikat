@@ -1,4 +1,5 @@
 set :rails_env, :staging
+set :rack_env,  :staging
 
 set :branch, '7-deploy'
 
