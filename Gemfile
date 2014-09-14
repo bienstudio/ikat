@@ -80,7 +80,7 @@ group :development do
   # gem 'sass-rails-source-maps'
 
   gem 'capistrano'
-  gem 'capistrano-rails'
+  gem 'capistrano-rails'#, github: 'eturk/rails'
   gem 'capistrano-rbenv', github: 'joost/rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-sidekiq'
