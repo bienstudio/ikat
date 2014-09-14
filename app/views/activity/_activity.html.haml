@@ -11,7 +11,10 @@
   %section
     - case activity.action
     - when :follow
-      %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} followed #{link_to(activity.target.name, profile_path(username: activity.target.username))}
+      - if activity.target.is_a?(User)
+        %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} followed #{link_to(activity.target.name, profile_path(username: activity.target.username))}
+      - else
+        %p #{link_to(activity.actor.name, profile_path(username: activity.actor.username))} followed #{link_to(activity.target.name, store_path(store_domain: activity.target.store_domain))}
     - when :unfollow
       %p= "#{activity.actor.username} unfollow #{activity.target.username}"
     - when :add
