@@ -23,14 +23,25 @@ namespace :deploy do
     end
   end
 
-  after :publishing, "deploy:compile_assets"
-
   after :publishing, :restart
+
+  before :finishing, "deploy:assets:precompile"
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       within release_path do
         execute :rake, 'assets', 'precompile'
+      end
+    end
+  end
+
+  namespace :assets do
+    desc 'Precompile assets'
+    task :precompile do
+      on roles(:app) do
+        within current_path do
+          execute :rake, 'assets:precompile'
+        end
       end
     end
   end
