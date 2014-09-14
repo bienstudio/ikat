@@ -39,7 +39,7 @@ namespace :deploy do
     desc 'Precompile assets'
     task :precompile do
       on roles(:app) do
-        within current_path do
+        within release_path do
           execute :rake, 'assets:precompile'
         end
       end
