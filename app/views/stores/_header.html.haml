@@ -8,7 +8,10 @@
       -#   - unless @user.website.blank?
       -#     %li= link_to @user.website, @user.website
       -# %p.biography= @user.biography
-      %p= link_to @store.domain, "//#{@store.domain}"
+      %p
+        = link_to "//#{@store.domain}" do
+          = @store.domain
+          %i.ss-icon out
     %aside.col-4
       %ul.counts
         %li= link_to "#{@store.followers.count} Followers", store_followers_path(store_domain: @store.domain), class: "btn #{list == 'followers' ? 'btn-black' : nil}"

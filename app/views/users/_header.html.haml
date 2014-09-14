@@ -6,7 +6,10 @@
         - unless @user.location.blank?
           %li= @user.location
         - unless @user.website.blank?
-          %li= link_to @user.website, @user.website
+          %li
+            = link_to @user.website do
+              = @user.website
+              %i.ss-icon out
       %p.biography= @user.biography
     %aside.col-4
       %ul.counts
