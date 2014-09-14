@@ -25,7 +25,7 @@ namespace :deploy do
 
   after :publishing, :restart
 
-  before :finishing, "deploy:assets:precompile"
+  after :publishing, 'deploy:assets:precompile'
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
