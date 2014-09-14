@@ -36,14 +36,12 @@ a, [data-url] {
 
   &:hover {
     color: $dark-primary;
-
-    i {
-      color: darken($grey, 2%);
-    }
   }
 
-  i {
-    color: $grey;
+  &.outgoing {
+    i {
+      color: $grey;
+    }
   }
 }
 
