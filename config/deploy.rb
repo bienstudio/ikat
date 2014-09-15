@@ -53,7 +53,7 @@ namespace :deploy do
   namespace :assets do
     desc 'Precompile assets'
     task :precompile do
-      on roles(fetch(:assets_roles)) do
+      on roles(:app) do
         within release_path do
           with rails_env: fetch(:current_rails_env) do
             execute :rake, "assets:precompile"
