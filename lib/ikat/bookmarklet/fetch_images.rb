@@ -34,6 +34,8 @@ class BookmarkletFetchImages < IkatMutation
         vetted_images << src
 
         unless pusher_channel.nil?
+          sleep 1
+
           Pusher.trigger(pusher_channel, 'event', { image: src })
         end
       end
