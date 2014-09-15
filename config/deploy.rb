@@ -25,11 +25,11 @@ namespace :deploy do
     end
   end
 
-  # before :starting, 'deploy:setup_env'
+  before :starting, 'deploy:setup_env'
 
   after :publishing, :restart
 
-  after :publishing, 'deploy:compile_assets'
+  after :publishing, 'deploy:assets:precompile'
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -38,30 +38,28 @@ namespace :deploy do
       end
     end
   end
-  #
-  # desc 'Set the RACK_ENV and RAILS_ENV environment variables.'
-  # task :setup_env do
-  #   on roles(:app) do
-  #     within release_path do
-  #       env = fetch(:current_rails_env)
-  #
-  #       execute "export RACK_ENV=#{env}; export RAILS_ENV=#{env}"
-  #     end
-  #   end
-  # end
-  #
-  # namespace :assets do
-  #   desc 'Precompile assets'
-  #   task :precompile do
-  #     on roles(:app) do
-  #       within release_path do
-  #         env = fetch(:current_rails_env)
-  #
-  #         execute "export RACK_ENV=#{env}; export RAILS_ENV=#{env}"
-  #         execute :rake, "assets:precompile"
-  #
-  #       end
-  #     end
-  #   end
-  # end
+
+  desc 'Set the RACK_ENV and RAILS_ENV environment variables.'
+  task :setup_env do
+    on roles(:app) do
+      within release_path do
+        env = fetch(:current_rails_env)
+
+        execute "export RACK_ENV=#{env}; export RAILS_ENV=#{env}"
+      end
+    end
+  end
+
+  namespace :assets do
+    desc 'Precompile assets'
+    task :precompile do
+      on roles(fetch(:assets_roles)) do
+        within release_path do
+          with rails_env: fetch(:current_rails_env) do
+            execute :rake, "assets:precompile"
+          end
+        end
+      end
+    end
+  end
 end
