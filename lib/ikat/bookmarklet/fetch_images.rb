@@ -37,7 +37,7 @@ class BookmarkletFetchImages < IkatMutation
           # check to make sure that the client has loaded and subscribed to the channel
 
           occupied = false
-          while occupied = false
+          while occupied == false
             occupied = Pusher.channel(pusher_channel).info[:occupied]
           end
 
