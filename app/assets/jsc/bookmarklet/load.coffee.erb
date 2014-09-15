@@ -1,5 +1,7 @@
 //= require jquery
 
+current_env = "<%= Rails.env %>"
+
 current_url = document.URL.replace("http://","").replace("http:// www.","").replace("https://", "").replace("https:// www.", "").replace("www.","")
 iframe_url  = "<%= Rails.configuration.fqdn %>/bookmarklet/#{current_url}"
 
