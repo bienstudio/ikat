@@ -17,4 +17,5 @@
           %span
             = pluralize(@store.inventory.product_count, 'Product')
     %nav.col-3.omega
-      = link_to "#{current_user.follows?(@store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @store.domain), class: "user-flux btn #{current_user.follows?(@store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post
+      - if current_user
+        = link_to "#{current_user.follows?(@store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @store.domain), class: "user-flux btn #{current_user.follows?(@store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post
