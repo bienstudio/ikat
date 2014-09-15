@@ -10,6 +10,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
     ActionController::Base.helpers.asset_path('avatar.png')
   end
 
+  def store_dir
+    'uploads/users/avatars'
+  end
+
   version :large do
     process resize_to_fill: [1000, 1000]
   end
