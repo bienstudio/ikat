@@ -10,14 +10,6 @@ class LogoUploader < CarrierWave::Uploader::Base
     ActionController::Base.helpers.asset_path('loading.png')
   end
 
-  def store_dir
-    'stores/logos'
-  end
-
-  def cache_dir
-    '/tmp/uploads'
-  end
-
   version :large do
     process resize_to_limit: [1000, 1000]
   end
