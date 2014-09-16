@@ -37,6 +37,12 @@ a, [data-url] {
   &:hover {
     color: $dark-primary;
   }
+
+  &.outgoing {
+    i {
+      color: $grey;
+    }
+  }
 }
 
 em {

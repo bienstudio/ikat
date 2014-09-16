@@ -34,6 +34,13 @@ class BookmarkletFetchImages < IkatMutation
         vetted_images << src
 
         unless pusher_channel.nil?
+          # check to make sure that the client has loaded and subscribed to the channel
+
+          occupied = false
+          while occupied == false
+            occupied = Pusher.channel(pusher_channel).info[:occupied]
+          end
+
           Pusher.trigger(pusher_channel, 'event', { image: src })
         end
       end

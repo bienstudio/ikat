@@ -2,29 +2,20 @@
   .information.row
     %section.col-17
       %h2= @store.name
-      -# %ul.meta
-      -#   - unless @user.location.blank?
-      -#     %li= @user.location
-      -#   - unless @user.website.blank?
-      -#     %li= link_to @user.website, @user.website
-      -# %p.biography= @user.biography
-      %p= link_to @store.domain, "//#{@store.domain}"
+      %p
+        = outgoing_link_to @store.domain, "//#{@store.domain}"
     %aside.col-4
       %ul.counts
-        %li= link_to "#{@store.followers.count} Followers", store_followers_path(store_domain: @store.domain), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
+        %li= link_to pluralize(@store.followers.count, 'Follower'), store_followers_path(store_domain: @store.domain), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
     %aside.col-3.omega
       %figure.logo
         = image_tag @store.logo_url(:medium)
   .lists.row
     %ul.col-21
-      %li= link_to "<span>#{@store.inventory.product_count}</span> Products".html_safe, store_path(store_domain: @store.domain), class: "btn #{list == 'inventory' ? 'btn-black' : nil}"
-    -#   %li= link_to "<span>#{@user.wants.product_count}</span> Wants".html_safe, profile_path(username: @user.username), class: "btn #{list == 'wants' ? 'btn-black' : nil}"
-    -#   %li= link_to "<span>#{@user.collections.count}</span> Collections".html_safe, user_collections_path(username: @user.username), class: "btn #{list == 'collections' ? 'btn-black' : nil}"
-    -#   %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, new_collection_path, class: "btn btn-green"
+      %li
+        = link_to store_path(store_domain: @store.domain), class: "btn #{list == 'inventory' ? 'btn-black' : nil}" do
+          %span
+            = pluralize(@store.inventory.product_count, 'Product')
     %nav.col-3.omega
-      = link_to "#{current_user.follows?(@store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @store.domain), class: "user-flux btn #{current_user.follows?(@store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post
-    -#   - unless current_user == @user
-    -#     - if current_user.follows?(@user)
-    -#       = link_to "Unfollow", unfollow_user_path(username: @user.username), class: "relationship-flux unfollow btn btn-red", method: :delete
-    -#     - else
-    -#       = link_to "Follow", follow_user_path(username: @user.username), class: "relationship-flux follow btn btn-green", method: :post
+      - if current_user
+        = link_to "#{current_user.follows?(@store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @store.domain), class: "user-flux btn #{current_user.follows?(@store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post
