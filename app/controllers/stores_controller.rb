@@ -1,15 +1,15 @@
 class StoresController < ApplicationController
-  before_action :current_store
+  before_action :current_store!
 
   def show
-    @products = @store.inventory.list_items.order('created_at desc').map { |i| i.product }
+    @products = @current_store.inventory.list_items.order('created_at desc').map { |i| i.product }
   end
 
   def flux
     action = StoreFlux.run(
       current_user: current_user,
       store: {
-        id: @store.id.to_s
+        id: @current_store.id.to_s
       }
     )
 
@@ -26,8 +26,8 @@ class StoresController < ApplicationController
 
   protected
 
-  def current_store
-    @store = Store.where(domain: params[:store_domain]).first
-    @store
+  def current_store!
+    @current_store = Store.where(domain: params[:store_domain]).first
+    @current_store
   end
 end
