@@ -46,10 +46,17 @@ gem 'jquery-turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'gon'
 
+gem 'non-stupid-digest-assets'
 gem 'asset_sync'
 gem 'unf'
 
 gem 'tugboat'
+
+gem 'dotenv'
+gem 'dotenv-deployment'
+
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :development, :test do
   gem 'sinatra-contrib', require: false
@@ -63,13 +70,20 @@ group :development, :production do
   gem 'pry-rails'
 end
 
+group :staging, :production do
+  gem 'sentry-raven'
+end
+
 group :development do
   gem 'foreman'
 
-  gem 'better_errors'
-  gem 'binding_of_caller'
-
   # gem 'sass-rails-source-maps'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'#, github: 'eturk/rails'
+  gem 'capistrano-rbenv', github: 'joost/rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do

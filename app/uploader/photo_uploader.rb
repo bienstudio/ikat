@@ -11,11 +11,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    'products/photos'
-  end
-
-  def cache_dir
-    '/tmp/uploads'
+    'uploads/products/photos'
   end
 
   version :large do

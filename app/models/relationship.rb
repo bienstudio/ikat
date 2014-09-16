@@ -15,7 +15,7 @@ class Relationship
   after_destroy :unfollow_activity
 
   # Followers of the Object.
-  scope :followers, ->(obj){ where(followee: obj) }
+  scope :followers, ->(obj){ where(followee: obj).ne(follower_id: obj.id) }
 
   # Objects the Object is following.
   scope :following, ->(obj){ where(follower: obj).ne(followee_id: obj.id) }

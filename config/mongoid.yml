@@ -70,7 +70,13 @@ staging:
   sessions:
     # Defines the default session. (required)
     default:
-      uri: <%= ENV['MONGO_URL'] %>
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: ikat_staging
+      # Provides the hosts the default session can connect to. Must be an array
+      # of host:port pairs. (required)
+      hosts:
+        - localhost:27017
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:

@@ -12,6 +12,18 @@ Right now it's a pretty basic Ruby on Rails install. The follow dependencies are
 - MongoDB 2.3.6
 - Redis 2.8.12
 
+You'll need a few environment variables. Add them as Yaml in `.env`.
+
+Variable              | Description
+----------------------|------------------
+AWS_ACCESS_KEY_ID     | An AWS access key ID.
+AWS_SECRET_ACCESS_KEY | An AWS secret access key.
+AWS_S3_BUCKET         | The bucket you want to save uploads to.
+PUSHER_APP_ID         | A Pusher app ID.
+PUSHER_KEY            | A Pusher app key.
+PUSHER_SECRET         | A Pusher app secret.
+SENTRY_DSN            | DSN from Sentry. Not entirely necessary in development.
+
 After those are all installed, just use Bundler and the built-in Rails rake tasks:
 
 1. `bundle install`
@@ -28,35 +40,18 @@ To start the server and workers:
 
 ### Production
 
-We run all of our servers on [Digital Ocean](https://digitalocean.com). We have bundled [tugboat](https://github.com/pearkes/tugboat), a gem used for easy access to Digital Ocean, along with Ikat. To set up Tugboat, you'll need to first go to the Access Tokens spreadsheet in Google Drive and get the Digital Ocean client ID and access token. Then, you'll create `~/.tugboat` with this information:
+We run all of our servers on [Amazon Web Services](https://aws.amazon.com). Here's our current list of EC2 instances:
 
-```yaml
----
-authentication:
-  client_key: [CLIENT KEY]
-  api_key: [ACCESS TOKEN]
-ssh:
-  ssh_user: root
-  ssh_key_path: "/Users/ethan/.ssh/ikat.pem"
-  ssh_port: '22'
-defaults:
-  region: '1'
-  image: '350076'
-  size: '66'
-  ssh_key: ''
-  private_networking: 'true'
-  backups_enabled: 'false'
-```
+Name      | Full Name        | Instance ID  | Purpose                  | Active  
+----------|------------------|--------------|--------------------------|---------------
+`lmd`     | Life-Model Decoy | `i-f959d8d4` | Staging                  | Yes
+`fury`    | Nick Fury        |              | Load-balancer, utility   | No
+`ironman` | Ironman          |              | Application              | No
+`thor`    | Thor             |              | Application              | No
+`coulson` | Agent Coulson    |              | MongoDB, Redis, Memcache | No
 
-Then, download the `ikat.pem` file from Google Drive as well and stick it in your `~/.ssh` folder. Now, you should be able to get a list of the droplets that are running:
+To deploy to staging or production, it's as easy as using Capistrano:
 
 ```
-$ bundle exec tugboat droplets
-fury (ip: 104.131.33.41, status: active, region: 8, id: 2484986)
-```
-
-Now, add `fury` as a git remote host:
-
-```
-$ git remote add fury dokku@getikat.com:ikat
+$ bundle exec cap [production|staging] deploy
 ```
