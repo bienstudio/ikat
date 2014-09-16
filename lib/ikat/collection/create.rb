@@ -3,7 +3,7 @@ class CollectionCreate < IkatMutation
     model :current_user, class: User
     hash  :collection do
       string :name
-      string :description
+      string :description, empty: true
       boolean :hidden
     end
   end

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :current_store, :current_product
+  before_action :current_store!, :current_product!
 
   def index
   end
@@ -70,12 +70,12 @@ class ProductsController < ApplicationController
 
   protected
 
-  def current_store
+  def current_store!
     @current_store = Store.where(domain: params[:store_domain]).first
     @current_store
   end
 
-  def current_product
+  def current_product!
     if params[:product_slug]
       @current_product = Product.where(store_id: @current_store, slug: params[:product_slug]).first
     end

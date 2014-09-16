@@ -1,5 +1,4 @@
 class IkatController < ApplicationController
-  include ActionController::Live
 
   # GET /
   def index
@@ -16,7 +15,7 @@ class IkatController < ApplicationController
 
   # GET /blog
   def blog
-    redirect_to 'http://ikat.siteleaf.net'
+    redirect_to 'http://blog.getikat.com'
   end
 
   # GET /support
@@ -39,10 +38,5 @@ class IkatController < ApplicationController
 
       @products = Product.in(category_ids: [@category.id]).order('updated_at desc').all
     end
-  end
-
-  # GET /bookmarklet
-  def bookmarklet
-    
   end
 end

@@ -1,12 +1,12 @@
 class CollectionsController < ApplicationController
-  before_action :find_user!, :find_collection!
+  before_action :current_user!, :current_collection!
 
   def index
-    @collections = @user.collections
+    @collections = @current_user.collections
   end
 
   def show
-    @collection = Collection.where(owner_id: @user.id, slug: params[:collection_slug]).first
+    @current_collection = Collection.where(owner_id: @current_user.id, slug: params[:collection_slug]).first
   end
 
   def new
@@ -48,11 +48,11 @@ class CollectionsController < ApplicationController
 
   protected
 
-  def find_user!
-    @user = User.where(username: params[:username]).first
+  def current_user!
+    @current_user = User.where(username: params[:username]).first
   end
 
-  def find_collection!
-    @collection = Collection.where(owner_id: @user.id, slug: params[:collection_slug]).first if @user
+  def current_collection!
+    @current_collection = Collection.where(owner_id: @current_user.id, slug: params[:collection_slug]).first if @user
   end
 end
