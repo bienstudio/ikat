@@ -1,16 +1,16 @@
 .explore {
   nav.categories {
+    font-size: 1.25em;
+    line-height: 3rem;
+    font-weight: 500;
     margin-top: rhythm(0.5);
 
     ul li {
       display: inline-block;
-      margin-right: 0.25em;
+      margin-right: 0.75em;
 
-      & + li {
-        &:before {
-          content: "\2022";
-          margin-right: 0.5em;
-        }
+      a {
+        border-bottom: 3px solid $primary;
       }
     }
   }

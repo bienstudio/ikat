@@ -1,14 +1,22 @@
 .index {
-  margin-bottom: rhythm(3);
+  background: image-url('cover.jpg') repeat;
+  background-size: cover;
+  background-position: center;
+  padding: rhythm(6) gutter();
 
   header {
-    margin-top: rhythm(2);
+    color: $base;
     text-align: center;
+    position: relative;
 
     h2 {
       @include adjust-font-size-to(36px);
 
       font-weight: 700;
+    }
+
+    h2, p {
+      text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
     }
 
     ul li {
@@ -21,6 +29,7 @@
     }
   }
 }
+
 
 .feed {
   @include container;

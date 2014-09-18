@@ -4,12 +4,23 @@
     %nav.categories
       - unless @breadcrumbs.empty?
         %ul.breadcrumbs
-          %li= link_to "All", explore_path
+          %li= link_to "All", explore_path, style: "opacity: 0.5"
           - @breadcrumbs.each do |c|
-            %li= link_to c.name, c.permalink
+            - if c.color
+              - if c == @category
+                %li= link_to c.name, c.permalink, style: "border-color: rgba(#{c.color}, 0.75); color: rgba(#{c.color}, 0.75)"
+              - else
+                %li= link_to c.name, c.permalink, style: "border-color: rgba(#{c.color}, 0.75); color: rgba(#{c.color}, 0.75); opacity: 0.5"
+            - else
+              %li= link_to c.name, c.permalink
+              foo
+
       %ul.children
         - unless @children.empty?
           - @children.each do |c|
-            %li= link_to c.name, c.permalink
+            - if c.color
+              %li= link_to c.name, c.permalink, style: "border-color: #{c.color}; color: #{c.color}"
+            - else
+              %li= link_to c.name, c.permalink
   %section.products
     = render :partial => 'products/products', locals: { products: @products }

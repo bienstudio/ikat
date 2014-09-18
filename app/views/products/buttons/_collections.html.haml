@@ -11,8 +11,9 @@
 -# - current_user.collections.each do |collection|
 -#   = link_to collection.name, "#", class: "btn #{product.in_list?(collection) ? 'btn-green' : ''}"
 
-- current_user.collections.each do |collection|
-  - if product.in_list?(collection)
-    = link_to collection.name, product_flux_path(product_id: product.id, list: collection), class: "btn btn-black collection-button-flux remove", remote: true, method: :post
-  - else
-    = link_to collection.name, product_flux_path(product_id: product.id, list: collection), class: "btn btn-grey collection-button-flux add", remote: true, method: :post
+- if current_user
+  - current_user.collections.each do |collection|
+    - if product.in_list?(collection)
+      = link_to collection.name, product_flux_path(product_id: product.id, list: collection), class: "btn btn-black collection-button-flux remove", remote: true, method: :post
+    - else
+      = link_to collection.name, product_flux_path(product_id: product.id, list: collection), class: "btn btn-grey collection-button-flux add", remote: true, method: :post

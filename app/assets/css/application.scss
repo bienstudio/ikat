@@ -170,7 +170,7 @@ footer#footer {
   padding-left: 0;
   padding-right: 0;
   margin-bottom: rhythm(3);
-  margin-top: rhythm(3);
+  // margin-top: rhythm(3);
 
   nav, p {
     @include adjust-font-size-to(14px);

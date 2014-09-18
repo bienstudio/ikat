@@ -13,8 +13,9 @@
     %span.price= product.full_price
     - if current_user
       %nav
-        = render :partial => "products/buttons/wants", locals: { product: product }
-        - if current_user.collections.count > 0
+        - if current_user
+          = render :partial => "products/buttons/wants", locals: { product: product }
+        - if current_user && current_user.collections.count > 0
           %span.collections-trigger.btn{class: in_wants ? 'btn-green' : 'btn-red'}
             %i.ss-icon dropdown
           %ul.collections

@@ -8,6 +8,7 @@
 
 Category.create(
   name: 'Men\'s',
+  color: '#ff404d',
   children: [
     Category.create(
       name: 'Clothing',
