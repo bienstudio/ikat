@@ -1,6 +1,6 @@
 %header
   .information.row
-    %section.col-17
+    %section.col-20
       %h2= @current_user.name
       %ul.meta
         - unless @current_user.location.blank?
@@ -8,12 +8,11 @@
         - unless @current_user.website.blank?
           %li
             = outgoing_link_to @current_user.website, @current_user.website
+      %ul.meta.relationships
+        %li= link_to pluralize(@current_user.followers.count, 'Followers'), followers_path(username: @current_user.username)#, class: "btn #{list == 'followers' ? 'btn-black' : nil}"
+        %li= link_to "#{@current_user.following.count} Following", following_path(username: @current_user.username)#, class: "btn #{list == 'following' ? 'btn-black' : nil}"
       %p.biography= @current_user.biography
-    %aside.col-4
-      %ul.counts
-        %li= link_to pluralize(@current_user.followers.count, 'Followers'), followers_path(username: @current_user.username), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
-        %li= link_to "#{@current_user.following.count} Following", following_path(username: @current_user.username), class: "btn #{list == 'following' ? 'btn-black' : nil}"
-    %aside.col-3.omega
+    %aside.col-4.omega
       %figure.avatar
         = image_tag @current_user.avatar_url(:medium)
   .lists.row
@@ -29,6 +28,7 @@
             = pluralize(@current_user.collections.count, 'Collection')
 
       %li= link_to "<span><i class='ss-icon'>plus</i> New Collection".html_safe, new_collection_path, class: "btn btn-green"
+
     %nav.col-3.omega
-      - if current_user && current_user != @current_user
+      - if current_user != @current_user
         = link_to "#{current_user.follows?(@current_user) ? 'Unfollow' : 'Follow'}", user_flux_path(username: @current_user.username), class: "user-flux btn #{current_user.follows?(@current_user) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post

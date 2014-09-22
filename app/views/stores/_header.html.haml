@@ -1,21 +1,20 @@
 %header
   .information.row
-    %section.col-17
-      %h2= @store.name
-      %p
-        = outgoing_link_to @store.domain, "//#{@store.domain}"
-    %aside.col-4
-      %ul.counts
-        %li= link_to pluralize(@store.followers.count, 'Follower'), store_followers_path(store_domain: @store.domain), class: "btn #{list == 'followers' ? 'btn-black' : nil}"
-    %aside.col-3.omega
+    %section.col-20
+      %h2= @current_store.name
+      %ul.meta
+        %li= outgoing_link_to @current_store.domain, "//#{@current_store.domain}"
+      %ul.meta.relationships
+        %li= link_to pluralize(@current_store.followers.count, 'Followers'), store_followers_path(store_domain: @current_store.domain)#, class: "btn #{list == 'followers' ? 'btn-black' : nil}"
+    %aside.col-4.omega
       %figure.logo
-        = image_tag @store.logo_url(:medium)
+        = image_tag @current_store.logo_url(:medium)
   .lists.row
-    %ul.col-21
+    %ul.col-20
       %li
-        = link_to store_path(store_domain: @store.domain), class: "btn #{list == 'inventory' ? 'btn-black' : nil}" do
+        = link_to store_path(store_domain: @current_store.domain), class: "btn #{list == 'inventory' ? 'btn-black' : nil}" do
           %span
-            = pluralize(@store.inventory.product_count, 'Product')
-    %nav.col-3.omega
+            = pluralize(@current_store.inventory.product_count, 'Product')
+    %nav.col-4.omega
       - if current_user
-        = link_to "#{current_user.follows?(@store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @store.domain), class: "user-flux btn #{current_user.follows?(@store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post
+        = link_to "#{current_user.follows?(@current_store) ? 'Unfollow' : 'Follow'}", store_flux_path(store_domain: @current_store.domain), class: "user-flux btn #{current_user.follows?(@current_store) ? 'unfollow btn-red' : 'follow btn-green'}", remote: true, method: :post

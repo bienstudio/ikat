@@ -14,14 +14,14 @@ class StoresController < ApplicationController
     )
 
     if action.success?
-      redirect_to store_path(store_domain: @store.domain)
+      redirect_to store_path(store_domain: @current_store.domain)
     else
       d { action.errors }
     end
   end
 
   def followers
-    @users = Relationship.followers(@store).order('created_at desc').all
+    @users = Relationship.followers(@currnet_store).order('created_at desc').all
   end
 
   protected
