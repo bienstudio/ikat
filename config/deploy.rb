@@ -5,12 +5,21 @@ set :application, 'ikat'
 set :scm, :git
 set :repo_url, 'git@github.com:eturk/ikat.git'
 
-set :deploy_to, '/var/www/ikat'
+set :deploy_to, '/data/ikat'
 
-set :rbenv_custom_path, '/home/ubuntu/.rbenv'
-set :rbenv_ruby, '2.1.2'
+set :rbenv_custom_path, '/home/deplou/.rbenv'
+set :rbenv_ruby, '2.1.3'
 
 set :linked_files, %w{.env}
+
+set :sockets_path, Pathnew.new("#{fetch(:deploy_to)}/shared/tmp/sockets/")
+
+set :puma_roles, :app
+set :puma_socket, "unix://#{fetch(:sockets_path).join('puma_' + fetch(:application) + '.sock')}"
+set :pumactl_socket, "unix://#{fetch(:sockets_path).join('pumactl_' + fetch(:application) + '.sock')}"
+set :puma_state, fetch(:sockets_path).join('puma.state')
+set :puma_log, -> { shared_path.join("log/puma-#{fetch(:stage )}.log") }
+set :puma_flags, nil
 
 set :asset_roles, [:app]
 
@@ -20,8 +29,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :mkdir, '-p', "#{release_path}/tmp"
-      execute :touch, release_path.join('tmp/restart.txt')
+      invoke 'puma:restart'
     end
   end
 

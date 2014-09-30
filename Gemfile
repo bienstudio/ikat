@@ -84,6 +84,7 @@ group :development do
   gem 'capistrano-rbenv', github: 'joost/rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-sidekiq'
+  gem 'capistrano3-puma'
 end
 
 group :test do
