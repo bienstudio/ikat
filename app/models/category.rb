@@ -76,6 +76,25 @@ class Category
 
       options
     end
+
+    def from_explore(arr)
+      cats = []
+
+      arr.each do |c|
+
+        # This is the parent
+        if cats.empty?
+          cats << Category.where(slug: c).first
+
+        # This is a child
+        else
+          parent = cats.last
+          cats << parent.children.where(slug: c).first
+        end
+      end
+
+      cats
+    end
   end
 
   protected

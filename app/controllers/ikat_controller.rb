@@ -21,22 +21,4 @@ class IkatController < ApplicationController
   # GET /support
   def support
   end
-
-  # GET /explore
-  def explore
-    if params[:categories].nil?
-      @category = nil
-      @products = Product.order('created_at desc').limit(10)
-      @breadcrumbs = []
-      @children = Category.toplevel
-    else
-      params[:categories] = params[:categories].split('/')
-
-      @category = Category.where(slug: params[:categories].last).first
-      @breadcrumbs = @category.tree
-      @children = @category.children
-
-      @products = Product.in(category_ids: [@category.id]).order('updated_at desc').all
-    end
-  end
 end
