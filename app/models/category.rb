@@ -13,6 +13,12 @@ class Category
 
   has_many :products
 
+  def permalink
+    categories = self.ancestors_and_self.collect(&:slug).join('/')
+
+    "/explore/#{categories}"
+  end
+
   def self.as_options
     options = []
 
@@ -31,24 +37,24 @@ class Category
       end
     end
 
-    def from_explore(arr)
-      cats = []
+    options
+  end
 
-      arr.each do |c|
+  # descendants and self
+  def self.from_explore(arr)
+    current_str = arr.first
+    current_obj = Category.roots.where(slug: current_str).first
+    current_idx = 0
 
-        # This is the parent
-        if cats.empty?
-          cats << Category.where(slug: c).first
-
-        # This is a child
-        else
-          parent = cats.last
-          cats << parent.children.where(slug: c).first
-        end
-      end
-
-      cats
+    # Try and accurately get to the last category, since there are many
+    #   categories named similarly.
+    while current_str != arr.last
+      current_idx = current_idx + 1
+      current_str = arr[current_idx]
+      current_obj = current_obj.children.where(slug: current_str).first
     end
+
+    current_obj
   end
 
   protected
