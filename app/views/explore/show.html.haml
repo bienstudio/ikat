@@ -4,9 +4,13 @@
     %nav.categories
       - unless @breadcrumbs.empty?
         %ul.breadcrumbs
-          %li= link_to "All", explore_path
+          %li= link_to "All", explore_path, style: "opacity: 0.5"
           - @breadcrumbs.each do |c|
-            %li= link_to c.name, c.permalink, style: "color: #{c.color}"
+            - if @breadcrumbs.last == c
+              %li= link_to c.name, c.permalink, style: "color: #{c.color}"
+            - else
+              %li= link_to c.name, c.permalink, style: "color: #{c.color}; opacity: 0.5"
+
       %ul.children
         - unless @children.empty?
           - @children.each do |c|

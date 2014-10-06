@@ -6,10 +6,10 @@
         %ul.breadcrumbs
           %li= link_to "All", explore_path
           - @breadcrumbs.each do |c|
-            %li= link_to c.name, c.permalink, style: "color: #{c.color}"
+            %li= link_to c.name, c.permalink, 'data-color' => c.color, style: "color: #{c.color}"
       %ul.children
         - unless @children.empty?
           - @children.each do |c|
-            %li= link_to c.name, c.permalink, style: "color: #{c.color}"
+            %li= link_to c.name, c.permalink, 'data-color' => c.color, style: "color: #{c.color}"
   %section.products
     = render :partial => 'products/products', locals: { products: @products }

@@ -9,7 +9,7 @@ class Category
 
   validates :name, presence: true
 
-  before_validation :create_slug!
+  before_validation :create_slug!, :add_color!
 
   has_many :products
 
@@ -40,7 +40,6 @@ class Category
     options
   end
 
-  # descendants and self
   def self.from_explore(arr)
     current_str = arr.first
     current_obj = Category.roots.where(slug: current_str).first
@@ -69,6 +68,14 @@ class Category
       str = str.downcase
 
       self.slug = str
+    end
+  end
+
+  def add_color!
+    unless self.color
+      if self.parent && self.parent.color?
+        self.color = self.parent.color
+      end
     end
   end
 end

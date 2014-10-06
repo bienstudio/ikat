@@ -1,13 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Category.create(
   name: 'Men\'s',
+  color: '#FF4136',
   children: [
     Category.create(
       name: 'Clothing',
@@ -95,6 +88,7 @@ Category.create(
 
 Category.create(
   name: 'Women\'s',
+  color: '#85144B',
   children: [
     Category.create(
       name: 'Dresses',
@@ -138,6 +132,7 @@ Category.create(
 
 Category.create(
   name: 'Tech',
+  color: '#0074D9',
   children: [
     Category.create(
       name: 'Audio',
@@ -169,6 +164,7 @@ Category.create(
 
 Category.create(
   name: 'Media',
+  color: '#7FDBFF',
   children: [
     Category.create(name: 'Books & Music'),
     Category.create(name: 'Movies')
@@ -177,6 +173,7 @@ Category.create(
 
 Category.create(
   name: 'Home',
+  color: '#3D9970',
   children: [
     Category.create(
       name: 'Kitchen',
@@ -214,6 +211,7 @@ Category.create(
 
 Category.create(
   name: 'Art',
+  color: '#F012BE',
   children: [
     Category.create(name: '3D'),
     Category.create(name: 'Posters'),
@@ -225,6 +223,7 @@ Category.create(
 
 Category.create(
   name: 'Other',
+  color: '#FFDC00',
   children: [
     Category.create(name: 'Booze'),
     Category.create(name: 'Cycling'),
