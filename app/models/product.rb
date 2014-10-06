@@ -5,14 +5,14 @@ class Product
   include Canable::Ables
   include Rails.application.routes.url_helpers
 
-  field :name,     type: String
-  field :link,     type: String
-  field :price,    type: Float
-  field :currency, type: Symbol
-  field :expired,  type: Boolean, default: false
-  field :original_image, type: String
-  field :slug,     type: String
-  field :store_id, type: ::BSON::ObjectId
+  field :name,            type: String
+  field :link,            type: String
+  field :price,           type: Float
+  field :currency,        type: Symbol
+  field :expired,         type: Boolean, default: false
+  field :original_image,  type: String
+  field :slug,            type: String
+  field :store_id,        type: ::BSON::ObjectId
 
   mount_uploader :photo, PhotoUploader
 
@@ -22,12 +22,12 @@ class Product
   field :photo_processing, type: Boolean
   field :photo_tmp,        type: String
 
-  validates :name,     presence: true
-  validates :link,     presence: true
-  validates :price,    presence: true
-  validates :currency, presence: true
-  validates :category, presence: true
-  validates :original_image, presence: true
+  validates :name,            presence: true
+  validates :link,            presence: true
+  validates :price,           presence: true
+  validates :currency,        presence: true
+  validates :category,        presence: true
+  validates :original_image,  presence: true
 
   belongs_to :category
 
@@ -85,12 +85,12 @@ class Product
     self.permalink + '/buy'
   end
 
-  def categories
+  def category_tree
     self.category.tree
   end
 
-  def category_ids
-    self.category.tree.collect(&:id)
+  def category_tree_ids
+    self.category_tree.collect(&:id)
   end
 
   def store
@@ -118,6 +118,10 @@ class Product
       {
         usd: '$'
       }
+    end
+
+    def in_tree(cats)
+      Product.in(category_id: cats)
     end
   end
 

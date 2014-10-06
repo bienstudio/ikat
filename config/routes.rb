@@ -52,7 +52,10 @@ Rails.application.routes.draw do
   get 'support',  to: 'ikat#support'
 
   # GET /explore(/:categories)
-  get 'explore(/:categories)', to: 'ikat#explore', as: 'explore', constraints: { categories: /.*/ }
+  # get 'explore(/:categories)', to: 'ikat#explore', as: 'explore', constraints: { categories: /.*/ }
+
+  # GET /explore(/:categories)
+  get 'explore(/:categories)', to: 'explore#show', as: 'explore', constraints: { categories: /.*/ }
 
   # GET /bookmarklet/:url
   get 'bookmarklet/:url', to: 'bookmarklet#show', constraints: { url: /.*/ }
