@@ -1,5 +1,6 @@
 class Category
   include Mongoid::Document
+  include Mongoid::Tree
   include Rails.application.routes.url_helpers
 
   field :name,  type: String
@@ -10,71 +11,24 @@ class Category
 
   before_validation :create_slug!
 
-  belongs_to :parent,   class_name: 'Category'
-  has_many   :children, class_name: 'Category'
-
   has_many :products
 
-  scope :toplevel, ->{ where(parent_id: nil) }
+  def self.as_options
+    options = []
 
-  def tree
-    unless self.parent_id.nil?
-      p = [self, self.parent]
+    self.roots.each do |root|
+      root.descendants_and_self.each do |leaf|
+        str = ''
 
-      while p.last.parent
-        p << p.last.parent
-      end
-
-      p.reverse
-    else
-      [self]
-    end
-  end
-
-  def permalink
-    if !self.tree.nil?
-      arr = self.tree
-    else
-      arr = [self]
-    end
-
-    str = arr.collect(&:slug).join('/')
-
-    "/explore/#{str}"
-  end
-
-  class << self
-    def lowest
-      cats = []
-
-      self.all.each do |c|
-        cats << c
-      end
-
-      cats
-    end
-
-    def as_options
-      options = []
-
-      lowest.each do |c|
-        str = " > #{c.name}"
-
-        current = c
-        while current.has_parent?
-          str.insert(0, " > #{current.parent.name}")
-
-          current = current.parent
+        leaf.ancestors_and_self.each do |ancestor|
+          str << "#{ancestor.name} > "
         end
 
-        str = str[3..-1]
+        idx = leaf.id.to_s
+        str = str[0..-4]
 
-        options << [c.id.to_s, str]
-
-        options.sort_by { |a| a.last }
+        options << [idx, str]
       end
-
-      options
     end
 
     def from_explore(arr)
