@@ -131,9 +131,8 @@ class Product
     if self.name
       str = self.name
 
-      str = str.gsub(/[^a-zA-Z0-9 ][-]/, "")
-      str = str.gsub(/[ ]+/, " ")
-      str = str.gsub(/ /, "-")
+      str = str.gsub(/[^0-9a-z ]/i, '')
+      str = str.gsub(/ /, '-')
       str = str.downcase
 
       if store
