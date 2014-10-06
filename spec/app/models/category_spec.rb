@@ -14,11 +14,4 @@ describe Category do
   it { expect(child).to be_valid }
 
   it { expect(parent).to validate_presence_of :name }
-
-  describe '#toplevel' do
-    let(:toplevel) { Category.toplevel }
-
-    it { expect(toplevel).to include parent }
-    it { expect(toplevel).to_not include child }
-  end
 end
