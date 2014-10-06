@@ -15,7 +15,7 @@
         %li= render :partial => "products/buttons/collections", locals: { product: @product }
         %li= link_to "Buy", @product.buy_permalink, class: "btn btn-black", target: "_blank"
       %p
-        = @product.categories.collect { |c| link_to(c.name, c.permalink) }.join(' &bull; ').html_safe
+        = @product.category.ancestors_and_self.collect { |c| link_to(c.name, c.permalink) }.join(' &bull; ').html_safe
 
     %section.users
       %ul
