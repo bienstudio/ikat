@@ -5,6 +5,7 @@ ruby '2.1.2'
 gem 'rails', '4.1.4'
 
 gem 'mongoid', '>= 4.0.0'
+gem 'mongoid-tree', require: 'mongoid/tree'
 
 gem 'puma'
 
