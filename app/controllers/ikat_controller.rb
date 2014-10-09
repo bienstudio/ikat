@@ -21,4 +21,9 @@ class IkatController < ApplicationController
   # GET /support
   def support
   end
+
+  # GET /ui
+  def ui
+    gon.categories = Category.named_arrange
+  end
 end

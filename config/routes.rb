@@ -51,6 +51,9 @@ Rails.application.routes.draw do
   # GET /support
   get 'support',  to: 'ikat#support'
 
+  # GET /ui
+  get 'ui',       to: 'ikat#ui'
+
   # GET /explore(/:categories)
   # get 'explore(/:categories)', to: 'ikat#explore', as: 'explore', constraints: { categories: /.*/ }
 

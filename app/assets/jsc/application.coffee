@@ -1,8 +1,6 @@
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require_tree ./lib
-//= require turbolinks
 
 ready = ->
   $("img").unveil()

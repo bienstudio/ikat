@@ -1,6 +1,6 @@
 class Category
   include Mongoid::Document
-  include Mongoid::Tree
+  include Mongoid::Ancestry
   include Rails.application.routes.url_helpers
 
   field :name,  type: String
@@ -12,6 +12,24 @@ class Category
   before_validation :create_slug!, :add_color!
 
   has_many :products
+
+  has_ancestry
+
+  def ancestors_and_self
+    arr = self.ancestors.to_a
+
+    arr.push(self)
+
+    arr
+  end
+
+  def descendants_and_self
+    arr = self.descendants.to_a
+
+    arr.push(self)
+
+    arr
+  end
 
   def permalink
     categories = self.ancestors_and_self.collect(&:slug).join('/')
@@ -56,6 +74,22 @@ class Category
     current_obj
   end
 
+  def self.as_html(urls = true)
+    @html = '<ul class="category-picker">'
+
+    self.arrange.each(&method(:hash_to_html))
+
+    @html << '</ul>'
+
+    @html
+  end
+
+  def self.named_arrange
+    Ikat::Utilities.transform_hash(Category.arrange, deep: true) do |hash, key, value|
+      hash[key.id.to_s] = { name: key.name, children: value }
+    end
+  end
+
   protected
 
   def create_slug!
@@ -76,6 +110,19 @@ class Category
       if self.parent && self.parent.color?
         self.color = self.parent.color
       end
+    end
+  end
+
+  def self.hash_to_html(key, value)
+    if value.blank?
+      @html << "<li><a href='#' style='color: #{key.color}'>#{key.name}</a></li>"
+    else
+      @html << "<li><a href='#' style='color: #{key.color}'>#{key.name}</a>"
+      @html << "<ul>"
+
+      value.each(&method(:hash_to_html))
+
+      @html << "</ul></li>"
     end
   end
 end

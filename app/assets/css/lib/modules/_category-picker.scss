@@ -1,0 +1,9 @@
+ul.category-picker {
+  li {
+    display: inline-block;
+
+    & > ul {
+      display: none;
+    }
+  }
+}
