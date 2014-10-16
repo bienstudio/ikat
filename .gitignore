@@ -8,3 +8,4 @@ db/mongodb
 public/assets
 public/uploads
 Procfile.development
+config/secrets.yml
