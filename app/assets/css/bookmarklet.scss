@@ -139,13 +139,17 @@ main {
         pointer-events: disabled;
       }
 
+      input, select {
+        @include adjust-font-size-to(14px);
+      }
+
       input {
-        padding: 0.5em;
+        padding: 0.25em 0.5em;
       }
 
       select {
         border-radius: 1px !important;
-        padding: 0.5em;
+        padding: 0.25em 0.5em;
         height: 37px !important;
         width: auto;
         margin-left: 0;
@@ -157,6 +161,10 @@ main {
         border-radius: 0;
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
+      }
+
+      #product_name {
+        margin-bottom: 0.5em;
       }
 
       .input {
@@ -188,7 +196,7 @@ main {
       }
 
       .currency {
-        height: 40px !important;
+        height: 36px !important;
       }
 
       .categories {
@@ -197,6 +205,7 @@ main {
 
         select {
           display: inline-block;
+          margin-right: 0.5em;
         }
       }
 
@@ -211,6 +220,10 @@ main {
           display: none;
           margin-left: 0.5em;
         }
+      }
+
+      a.btn {
+        @include adjust-font-size-to(14px);
       }
     }
   }
