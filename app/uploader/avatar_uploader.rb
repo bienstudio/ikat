@@ -1,6 +1,6 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
+  include ::CarrierWave::Backgrounder::Delay
 
   def extension_white_list
     %w(jpg jpeg gif png)
