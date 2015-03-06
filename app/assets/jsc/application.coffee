@@ -4,12 +4,12 @@
 //= require_tree ./lib
 //= require turbolinks
 
-ready = ->
-  $("img").unveil()
-
-  $(".collections-trigger").popover
-    my: 'top'
-    at: 'bottom'
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
+# ready = ->
+#   $("img").unveil()
+#
+#   $(".collections-trigger").popover
+#     my: 'top'
+#     at: 'bottom'
+#
+# $(document).ready(ready)
+# $(document).on('page:load', ready)

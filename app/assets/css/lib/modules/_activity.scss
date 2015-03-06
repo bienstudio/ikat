@@ -1,23 +1,75 @@
+/*
+  Ikat.
+    file: css/lib/modules/_activity.scss
+*/
+
 .activity {
   @include inner-container;
 
-  aside {
+  &:hover {
+    nav {
+      opacity: 1 !important;
+
+      @include transition-property(opacity);
+      @include transition-duration(0.5s);
+    }
+  }
+
+  aside, section {
+    @include leading-border(1px, 0.5);
+
+    border-color: $light-grey;
+  }
+
+  aside.user {
     @include span-columns(2, 24);
   }
 
-  section {
-    @include span-columns(20 omega, 24);
+  aside.product {
+    @include span-columns(omega 8, 24);
 
-    .product {
-      margin-bottom: rhythm(0.5);
+    h3 a {
+      color: $text;
+
+      &:hover {
+        color: $dark-orange;
+      }
     }
 
-    p + p {
+    p.store {
+      @include adjust-font-size-to(14px);
+
+      a {
+        color: $grey;
+
+        &:hover {
+          color: $dark-orange;
+        }
+      }
+    }
+
+    nav {
+      @include transition-property(opacity);
+      @include transition-duration(0.5s);
+
+      opacity: 0;
       margin-top: rhythm(0.5);
+
+      ul li {
+        display: inline-block;
+
+        & + li {
+          margin-right: rhythm(0.1);
+        }
+      }
     }
   }
 
-  & + .activity {
-    margin-top: rhythm(2);
+  section {
+    @include span-columns(14, 24);
+
+    figure, img {
+      width: 100%;
+    }
   }
 }

@@ -17,57 +17,55 @@
 */
 
 body {
-  @include font-size(16px);
-  @include debug-vertical-alignment;
-
-
   background: $base;
   color: $text;
-
-  font: {
-    family: $sans-serif;
-    weight: 300;
-  }
+  font-family: $sans-serif;
+  font-weight: 300;
 }
 
-a, [data-url] {
-  color: $primary;
+a {
+  color: $orange;
   text-decoration: none;
 
   &:hover {
-    color: $dark-primary;
+    color: $dark-orange;
   }
+}
 
-  &.outgoing {
-    i {
-      color: $grey;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+h1 {
+  @include adjust-font-size-to(18px);
+
+  background: {
+    image: image-url('logo.png');
+    repeat: no-repeat;
+    position: top right;
+  }
+  display: inline-block;
+  letter-spacing: 1px;
+  line-height: 1em;
+  padding: 0.5em;
+  text-transform: uppercase;
+
+  a {
+    display: block;
+    color: $base;
+
+    &:hover {
+      color: $base;
     }
   }
 }
 
-em {
-  font-style: italic;
-}
-
-h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  font-family: $sans-serif;
-}
-
-h2 {
-  @include adjust-font-size-to(24px);
+h3 {
+  @include adjust-font-size-to(18px);
 }
 
 img {
   max-width: 100%;
-}
-
-p + p {
-  margin-top: rhythm(1);
-}
-
-strong {
-  font-weight: 500;
 }
 
 
@@ -76,48 +74,22 @@ strong {
 */
 
 header#header {
-  color: $base;
-  padding: rhythm(0.5) 0;
+  @include inner-container;
 
-  a {
-    color: $text;
-
-    &:hover {
-      color: $primary;
-    }
-  }
-
-  h1 {
-    @include adjust-font-size-to(18px);
-
-    background: {
-      image: image-url('logo-bg-2.png');
-      repeat: no-repeat;
-      position: top right;
-    }
-
-    display: inline-block;
-    font-weight: 700;
-    letter-spacing: 1px;
-    line-height: 1em;
-    padding: 0.5em;
-    text-transform: uppercase;
-
-    a {
-      display: block;
-      color: $base;
-
-      &:hover {
-        color: $base;
-      }
-    }
-  }
+  margin-bottom: rhythm(1);
+  margin-top: rhythm(1);
 
   aside {
     @include span-columns(3, 24);
   }
 
   section {
+    @include adjust-font-size-to(14px);
+
+    a {
+      color: $grey;
+    }
+
     nav {
       margin-top: rhythm(0.25);
     }
@@ -133,17 +105,15 @@ header#header {
         float: right;
       }
     }
-  }
 
-  nav {
-    @include adjust-font-size-to(14px);
-  }
+    ul {
+      li {
+        display: inline-block;
 
-  ul li {
-    display: inline-block;
-
-    & + li {
-      margin-left: 1em;
+        & + li {
+          margin-left: rhythm(0.75);
+        }
+      }
     }
   }
 }
@@ -163,44 +133,37 @@ main {
 */
 
 footer#footer {
-  @include container;
+  @include inner-container;
+  @include leading-border(1px, 1);
 
+  border-color: $light-grey;
   color: $grey;
-  padding-top: rhythm(1);
-  padding-left: 0;
-  padding-right: 0;
-  margin-bottom: rhythm(3);
-  margin-top: rhythm(3);
-
-  nav, p {
-    @include adjust-font-size-to(14px);
-  }
-
-  nav {
-    float: left;
-  }
-
-  p {
-    float: right;
-  }
+  margin-bottom: rhythm(2);
+  margin-top: rhythm(2);
 
   a {
     color: $grey;
 
     &:hover {
-      color: $primary;
+      color: $dark-orange;
     }
   }
 
-  li {
+  nav, p {
+    @include adjust-font-size-to(14px);
+
     display: inline-block;
-    margin-right: 0.25em;
+  }
+
+  nav li {
+    display: inline;
 
     & + li {
-      &:before {
-        content: "\2022";
-        margin-right: 0.5em;
-      }
+      margin-left: rhythm(0.5);
     }
+  }
+
+  p {
+    float: right;
   }
 }

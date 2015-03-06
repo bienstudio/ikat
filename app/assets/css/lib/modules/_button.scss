@@ -1,0 +1,30 @@
+/*
+  Ikat.
+    file: css/lib/modules/_button.scss
+*/
+
+a.btn {
+  @include adjust-font-size-to(14px);
+
+  background: $light-grey;
+  border: none;
+  color: $text;
+  font-family: $sans-serif;
+  font-weight: 600;
+  padding: rhythm(0.25) rhythm(0.5);
+
+  &:hover {
+    background: darken($light-grey, 5%);
+    color: $text;
+    cursor: pointer;
+  }
+
+  &.btn-green {
+    background: $green;
+    color: $base;
+
+    &:hover {
+      background: darken($green, 5%);
+    }
+  }
+}

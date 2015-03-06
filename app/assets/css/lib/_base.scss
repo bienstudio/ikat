@@ -10,29 +10,9 @@
 @import "includes/fonts";
 @import "includes/grid";
 
-@import "mixins/center";
-
 @import "modules/activity";
-@import "modules/avatars";
-@import "modules/buttons";
-@import "modules/collection";
-@import "modules/collections";
-@import "modules/collections-button";
-@import "modules/flash";
-@import "modules/forms";
-@import "modules/icons";
-@import "modules/product";
-@import "modules/products";
-@import "modules/user";
-@import "modules/store";
-
-@import "pages/collection";
-@import "pages/explore";
-@import "pages/index";
-@import "pages/page";
-@import "pages/product";
-@import "pages/user";
-@import "pages/store";
+@import "modules/avatar";
+@import "modules/button";
 
 @import "vendor/ss-social-regular";
 @import "vendor/ss-standard";

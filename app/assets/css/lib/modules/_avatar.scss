@@ -1,0 +1,10 @@
+/*
+  Ikat.
+    file: css/lib/modules/_avatar.scss
+*/
+
+figure.avatar {
+  img {
+    @include border-radius(50%);
+  }
+}

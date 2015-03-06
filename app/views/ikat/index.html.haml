@@ -1,13 +1,22 @@
 - if current_user
   .feed
     = render :partial => 'partials/flash'
-    %section.activities
-      - if @feed.blank?
-        %p No activity for you!
-      - else
-        - @feed.each do |activity|
-          = render :partial => 'activity/activity', locals: { activity: activity }
-    %aside
+    %article.activity
+      %aside.user
+        %figure.avatar
+          %a{href: profile_path(username: User.first.username)}
+            = image_tag User.first.avatar.url(:large)
+      %section
+        %figure.product
+          %a{href: Product.first.permalink}
+            = link_to image_tag Product.first.photo.url(:large)
+      %aside.product
+        %h3= link_to Product.first.name, Product.first.permalink
+        %p.store= link_to Product.first.store.name, store_path(store_domain: Product.first.store.domain)
+        %nav
+          %ul
+            %li= link_to "Add", "#", class: "btn btn-green"
+            %li= link_to "Purchase", "#", class: "btn"
 
 - else
   .index
