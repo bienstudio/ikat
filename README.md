@@ -38,20 +38,3 @@ To start the server and workers:
 
 - `bundle exec foreman start -f Procfile.development`
 
-### Production
-
-We run all of our servers on [Amazon Web Services](https://aws.amazon.com). Here's our current list of EC2 instances:
-
-Name      | Full Name        | Purpose                  | Active  
-----------|------------------|--------------------------|---------------
-`lmd`     | Life-Model Decoy | Staging                  | Yes
-`fury`    | Nick Fury        | Load-balancer, utility   | No
-`ironman` | Ironman          | Application              | No
-`thor`    | Thor             | Application              | No
-`coulson` | Agent Coulson    | MongoDB, Redis, Memcache | No
-
-To deploy to staging or production, it's as easy as using Capistrano:
-
-```
-$ bundle exec cap [production|staging] deploy
-```
